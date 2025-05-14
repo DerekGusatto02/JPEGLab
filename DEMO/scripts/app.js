@@ -260,13 +260,14 @@ async function analyzeImage() {
         const colorSpace = readStringFromMemory(colorSpacePtr);
         
         const componentSelect = document.getElementById('componentInput');
-        if(componentSelect == 0){
-            const quantTablePtr = Module._get_quant_table(0);
-        }else{
-            const quantTablePtr = Module._get_quant_table(1);
+        const quantTablePtr1 = Module._get_quant_table(0);
+        const quantTablePtr2 = Module._get_quant_table(1);
+        const quantTable = readArrayFromMemory(quantTablePtr1, 64);
+        if(componentSelect.value == 0) {
+            quantTable = readArrayFromMemory(quantTablePtr1, 64);
+        } else {
+            quantTable = readArrayFromMemory(quantTablePtr2, 64);
         }
-        const quantTable = readArrayFromMemory(quantTablePtr, 64);
-
         img.onload = async function () {
             displayImageInCanvas(img);
             displayImageWithGrid(img);
