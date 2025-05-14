@@ -267,7 +267,7 @@ async function analyzeImage() {
         const componentSelect = document.getElementById('componentInput');
         const quantTablePtr1 = Module._get_quant_table(0);
         const quantTablePtr2 = Module._get_quant_table(1);
-        const quantTable = readArrayFromMemory(quantTablePtr1, 64);
+        let quantTable = readArrayFromMemory(quantTablePtr1, 64);
         if(componentSelect.value == 0) {
             quantTable = readArrayFromMemory(quantTablePtr1, 64);
         } else {
@@ -333,12 +333,12 @@ async function drawComponentOnCanvas(componentIndex, canvasId) {
 
 // Aggiungi un listener per il cambiamento del valore di componentInput
 document.getElementById('componentInput').addEventListener('change', function () {
-    const selectedComponent = parseInt(this.value, 10); // Ottieni il valore selezionato
+    const selectedComponent = this.value;
     console.log(`DEBUG: Componente selezionata: ${selectedComponent}`);
 
     // Aggiorna la tabella di quantizzazione
     const quantTablePtr = Module._get_quant_table(selectedComponent === 0 ? 0 : 1);
-    const quantTable = readArrayFromMemory(quantTablePtr, 64);
+    let quantTable = readArrayFromMemory(quantTablePtr, 64);
     displayQuantizationTable(quantTable);
 
     // Aggiorna i coefficienti DCT per il primo blocco (ad esempio, blocco 0,0)
