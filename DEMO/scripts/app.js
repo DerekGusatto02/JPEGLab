@@ -344,8 +344,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const quantTable = readArrayFromMemory(quantTablePtr, 64);
             displayQuantizationTable(quantTable);
 
-            if (!selectedBlockX === -1 && !selectedBlockY === -1) {
+            if (selectedBlockX !== -1 && selectedBlockY !== -1) {
                 // Aggiorna i coefficienti DCT per il primo blocco (ad esempio, blocco 0,0)
+                console.log(`DEBUG: Aggiornamento dei coefficienti DCT per il blocco (${selectedBlockX}, ${selectedBlockY})`);
                 const dctCoefficients = getDCTCoefficients(selectedComponent, selectedBlockX, selectedBlockY);
                 if (dctCoefficients) {
                     displayDCTCoefficients(dctCoefficients);
