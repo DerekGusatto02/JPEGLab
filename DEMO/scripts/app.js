@@ -1,5 +1,5 @@
-let selectedBlockX = 0;
-let selectedBlockY = 0;
+let selectedBlockX = -1;
+let selectedBlockY = -1;
 let selectedComponent = 0;
 // Funzione per leggere un array dalla memoria WebAssembly
 function readArrayFromMemory(ptr, length) {
@@ -135,7 +135,7 @@ function displayDCTCoefficients(coefficients) {
     }
 
     const resultDiv = document.getElementById('DCTCoefficients');
-    resultDiv.innerHTML = '<h3>Coefficienti DCT</h3>';
+    resultDiv.innerHTML = '<h3>Coefficienti DCT del blocco '+selectedBlockX+' x '+selectedBlockX+'</h3>';
     resultDiv.appendChild(table);
 }
 
@@ -344,13 +344,16 @@ document.addEventListener('DOMContentLoaded', function () {
             const quantTable = readArrayFromMemory(quantTablePtr, 64);
             displayQuantizationTable(quantTable);
 
-            // Aggiorna i coefficienti DCT per il primo blocco (ad esempio, blocco 0,0)
-            const dctCoefficients = getDCTCoefficients(selectedComponent, selectedBlockX, selectedBlockY);
-            if (dctCoefficients) {
-                displayDCTCoefficients(dctCoefficients);
-            } else {
-                console.error('Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.');
+            if (!selectedBlockX === -1 && !selectedBlockY === -1) {
+                // Aggiorna i coefficienti DCT per il primo blocco (ad esempio, blocco 0,0)
+                const dctCoefficients = getDCTCoefficients(selectedComponent, selectedBlockX, selectedBlockY);
+                if (dctCoefficients) {
+                    displayDCTCoefficients(dctCoefficients);
+                } else {
+                    console.error('Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.');
+                }
             }
+            
         });
     } else {
         console.error('Errore: elemento con ID "componentInput" non trovato.');
