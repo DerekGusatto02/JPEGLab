@@ -161,16 +161,6 @@ function displayQuantizationTable(quantTable) {
 function writeHTMLresult(height, width, colorSpace, quantTable) {
     const resultDiv = document.getElementById('generalInfo');
 
-    let tableHTML = '<table aria-label="Quantization Table" border="1" style="border-collapse: collapse; text-align: center;">';
-    for (let i = 0; i < 8; i++) {
-        tableHTML += '<tr>';
-        for (let j = 0; j < 8; j++) {
-            tableHTML += `<td>${quantTable[i * 8 + j]}</td>`;
-        }
-        tableHTML += '</tr>';
-    }
-    tableHTML += '</table>';
-
     resultDiv.innerHTML = `
         <h2>Risultati dell'analisi</h2>
         <p><strong>Dimensioni:</strong> ${width} x ${height}</p>
@@ -268,8 +258,13 @@ async function analyzeImage() {
 
         const colorSpacePtr = Module._get_color_space();
         const colorSpace = readStringFromMemory(colorSpacePtr);
-
-        const quantTablePtr = Module._get_quant_table();
+        
+        const componentSelect = document.getElementById('componentInput');
+        if(componentSelect == 0){
+            const quantTablePtr = Module._get_quant_table(0);
+        }else{
+            const quantTablePtr = Module._get_quant_table(1);
+        }
         const quantTable = readArrayFromMemory(quantTablePtr, 64);
 
         img.onload = async function () {
