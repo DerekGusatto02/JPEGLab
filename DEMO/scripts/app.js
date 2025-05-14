@@ -331,21 +331,28 @@ async function drawComponentOnCanvas(componentIndex, canvasId) {
     ctx.putImageData(imageData, 0, 0);
 }
 
-// Aggiungi un listener per il cambiamento del valore di componentInput
-document.getElementById('componentInput').addEventListener('change', function () {
-    const selectedComponent = this.value;
-    console.log(`DEBUG: Componente selezionata: ${selectedComponent}`);
+// Aggiungi un listener per il cambiamento del valore di componente
+document.addEventListener('DOMContentLoaded', function () {
+    const componentInput = document.getElementById('componentInput');
+    if (componentInput) {
+        componentInput.addEventListener('change', function () {
+            const selectedComponent = parseInt(this.value, 10);
+            console.log(`DEBUG: Componente selezionata: ${selectedComponent}`);
 
-    // Aggiorna la tabella di quantizzazione
-    const quantTablePtr = Module._get_quant_table(selectedComponent === 0 ? 0 : 1);
-    let quantTable = readArrayFromMemory(quantTablePtr, 64);
-    displayQuantizationTable(quantTable);
+            // Aggiorna la tabella di quantizzazione
+            const quantTablePtr = Module._get_quant_table(selectedComponent === 0 ? 0 : 1);
+            const quantTable = readArrayFromMemory(quantTablePtr, 64);
+            displayQuantizationTable(quantTable);
 
-    // Aggiorna i coefficienti DCT per il primo blocco (ad esempio, blocco 0,0)
-    const dctCoefficients = getDCTCoefficients(selectedComponent, selectedBlockX, selectedBlockY);
-    if (dctCoefficients) {
-        displayDCTCoefficients(dctCoefficients);
+            // Aggiorna i coefficienti DCT per il primo blocco (ad esempio, blocco 0,0)
+            const dctCoefficients = getDCTCoefficients(selectedComponent, selectedBlockX, selectedBlockY);
+            if (dctCoefficients) {
+                displayDCTCoefficients(dctCoefficients);
+            } else {
+                console.error('Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.');
+            }
+        });
     } else {
-        console.error('Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.');
+        console.error('Errore: elemento con ID "componentInput" non trovato.');
     }
 });
