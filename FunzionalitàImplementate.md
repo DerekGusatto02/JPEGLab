@@ -7,3 +7,10 @@
 3. Visualizzazione informazioni generali (dimensioni, spazio dei colori).
 4. Estrazione e visualizzazione delle tabelle di quantizzazione.
 5. Calcolo e rappresentazione dei coefficienti DCT per ogni blocco.
+
+
+# To-Do
+## 14 maggio 2025
+1. Rivedere e migliorare Visualizzazione delle componenti.
+2. UI e UX, compreso responsività.
+3. Possibilità di modifica della tabella di quantizzazione?
