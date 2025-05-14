@@ -21,10 +21,11 @@
         </nav>-->
     </header>
     <main id="content">
-    <h1>JPEG Analyzer</h1>
+    <h1 id="home-logo">JPEG Analyzer</h1>
     <p>Questa applicazione ti aiuterà a decodificare e studiare la codifica e la compressione JPEG.</p> 
     
     <form id="imageForm" >
+        <div>
         <label for="testImageSelect">Seleziona un'immagine di test:</label>
         <select id="testImageSelect" name="testImageSelect">
             <option value="pontile.jpg" selected>Pontile</option>
@@ -32,9 +33,13 @@
             <option value="Test00.jpg">Test00 - vecchio SW</option>
             <option value="Test12.jpg">Test12 - vecchio SW</option>
         </select>
+    </div>
+    <div>
         <label for="imageInput">Carica un'immagine JPEG:</label>
         <input type="file" id="imageInput" name="imageInput" accept="image/jpeg" aria-required="true">
-        <button type="button" id="analyzeButton"  onclick="analyzeImage()">Analyze</button>
+    </div>
+    <button type="button" id="analyzeButton"  onclick="analyzeImage()">Analyze</button>
+   
     </form>
     <div id="imageContainer" >
     <canvas id="imageCanvas" ></canvas>
