@@ -1,3 +1,6 @@
+let selectedBlockX = 0;
+let selectedBlockY = 0;
+let selectedComponent = 0;
 // Funzione per leggere un array dalla memoria WebAssembly
 function readArrayFromMemory(ptr, length) {
     // Converte una porzione della memoria HEAPU8 in un array JavaScript
@@ -95,6 +98,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const blockY = Math.floor(y / blockHeight);
 
             console.log(`DEBUG: Blocco selezionato: (${blockX}, ${blockY})`);
+            selectedBlockX = blockX;
+            selectedBlockY = blockY;
 
             // Ottiene l'indice della componente selezionata
             const componentIndex = componentSelect.value;
@@ -325,3 +330,22 @@ async function drawComponentOnCanvas(componentIndex, canvasId) {
 
     ctx.putImageData(imageData, 0, 0);
 }
+
+// Aggiungi un listener per il cambiamento del valore di componentInput
+document.getElementById('componentInput').addEventListener('change', function () {
+    const selectedComponent = parseInt(this.value, 10); // Ottieni il valore selezionato
+    console.log(`DEBUG: Componente selezionata: ${selectedComponent}`);
+
+    // Aggiorna la tabella di quantizzazione
+    const quantTablePtr = Module._get_quant_table(selectedComponent === 0 ? 0 : 1);
+    const quantTable = readArrayFromMemory(quantTablePtr, 64);
+    displayQuantizationTable(quantTable);
+
+    // Aggiorna i coefficienti DCT per il primo blocco (ad esempio, blocco 0,0)
+    const dctCoefficients = getDCTCoefficients(selectedComponent, selectedBlockX, selectedBlockY);
+    if (dctCoefficients) {
+        displayDCTCoefficients(dctCoefficients);
+    } else {
+        console.error('Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.');
+    }
+});
