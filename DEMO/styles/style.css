@@ -2,11 +2,21 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: RGB(238, 236, 231);
+    color: RGB(53, 62, 67);
 }
 
-h1 {
-    color: #333;
+
+
+#home-logo{
+    text-indent: -999em; 
+    background-repeat: no-repeat;
+    background-size: contain;
+    line-height: 1.5em;
+    color:black;
+    background-position: center;
+    background-image: url("../img/logo_scritta.png");
+    font-size: 2em;
 }
 
 #upload-section {
