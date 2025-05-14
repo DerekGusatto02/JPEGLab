@@ -1,0 +1,2 @@
+# Add MIME type for WebAssembly files
+AddType application/wasm .wasm

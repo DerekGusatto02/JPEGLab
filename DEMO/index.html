@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JPEG Analyzer</title>
+    <meta name="keywords" content="JPEG, Image, Codification, Compression, Analysis">
+    <meta name="author" content="Derek Gusatto">
+    <meta name="description" content="Questa applicazione ti aiuterà a decodificare e studiare la codifica e la compressione JPE">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- <link rel="stylesheet" href="styles/mini.css" media="screen and (max-width: 768px)"> -->  
+    <link rel="icon" type="image/x-icon" href="/img/logo.ico">
+    <script src="scripts/jpeg_wrapper.js"></script>
+    <script src="scripts/app.js"></script>  
+</head>
+<body>
+    <header>     
+       <!-- <nav aria-label="navigation Help" class="navigationhelp">
+            <a href="#content">Go to content</a>
+        </nav>-->
+    </header>
+    <main id="content">
+    <h1>JPEG Analyzer</h1>
+    <p>Questa applicazione ti aiuterà a decodificare e studiare la codifica e la compressione JPEG.</p> 
+    
+    <form id="imageForm" >
+        <label for="testImageSelect">Seleziona un'immagine di test:</label>
+        <select id="testImageSelect" name="testImageSelect">
+            <option value="pontile.jpg" selected>Pontile</option>
+            <option value="montagna.jpg">Montagna GreyScale</option>
+            <option value="Test00.jpg">Test00 - vecchio SW</option>
+            <option value="Test12.jpg">Test12 - vecchio SW</option>
+        </select>
+        <label for="imageInput">Carica un'immagine JPEG:</label>
+        <input type="file" id="imageInput" name="imageInput" accept="image/jpeg" aria-required="true">
+        <button type="button" id="analyzeButton"  onclick="analyzeImage()">Analyze</button>
+    </form>
+    <div id="imageContainer" >
+    <canvas id="imageCanvas" ></canvas>
+    <canvas id="YCompCanvas" ></canvas>
+    <canvas id="CbCompCanvas" ></canvas>
+    <canvas id="CrCompCanvas" ></canvas>
+    </div>
+    <div id="AnalysisResulst">
+    <canvas id="GridCanvas" aria-label="Image Canvas"></canvas>
+    <div id="results" aria-live="polite">
+        <div id="generalInfo"></div>
+        <div id="quantizationTable" ></div>
+        <form id="componentForm" >
+            <label for="componentInput">Seleziona una componente e clicca su un blocco per visualizzare i coefficienti DCT:</label>
+            <select id="componentInput" name="componentInput" aria-required="true">
+                <option value="0" selected>Y</option> 
+                <option value="1">Cb</option>
+                <option value="2">Cr</option>
+            </select>
+        </form>
+        <div id="DCTCoefficients" aria-label="DCT Results"></div>
+    </div>
+    </div>
+   
+    </main>
+    <!--<footer>
+        <p>
+            Informazioni riguardanti la realizzazione dell'applicazione: <a href="">qui</a>
+        </p>
+        <p>
+            &copy; 2025 Gusatto Derek - All rights reserved
+        </p>
+    </footer>-->
+</body>
+</html>
