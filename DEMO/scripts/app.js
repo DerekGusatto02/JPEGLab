@@ -169,7 +169,7 @@ function writeHTMLresult(height, width, colorSpace, quantTable) {
     resultDiv.innerHTML = `
         <h2>Risultati dell'analisi</h2>
         <p><strong>Dimensioni:</strong> ${width} x ${height}</p>
-        <p><strong>Color Space:</strong> ${colorSpace}</p>
+        <p><strong>Modello di colore:</strong> ${colorSpace}</p>
     `;
 
     displayQuantizationTable(quantTable);
