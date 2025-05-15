@@ -1,5 +1,5 @@
 # Funzionalità Implementate 
-## 14 maggio 2025
+## al 14 maggio 2025
 
 1. Possibilità di utilizzo di immagini JPEG di test.
 2. Caricamento di immagini JPEG tramite interfaccia utente.
@@ -10,7 +10,7 @@
 
 
 # To-Do
-## 14 maggio 2025
+## al 14 maggio 2025
 1. Rivedere e migliorare Visualizzazione delle componenti.
 2. UI e UX, compreso responsività.
 3. Possibilità di modifica della tabella di quantizzazione?
