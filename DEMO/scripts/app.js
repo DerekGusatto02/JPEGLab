@@ -20,6 +20,7 @@ function readStringFromMemory(ptr) {
 
 // Funzione per visualizzare l'immagine caricata nel canvas principale
 function displayImageInCanvas(img) {
+    console.log('DEBUG: Visualizzazione dell\'immagine nel canvas principale');
     const canvas = document.getElementById('imageCanvas'); // Canvas principale
     const ctx = canvas.getContext('2d'); // Contesto 2D del canvas
 
