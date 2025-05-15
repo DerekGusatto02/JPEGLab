@@ -25,9 +25,11 @@ Assicurati di avere Emscripten installato e configurato. Se non lo hai già fatt
    ./emsdk install latest
    ./emsdk activate latest
    source ./emsdk_env.sh
+   ```
 2. Verifica che emcc sia disponibile
    ```bash
    emcc --version
+   ```
 ### 2. Preparazione della libreria libjpeg-turbo
 1. Repository di libjpeg-turbo:
     Clonare questa repository (JPEGLab) e spostarsi nella sottocartella di libjpeg-turbo: 
@@ -35,16 +37,19 @@ Assicurati di avere Emscripten installato e configurato. Se non lo hai già fatt
     git clone https://github.com/DerekGusatto02/JPEGLab.git
     cd JPEGLab
     cd libjpeg-turbo
+    ```
     Se si vuole clonare il respository originale di libjpeg-turbo (sconsigliato):
     ```bash
     git clone https://github.com/libjpeg-turbo/libjpeg-turbo.git
     cd libjpeg-turbo
+    ```
 2. Configurare e compilare la libreria con Emscripten:
     ```bash
     mkdir build
     cd build
     emcmake cmake .. -DCMAKE_BUILD_TYPE=Release
     emmake make
+    ```
 
 ### 3. Compilare il wrapper
 Se si sta usando la versione di libjpeg-turbo all'interno del repository di JPEGLab si può compilare il wrapper già esistente con:
