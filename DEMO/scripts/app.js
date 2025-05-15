@@ -280,6 +280,10 @@ async function analyzeImage() {
             drawComponentOnCanvas(1, 'CbCompCanvas');
             drawComponentOnCanvas(2, 'CrCompCanvas');
         }
+        img.onerror = function () {
+            console.error('DEBUG: Errore durante il caricamento dell\'immagine.');
+            alert('Errore durante il caricamento dell\'immagine.');
+        }
         writeHTMLresult(height, width, colorSpace, quantTable);
         const componentForm = document.getElementById('componentForm');
         componentForm.style.display = 'block';
