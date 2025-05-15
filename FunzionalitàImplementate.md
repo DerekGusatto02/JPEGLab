@@ -12,5 +12,6 @@
 # To-Do
 ## al 14 maggio 2025
 1. Rivedere e migliorare Visualizzazione delle componenti.
-2. UI e UX, compreso responsività.
-3. Possibilità di modifica della tabella di quantizzazione?
+2. Visualizzazione blocco ingrandito
+3. UI e UX, compreso responsività.
+4. Possibilità di modifica della tabella di quantizzazione?
