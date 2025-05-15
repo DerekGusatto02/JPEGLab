@@ -1,0 +1,1 @@
+/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc -O3 -DNDEBUG @CMakeFiles/tjdecomp.dir/objects1.rsp -o tjdecomp.js @CMakeFiles/tjdecomp.dir/linkLibs.rsp

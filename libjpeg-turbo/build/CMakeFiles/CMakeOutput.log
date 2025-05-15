@@ -1,0 +1,26 @@
+Determining size of size_t passed with the following output:
+Change Dir: '/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_2e276/fast
+/Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_2e276.dir/build.make CMakeFiles/cmTC_2e276.dir/build
+Building C object CMakeFiles/cmTC_2e276.dir/SIZE_T.c.o
+/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc    -MD -MT CMakeFiles/cmTC_2e276.dir/SIZE_T.c.o -MF CMakeFiles/cmTC_2e276.dir/SIZE_T.c.o.d -o CMakeFiles/cmTC_2e276.dir/SIZE_T.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles/CheckTypeSize/SIZE_T.c
+Linking C executable cmTC_2e276.js
+/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2e276.dir/link.txt --verbose=1
+/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc @CMakeFiles/cmTC_2e276.dir/objects1.rsp -o cmTC_2e276.js @CMakeFiles/cmTC_2e276.dir/linkLibs.rsp
+
+
+
+Determining size of unsigned long passed with the following output:
+Change Dir: '/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_b240f/fast
+/Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_b240f.dir/build.make CMakeFiles/cmTC_b240f.dir/build
+Building C object CMakeFiles/cmTC_b240f.dir/UNSIGNED_LONG.c.o
+/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc    -MD -MT CMakeFiles/cmTC_b240f.dir/UNSIGNED_LONG.c.o -MF CMakeFiles/cmTC_b240f.dir/UNSIGNED_LONG.c.o.d -o CMakeFiles/cmTC_b240f.dir/UNSIGNED_LONG.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles/CheckTypeSize/UNSIGNED_LONG.c
+Linking C executable cmTC_b240f.js
+/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b240f.dir/link.txt --verbose=1
+/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc @CMakeFiles/cmTC_b240f.dir/objects1.rsp -o cmTC_b240f.js @CMakeFiles/cmTC_b240f.dir/linkLibs.rsp
+
+
+
