@@ -225,8 +225,8 @@ async function analyzeImage() {
     } 
     // Altrimenti usa l'immagine di test selezionata
     else if (selectedTestImage) {
-        img.src = `img/test/${selectedTestImage}`;
-        const response = await fetch(`img/test/${selectedTestImage}`);
+        img.src = `imgs/test/${selectedTestImage}`;
+        const response = await fetch(`imgs/test/${selectedTestImage}`);
         if (!response.ok) {
             alert('Errore durante il caricamento dell\'immagine di test.');
             return;

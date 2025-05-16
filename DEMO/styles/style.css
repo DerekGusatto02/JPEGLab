@@ -245,42 +245,16 @@ abbr {
     DEREK
 */
 
-#home-logo{
-    text-indent: -999em; 
-    background-repeat: no-repeat;
-    background-size: contain;
-    line-height: 1.5em;
-    color:black;
-    /*background-position: center;*/
-    background-image: url("../img/logo_scritta.png");
-    font-size: 4em;
-    margin: 0;
+main{
+    padding: 1em;
+    background-color: var(--themeContrastColor);
+    color: var(--textColor);
 }
 
-#analyzeButton{
-    background-color: var(--green_logo); /* Green */
-   
-}
-
-.disabled-select {
-    background-color: #e0e0e0 !important;
-    color: #888 !important;
-    cursor: not-allowed;
-}
-#resetButton{
-    background-color: var(--yellow_logo); /* Red */
-}
-
-#resetButton:hover {
-    background-color: var(--orange_logo); /* Darker red */
-}
-#analyzeButton:hover {
-    background-color: var(--blue_logo); /* Darker green */
-}
-#resetButton, #analyzeButton {
-    text-transform: uppercase;
-    border: none;
-    color: var(--text);
+.btn-analyze {
+    background-color: var(--themeColor);
+	border-color: var(--themeContrastColor);
+	color: var(--themeContrastColor);
     padding: 0.3em 1em;
     text-align: center;
     text-decoration: none;
@@ -291,10 +265,34 @@ abbr {
     border-radius: 5px;
 }
 
+.btn-reset {
+    background-color: var(--themeContrastColor);
+	border-color: var(--themeColor);
+	color: var(--themeColor);
+    padding: 0.3em 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    margin: 0.5em 0.2em;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.canvas-title{
+    font-size: 1.2em;
+}
+
+.disabled-select {
+    background-color: #e0e0e0 !important;
+    color: #888 !important;
+    cursor: not-allowed;
+}
 
 #imageForm {
     margin-bottom: 2em; 
 }
+
 #canvasContainer {
     display: flex;
     justify-content: space-between; 
@@ -303,7 +301,6 @@ abbr {
 }
 
 .canvas-column {
-
     align-items: center;
     flex: 1;
     max-width: calc(25% - 1em);
@@ -375,15 +372,3 @@ abbr {
     padding: 1em;
     box-sizing: border-box;
 }
-
-#image-info {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 5px;
-}
-
-#image-info p {
-    margin: 5px 0;
-}
-
