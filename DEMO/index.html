@@ -38,24 +38,25 @@
         <label for="imageInput">Carica un'immagine JPEG:</label>
         <input type="file" id="imageInput" name="imageInput" accept="image/jpeg" aria-required="true">
     </div>
-    <button type="button" id="analyzeButton"  onclick="analyzeImage()">ANALISI</button>
-   
+    <button type="button" id="analyzeButton"  onclick="analyzeImage()">Analisi</button>
+    <button type="button" id="resetButton">Reset</button>
+
     </form>
     <div id="canvasContainer" >
         <div class="canvas-column">
-        <div class="canvas-title">Originale</div>
+        <h2 class="canvas-title">Originale</h2>
         <canvas id="imageCanvas"></canvas>
     </div>
     <div class="canvas-column">
-        <div class="canvas-title">Y</div>
+        <h2 class="canvas-title">Componente Y</h2>
         <canvas id="YCompCanvas"></canvas>
     </div>
     <div class="canvas-column">
-        <div class="canvas-title">Cb</div>
+        <h2 class="canvas-title">Componente Cb</h2>
         <canvas id="CbCompCanvas"></canvas>
     </div>
     <div class="canvas-column">
-        <div class="canvas-title">Cr</div>
+        <h2 class="canvas-title">Componente Cr</h2>
         <canvas id="CrCompCanvas"></canvas>
     </div>
     </div>

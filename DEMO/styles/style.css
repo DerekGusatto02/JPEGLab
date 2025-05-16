@@ -1,12 +1,20 @@
+:root {
+  --bg: RGB(238, 236, 231);
+  --text: RGB(53, 62, 67);
+  --yellow_logo: RGB(241, 203, 135);
+  --green_logo: RGB(125, 172, 161);
+  --blue_logo: RGB(96, 138, 162);
+  --orange_logo: RGB(230, 139, 88);
+  --font: 'Segoe UI', Roboto, sans-serif;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: RGB(238, 236, 231);
-    color: RGB(53, 62, 67);
+    background-color: var(--bg);
+    color: var(--text);
 }
-
-
 
 #home-logo{
     text-indent: -999em; 
@@ -14,51 +22,63 @@ body {
     background-size: contain;
     line-height: 1.5em;
     color:black;
-    background-position: center;
+    /*background-position: center;*/
     background-image: url("../img/logo_scritta.png");
-    font-size: 2em;
+    font-size: 4em;
+    margin: 0;
 }
 
 #analyzeButton{
-    background-color: #4CAF50; /* Green */
+    background-color: var(--green_logo); /* Green */
+   
+}
+
+.disabled-select {
+    background-color: #e0e0e0 !important;
+    color: #888 !important;
+    cursor: not-allowed;
+}
+#resetButton{
+    background-color: var(--yellow_logo); /* Red */
+}
+
+#resetButton:hover {
+    background-color: var(--orange_logo); /* Darker red */
+}
+#analyzeButton:hover {
+    background-color: var(--blue_logo); /* Darker green */
+}
+#resetButton, #analyzeButton {
+    text-transform: uppercase;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 0.3em 1em;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    font-size: 1em;
+    margin: 0.5em 0.2em;
     cursor: pointer;
+    border-radius: 5px;
 }
-#upload-section {
-    margin-bottom: 20px;
-}
+
 
 #imageForm {
     margin-bottom: 2em; 
 }
-#imageContainer {
+#canvasContainer {
     display: flex;
     justify-content: space-between; 
     gap: 1em; 
     margin-bottom: 2em;
 }
 
-#imageContainer canvas {
-    flex: 1;
-    max-width: calc(25% - 1em);
-    height: auto;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
 .canvas-column {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     flex: 1;
     max-width: calc(25% - 1em);
+    height: auto;
+    box-sizing: border-box;
 }
 
 .canvas-title {
@@ -103,7 +123,6 @@ body {
     grid-area: grid;
     width: 100%;
     height: auto;
-    border: 1px solid #ccc;
     box-sizing: border-box;
 }
 
@@ -114,7 +133,6 @@ body {
 #results {
     grid-area: results;
     width: 100%;
-    border: 1px solid #ccc;
     padding: 1em;
     box-sizing: border-box;
 }

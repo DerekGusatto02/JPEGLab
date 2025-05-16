@@ -195,6 +195,10 @@ function getDCTCoefficients(componentIndex, blockX, blockY) {
 // Funzione principale per analizzare l'immagine
 async function analyzeImage() {
     console.log('DEBUG: Analisi del file JPEG in corso...');
+     const analyzeButton = document.getElementById('analyzeButton');
+    analyzeButton.disabled = true; // Disabilita il pulsante
+    analyzeButton.classList.add('disabled-select'); // Applica stile grigio
+
     Module._free(); // Libera la memoria allocata precedentemente
     const fileInput = document.getElementById('imageInput'); // Input per il caricamento di immagini
     const testImageSelect = document.getElementById('testImageSelect'); // Select per le immagini di test
@@ -295,8 +299,12 @@ async function analyzeImage() {
     } catch (error) {
         console.error('Errore durante l\'analisi del file JPEG:', error);
         alert('Errore durante l\'analisi del file JPEG.');
+    } finally {
+        analyzeButton.disabled = false; // Riabilita il pulsante
+        analyzeButton.classList.remove('disabled-select');
+        console.log('DEBUG: Immagine caricata e visualizzata.');
+
     }
-    console.log('DEBUG: Immagine caricata e visualizzata.');
 }
 
 // Funzione per distruggere il decoder e liberare memoria
@@ -365,4 +373,26 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.error('Errore: elemento con ID "componentInput" non trovato.');
     }
+});
+
+// Funzione per gestire la disabilitazione del select quando si carica un'immagine
+document.addEventListener('DOMContentLoaded', function() {
+    const testSelect = document.getElementById('testImageSelect');
+    const imageInput = document.getElementById('imageInput');
+    const resetButton = document.getElementById('resetButton');
+
+    imageInput.addEventListener('change', function() {
+        if (imageInput.files && imageInput.files.length > 0) {
+            testSelect.disabled = true;
+            testSelect.classList.add('disabled-select');
+        }
+    });
+
+    resetButton.addEventListener('click', function() {
+        // Svuota il file input
+        imageInput.value = '';
+        // Riabilita il select
+        testSelect.disabled = false;
+        testSelect.classList.remove('disabled-select');
+    });
 });
