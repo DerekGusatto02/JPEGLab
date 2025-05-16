@@ -41,11 +41,23 @@
     <button type="button" id="analyzeButton"  onclick="analyzeImage()">ANALISI</button>
    
     </form>
-    <div id="imageContainer" >
-    <canvas id="imageCanvas" ></canvas>
-    <canvas id="YCompCanvas" ></canvas>
-    <canvas id="CbCompCanvas" ></canvas>
-    <canvas id="CrCompCanvas" ></canvas>
+    <div id="canvasContainer" >
+        <div class="canvas-column">
+        <div class="canvas-title">Originale</div>
+        <canvas id="imageCanvas"></canvas>
+    </div>
+    <div class="canvas-column">
+        <div class="canvas-title">Y</div>
+        <canvas id="YCompCanvas"></canvas>
+    </div>
+    <div class="canvas-column">
+        <div class="canvas-title">Cb</div>
+        <canvas id="CbCompCanvas"></canvas>
+    </div>
+    <div class="canvas-column">
+        <div class="canvas-title">Cr</div>
+        <canvas id="CrCompCanvas"></canvas>
+    </div>
     </div>
     <div id="AnalysisResulst">
     <canvas id="GridCanvas" aria-label="Image Canvas"></canvas>

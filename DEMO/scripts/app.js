@@ -195,6 +195,7 @@ function getDCTCoefficients(componentIndex, blockX, blockY) {
 // Funzione principale per analizzare l'immagine
 async function analyzeImage() {
     console.log('DEBUG: Analisi del file JPEG in corso...');
+    Module._free(); // Libera la memoria allocata precedentemente
     const fileInput = document.getElementById('imageInput'); // Input per il caricamento di immagini
     const testImageSelect = document.getElementById('testImageSelect'); // Select per le immagini di test
     const selectedTestImage = testImageSelect.value; // Immagine di test selezionata

@@ -19,6 +19,18 @@ body {
     font-size: 2em;
 }
 
+#analyzeButton{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
 #upload-section {
     margin-bottom: 20px;
 }
@@ -26,19 +38,25 @@ body {
 #imageForm {
     margin-bottom: 2em; 
 }
-#imageContainer {
+#canvasContainer {
     display: flex;
     justify-content: space-between; 
     gap: 1em; 
     margin-bottom: 2em;
 }
 
-#imageContainer canvas {
+.canvas-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     flex: 1;
     max-width: calc(25% - 1em);
-    height: auto;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+}
+
+.canvas-title {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    text-align: center;
 }
 
 #quantizationTable table, #DCTCoefficients table {
