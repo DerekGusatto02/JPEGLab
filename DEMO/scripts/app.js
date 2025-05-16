@@ -280,6 +280,11 @@ async function analyzeImage() {
             quantTable = readArrayFromMemory(quantTablePtr2, 64);
         }
         img.onload = async function () {
+            const boxList = document.querySelectorAll('.canvas-title.title-hidden');
+                boxList.forEach(box => {
+                box.classList.remove('title-hidden');
+                box.classList.add('title-visible');
+            });
             displayImageInCanvas(img);
             displayImageWithGrid(img);
             drawComponentOnCanvas(0, 'YCompCanvas');

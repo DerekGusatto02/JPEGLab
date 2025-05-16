@@ -252,9 +252,10 @@ footer{
 main{
     background-color: var(--themeContrastColor);
     color: var(--textColor);
-    width: 90%;
+    width: 95%;
     margin: auto;
 }
+
 
 .btn-analyze {
     background-color: var(--themeColor);
@@ -287,7 +288,24 @@ main{
 .canvas-title{
     font-size: 1.2em;
 }
+.title-hidden{
+    visibility: hidden;
+}
 
+.title-visible{
+    visibility: visible;
+}
+
+select{
+    font-family: "Lexend", system-ui, sans-serif;
+    font-size: 1em;
+    color: white;
+    background-color: var(--themeContrastColor);
+    border: 1px solid var(--themeColor);
+    color: var(--textColor);
+    padding: 0.2em;
+    border-radius: 5px;
+}
 .disabled-select {
     background-color: #e0e0e0 !important;
     color: #888 !important;

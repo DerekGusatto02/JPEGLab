@@ -37,37 +37,37 @@
     
     <form id="imageForm" >
         <div>
-        <label for="testImageSelect">Seleziona un'immagine di test:</label>
-        <select id="testImageSelect" name="testImageSelect">
-            <option value="pontile.jpg" selected>Pontile</option>
-            <option value="montagna.jpg">Montagna GreyScale</option>
-            <option value="Test00.jpg">Test00 - vecchio SW</option>
-            <option value="Test12.jpg">Test12 - vecchio SW</option>
-        </select>
-    </div>
-    <div>
-        <label for="imageInput">Carica un'immagine JPEG:</label>
-        <input type="file" id="imageInput" name="imageInput" accept="image/jpeg" aria-required="true">
-    </div>
-    <button type="button" class="btn btn-analyze" id="analyzeButton"  onclick="analyzeImage()">Analisi</button>
-    <button type="button" class="btn btn-reset" id="resetButton">Reset</button>
-
+            <label for="testImageSelect">Seleziona un'immagine di test:</label>
+            <select id="testImageSelect" name="testImageSelect">
+                <option value="pontile.jpg" selected>Pontile</option>
+                <option value="montagna.jpg">Montagna GreyScale</option>
+                <option value="Test00.jpg">Test00 - vecchio SW</option>
+                <option value="Test12.jpg">Test12 - vecchio SW</option>
+            </select>
+        </div>
+        <div>
+            <label for="imageInput">Carica un'immagine JPEG:</label>
+            <input type="file" class="btn" id="imageInput" name="imageInput" accept="image/jpeg" aria-required="true">
+        </div>
+        <button type="button" class="btn btn-analyze" id="analyzeButton"  onclick="analyzeImage()">Analisi</button>
+        <button type="button" class="btn btn-reset" id="resetButton">Reset</button>
     </form>
+
     <div id="canvasContainer" >
         <div class="canvas-column">
-        <h2 class="canvas-title">Originale</h2>
+        <h2 class="canvas-title title-hidden">Originale</h2>
         <canvas id="imageCanvas"></canvas>
     </div>
     <div class="canvas-column">
-        <h2 class="canvas-title">Componente Y</h2>
+        <h2 class="canvas-title title-hidden">Componente Y</h2>
         <canvas id="YCompCanvas"></canvas>
     </div>
     <div class="canvas-column">
-        <h2 class="canvas-title">Componente Cb</h2>
+        <h2 class="canvas-title title-hidden">Componente Cb</h2>
         <canvas id="CbCompCanvas"></canvas>
     </div>
     <div class="canvas-column">
-        <h2 class="canvas-title">Componente Cr</h2>
+        <h2 class="canvas-title title-hidden">Componente Cr</h2>
         <canvas id="CrCompCanvas"></canvas>
     </div>
     </div>
@@ -75,7 +75,6 @@
     <canvas id="GridCanvas" aria-label="Image Canvas"></canvas>
     <div id="results" aria-live="polite">
         <div id="generalInfo"></div>
-       
         <form id="componentForm" >
             <label for="componentInput">Seleziona una componente e clicca su un blocco per visualizzare i coefficienti DCT:</label>
             <select id="componentInput" name="componentInput" aria-required="true">
