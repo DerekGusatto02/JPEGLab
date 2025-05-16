@@ -38,11 +38,19 @@ body {
 #imageForm {
     margin-bottom: 2em; 
 }
-#canvasContainer {
+#imageContainer {
     display: flex;
     justify-content: space-between; 
     gap: 1em; 
     margin-bottom: 2em;
+}
+
+#imageContainer canvas {
+    flex: 1;
+    max-width: calc(25% - 1em);
+    height: auto;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
 .canvas-column {
