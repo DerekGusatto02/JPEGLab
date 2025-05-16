@@ -1,20 +1,249 @@
+@font-face {
+  font-family: 'Lexend';
+  src: url('fonts/Lexend-ExtraLight.ttf');
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Lexend';
+  src: url('fonts/Lexend-Light.ttf');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Lexend';
+  src: url('fonts/Lexend-Medium.ttf');
+  font-style: normal;
+  font-weight: 500;
+}
+
 :root {
-  --bg: RGB(238, 236, 231);
-  --text: RGB(53, 62, 67);
-  --yellow_logo: RGB(241, 203, 135);
-  --green_logo: RGB(125, 172, 161);
-  --blue_logo: RGB(96, 138, 162);
-  --orange_logo: RGB(230, 139, 88);
-  --font: 'Segoe UI', Roboto, sans-serif;
+	--themeColor: #9b0014;
+	--themeSecondaryColor: #203f6d;
+	--themeContrastColor: #ffffff;
+	--textColor: #212529;
+	--textBackgroundColor: #f6f6f6;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Lexend", system-ui, sans-serif;
+    font-size: 1.2em;
     margin: 0;
-    padding: 20px;
-    background-color: var(--bg);
-    color: var(--text);
+    padding: 0;
+    background-color: var(--themeContrastColor);
+    color: var(--textColor);
 }
+
+main {
+	padding-top: 1em;
+    line-height: 1.5em;
+}
+
+a:link {
+	color: #3C74C8!important;
+}
+
+a:visited {
+	color: black!important;
+}
+
+.link-dark {
+  color: #212529 !important;
+}
+
+strong {
+	font-weight: 500;
+}
+
+abbr {
+	text-decoration: none!important;
+}
+
+.btn{
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1em;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; 
+}
+/* ACCESSIILITA */
+
+.nav-accessibility {
+	position: absolute;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* TORNA SU */
+.btn-go-up {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #203f6d!important;
+	border-color: #203f6d!important;
+	color: var(--themeContrastColor)!important;
+
+}
+
+.btn-go-up:visited {
+	background-color: var(--themeContrastColor)!important;
+	border-color: #203f6d!important;
+	color: #203f6d!important;
+}
+
+.btn-go-up:focus-visible, .btn-go-up:focus-visible{
+	outline: 2px solid var(--textColor);
+	border-radius: .25rem;
+}
+
+
+
+
+/* NAVBAR */
+
+.navbar {
+	/*margin-bottom: 1em;*/
+}
+
+
+/*BANNER LOGHI*/
+
+.logo-banner {
+	background-color: #9b0014; 
+	padding-bottom: 12px; 
+    padding-top:5px; 
+	border-bottom: 1px solid white;
+    
+}
+
+.logo-banner-container {
+	display: flex;
+    justify-content: center;
+}
+
+.logo-container-unipd {
+	width: 3em;
+    align-self: center;
+    font-size: 3em!important;
+    /*line-height: 1.5em;*/
+    text-indent: -999em;
+    background-image: url('../imgs/unipd_logo_white.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.logo-container-informatica {
+	width: 3em;
+    align-self: center;
+    font-size: 3em!important;
+    /*line-height: 1.5em;*/
+    text-indent: -999em;
+    background-image: url('../imgs/informatica_logo_white.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.logo-container-dm {
+	width: 3em;
+    align-self: center;
+    font-size: 3em!important;
+    /*line-height: 1.5em;*/
+    text-indent: -999em;
+    background-image: url('../imgs/matematica_logo_white.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+
+/* FOOTER */
+.footer-link {
+	display: block;
+    padding: .5rem 1rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+.logo-container-footer {
+	/*width: 3em;
+    align-self: center;*/
+    font-size: 3em!important;
+    text-indent: -999em;
+    background-image: url('../imgs/unipd_logo_red.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.logo-container-footer2 {
+	/*width: 3em;
+    align-self: center;
+    font-size: 3em!important;*/
+    text-indent: -999em;
+    background-image: url('../imgs/matematica_logo_red.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.footer-contacts {
+  text-align: center;
+  list-style-type: none;
+  margin-bottom: 0 !important;
+  color: #6c757d !important;
+  flex: 1 1 0;
+  width: auto; /* rimuovi width: 100% */
+  min-width: 0;
+  padding: 0;
+}
+
+.footer-contacts address {
+	margin-bottom: auto;
+}
+
+.footer-flex {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-top: 1px solid #dee2e6;
+  gap: 1em; 
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0; 
+  text-decoration: none !important;
+  flex: 1 1 0;
+  width: auto; 
+  min-width: 0;
+}
+
+/*
+    DEREK
+*/
 
 #home-logo{
     text-indent: -999em; 
@@ -51,7 +280,7 @@ body {
 #resetButton, #analyzeButton {
     text-transform: uppercase;
     border: none;
-    color: white;
+    color: var(--text);
     padding: 0.3em 1em;
     text-align: center;
     text-decoration: none;
@@ -158,6 +387,3 @@ body {
     margin: 5px 0;
 }
 
-input[type="file"] {
-    margin-top: 10px;
-}

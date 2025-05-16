@@ -1,0 +1,757 @@
+@font-face {
+  font-family: 'Lexend';
+  src: url('./fonts/static/Lexend-ExtraLight.ttf');
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Lexend';
+  src: url('./fonts/static/Lexend-Light.ttf');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Lexend';
+  src: url('./fonts/static/Lexend-Medium.ttf');
+  font-style: normal;
+  font-weight: 500;
+}
+
+:root {
+	--themeColor: #9b0014;
+	--themeSecondaryColor: #203f6d;
+	--themeContrastColor: #ffffff;
+	--textColor: #212529;
+	--textBackgroundColor: #f6f6f6;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Lexend", system-ui, sans-serif;
+    font-size: 1.2em;
+}
+
+main {
+	padding-top: 8em;
+    line-height: 1.5em;
+}
+
+a.cst-link:link {
+	color: #3C74C8!important;
+}
+
+a.cst-link:visited {
+	color: black!important;
+}
+
+.cst-nav-accessibility {
+	position: absolute;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+.cst-btn-go-up {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+strong {
+	font-weight: 500;
+}
+
+dl {
+	padding-left: 1em!important;
+	padding-right: 1em!important;
+}
+
+abbr {
+	text-decoration: none!important;
+}
+
+/* RESPONSIVE */
+
+@media screen and (min-width: 992px) {
+	.cst-call-to-action-mobile {
+		display: none!important;
+	}
+}
+
+/* DIVIDER */
+
+.cst-divider {
+	height: 1em;
+	background-color: rgba(0, 0, 0, .1);
+	border: solid rgba(0, 0, 0, .15);
+	border-width: 1px 0;
+	box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+/* NAVBAR */
+
+.navbar {
+	/*margin-bottom: 1em;*/
+}
+
+.cst-nav-fixed-top {
+	top: 4.9em;
+}
+
+.cst-logo-banner {
+	background-color: #9b0014; 
+	padding-bottom: 7px; 
+	border-bottom: 1px solid white;
+}
+
+.cst-logo-banner-container {
+	display: flex;
+}
+
+.cst-logo-container1 {
+	width: 3em;
+    align-self: center;
+    font-size: 3em!important;
+    /*line-height: 1.5em;*/
+    text-indent: -999em;
+    background-image: url('./imgs/unipd_logo_white.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.cst-logo-container2 {
+	width: 3em;
+    align-self: center;
+    font-size: 3em!important;
+    /*line-height: 1.5em;*/
+    text-indent: -999em;
+    background-image: url('./imgs/informatica_logo_white.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.cst-logo-container3 {
+	width: 3em;
+    align-self: center;
+    font-size: 3em!important;
+    /*line-height: 1.5em;*/
+    text-indent: -999em;
+    background-image: url('./imgs/matematica_logo_white.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.nav-link {
+	color: var(--themeContrastColor)!important;
+}
+
+.cst-navbar {
+	border-bottom: 1px solid var(--themeContrastColor);
+}
+
+.cst-nav-active-item {
+	/*border-top: 1px solid white;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;*/
+	border: 1px solid white;
+	background-color: white;
+    border-radius: 2em;
+	/*box-shadow: -1px -1px 1px white;*/
+}
+
+.cst-nav-item {
+	/*border-bottom: 1px solid white;*/
+}
+
+.cst-active-link {
+	font-weight: 500;
+	color: #212529!important;
+}
+
+/*
+a.cst-nav-link:link:before {
+  color: white;
+  content: '⦾ ';
+  display: inline;
+}
+
+a.cst-nav-link:link:after, a.cst-active-link:link:before, a.cst-active-link:link:after {
+  content: '\00a0\00a0';
+  display: inline;
+}
+
+a.cst-nav-link:visited:before {
+  color: #212529!important;
+}*/
+
+a.cst-nav-link:link:before {
+  color: #212529;
+  content: '✓\00a0';
+  display: inline;
+}
+
+a.cst-nav-link:link:after, a.cst-active-link:link:before, a.cst-active-link:link:after {
+  content: '\00a0\00a0';
+  display: inline;
+}
+
+a.cst-nav-link:visited:after {
+  color: white!important;
+}
+
+/* FOCUS ACCESSIBILITY */
+
+.cst-btn-go-up:focus-visible, .cst-button:focus-visible, .cst-button1:focus-visible, .cst-button2:focus-visible, .cst-button3:focus-visible, .cst-button4:focus-visible, .cst-button5:focus-visible, .cst-button6:focus-visible {
+	outline: 2px solid var(--textColor);
+	border-radius: .25rem;
+}
+
+.cst-call-to-action-desktop:focus-visible, cst-call-to-action-desktop:focus-visible, .cst-logo-container1:focus-visible, .cst-logo-container2:focus-visible, .cst-logo-container3:focus-visible, .cst-logout:focus-visible {
+	outline: 2px solid var(--themeContrastColor)!important;
+	border-radius: .25rem!important;
+}
+
+.cst-nav-accessibility:focus-visible {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	color: var(--themeContrastColor);
+	font-size: 1em;
+	clip: unset;
+	width: auto;
+	height: auto;
+}
+
+/* INPUT ELEMENTS */
+
+.cst-button, .cst-button1 {
+	background-color: var(--themeColor)!important;
+	border-color: var(--themeColor)!important;
+	color: var(--themeContrastColor)!important;
+}
+
+.cst-button:visited, .cst-button1:visited{
+	background-color: var(--themeContrastColor)!important;
+	border-color: var(--themeColor)!important;
+	color: var(--themeColor)!important;
+}
+
+.cst-button2 {
+	background-color: #203f6d!important;
+	border-color: #203f6d!important;
+	color: var(--themeContrastColor)!important;
+}
+
+.cst-button2:visited {
+	background-color: var(--themeContrastColor)!important;
+	border-color: #203f6d!important;
+	color: #203f6d!important;
+}
+
+.cst-button3 {
+	background-color: #d0421d!important;
+	border-color: #d0421d!important;
+	color: var(--themeContrastColor)!important;
+}
+
+.cst-button3:visited {
+	background-color: var(--themeContrastColor)!important;
+	border-color: #d0421d!important;
+	color: #d0421d!important;
+}
+
+.cst-button4 {
+	background-color: #1b6a77!important;
+	border-color: #1b6a77!important;
+	color: var(--themeContrastColor)!important;
+}
+
+.cst-button4:visited {
+	background-color: var(--themeContrastColor)!important;
+	border-color: #1b6a77!important;
+	color: #1b6a77!important;
+}
+
+.cst-button5 {
+	background-color: #a03144!important;
+	border-color: #a03144!important;
+	color: var(--themeContrastColor)!important;
+}
+
+.cst-button5:visited {
+	background-color: var(--themeContrastColor)!important;
+	border-color: #a03144!important;
+	color: #a03144!important;
+}
+
+.cst-button6 {
+	background-color: #483373!important;
+	border-color: #483373!important;
+	color: var(--themeContrastColor)!important;
+}
+
+.cst-button6:visited {
+	background-color: var(--themeContrastColor)!important;
+	border-color: #483373!important;
+	color: #483373!important;
+}
+
+.cst-logout {
+	background-color: #203f6d!important;
+	border-color: var(--themeContrastColor)!important;
+	color: var(--themeContrastColor)!important;
+}
+
+.cst-logout:visited {
+	background-color: var(--themeContrastColor)!important;
+	border-color: #203f6d!important;
+	color: #203f6d!important;
+}
+
+/* BREADCRUMB */
+
+.cst-breadcrumb-container {
+	padding-top: 1em;
+}
+
+.cst-breadcrumb {
+	display: inline-block!important;
+}
+
+.cst-breadcrumb-active {
+	color: var(--textColor)!important;
+}
+
+.cst-breadcrumb-home {
+	color: var(--themeContrastColor);
+}
+
+/* FOOTER */
+
+.cst-footer-link {
+	display: block;
+    padding: .5rem 1rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+.cst-logo-container-footer {
+	/*width: 3em;
+    align-self: center;*/
+    font-size: 3em!important;
+    text-indent: -999em;
+    background-image: url('./imgs/unipd_logo_red.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.cst-logo-container-footer2 {
+	/*width: 3em;
+    align-self: center;
+    font-size: 3em!important;*/
+    text-indent: -999em;
+    background-image: url('./imgs/matematica_logo_red.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.cst-footer-contacts {
+	text-align: center;
+    list-style-type: none;
+}
+
+.cst-footer-contacts address {
+	margin-bottom: auto;
+}
+
+/* BANNER */
+
+.cst-banner-home {
+	background-image: url('./imgs/banner_home.jpg');
+}
+
+.cst-banner-home-overlay {
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.2));
+}
+
+.cst-banner-img {
+	background-image: url('./imgs/banner_trasparente_home.png');
+    background-size: 100%, contain;
+    background-repeat: no-repeat;
+    width: 100% !important;
+    height: 0;
+    padding-top: 32%;
+}
+
+.cst-banner-title {
+	font-size: 3em;
+	font-weight: 300;
+	color: var(--themeContrastColor);
+	text-align: center;
+	padding-top: 0.3em;
+}
+
+.cst-banner-text {
+	font-size: 1.2em;
+	color: var(--themeContrastColor);
+	font-weight: 300;
+	text-align: center;
+	line-height: 1.6em;
+	margin-top: 1em;
+}
+
+/* HOME */
+
+.cst-container {
+	padding-top: 1em;
+}
+
+.cst-home-row {
+	background-color: var(--textBackgroundColor);
+	margin-top: 1em!important;
+}
+
+.cst-home-row-posts {
+	margin-top: 1em!important;
+}
+
+.cst-home-first-col {
+	/*background-color: var(--themeContrastColor);*/
+	background-image: linear-gradient(to right, var(--themeContrastColor), var(--textBackgroundColor));
+	padding: 1em;
+}
+
+.cst-home-first-col h2 {
+	font-weight: 400;
+}
+
+.cst-home-second-col {
+	background-image: linear-gradient(to left, var(--themeContrastColor) 50%, var(--textBackgroundColor) 50%);
+	padding: 1em;
+}
+
+.cst-home-img1 {
+	background-image: url('./imgs/studenti.png');
+	height: 100%;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.cst-home-img2 {
+	background-image: url('./copyrighted images/lorem.jpg');
+	height: 100%;
+	background-size: contain;
+}
+
+.cst-home-text {
+	padding: 1em;
+}
+
+.cst-home-text-above {
+	padding-bottom: 0em;
+}
+
+.cst-home-text-below {
+	padding-top: 0em;
+}
+
+.cst-text-highlight {
+	color: var(--themeColor);
+}
+
+.cst-text-highlight-alt {
+	color: var(--themeSecondaryColor);
+}
+
+.cst-home-image-col {
+	text-align: center;
+	background-image: none;
+	background-color: var(--themeContrastColor);
+}
+
+/* EX STUDENTESSE, NELLA STORIA */
+
+.cst-altbanner-img-container {
+	background-image: url('./imgs/polaroidpioneers.jpg');
+    background-size: 100%, contain;
+    background-repeat: no-repeat;
+    width: 100% !important;
+    /*height: 0;*/
+    /*padding-top: 32%;*/
+	
+}
+
+.cst-altbanner2-img-container {
+	background-image: url('./imgs/polaroidstudentesse.jpg');
+    background-size: 100%, contain;
+    background-repeat: no-repeat;
+    width: 100% !important;
+    /*height: 0;*/
+    /*padding-top: 32%;*/
+	
+}
+
+.cst-altbanner-overlay {
+	/*background-image: linear-gradient(to right, rgba(32, 63, 109, 0.7), rgba(72, 51, 115, 0.9), rgba(250, 74, 110, 0.7));*/
+	background-image: linear-gradient(to right, rgba(32, 63, 109, 0.7), rgba(72, 51, 115, 0.9), rgba(160, 49, 68, 0.7));
+}
+
+.cst-altbanner2-overlay {
+	/*background-image: linear-gradient(to right, rgba(32, 63, 109, 0.7), rgba(72, 51, 115, 0.9), rgba(250, 74, 110, 0.7));*/
+	background-image: linear-gradient(to right, rgba(32, 63, 109, 0.7), rgba(72, 51, 115, 0.9), rgba(160, 49, 68, 0.7));
+}
+
+.cst-altbanner-container {
+	/*padding-top: 5em;*/
+	padding-bottom: 3em;
+	/*background: rgba(0, 0, 0, 0.6);*/
+	/*max-width: 40em!important;*/
+	/*background-color: var(--themeContrastColor);*/
+    /* border: 1px solid black; */
+    /* border-left: 1px solid black; */
+    /* border-right: 1px solid black; */
+    /*opacity: 0.8;*/
+}
+
+.cst-altbanner2-container {
+	/*padding-top: 5em;*/
+	padding-bottom: 3em;
+	/*background: rgba(0, 0, 0, 0.6);*/
+	/*max-width: 40em!important;*/
+	/*background-color: var(--themeContrastColor);*/
+    /* border: 1px solid black; */
+    /* border-left: 1px solid black; */
+    /* border-right: 1px solid black; */
+    /*opacity: 0.8;*/
+}
+
+.cst-altbanner-breadcrumb-container {
+	text-align: left;
+}
+
+.cst-altbanner-title {
+	font-size: 3em;
+	font-weight: 300;
+	color: var(--themeContrastColor);
+}
+
+.cst-altbanner-text {
+	color: #fff!important;
+	/*font-weight: 300!important;*/
+	line-height: 1.5em;
+}
+
+.cst-album-container {
+	padding-top: 2em;
+	text-align: center;
+}
+
+.cst-album-row {
+	padding-top: 3em;
+}
+
+.cst-rounded-circle {
+	border-radius: 50%;
+	width: 12em;
+	height: auto; /*assumendo immagini quadrate...*/
+}
+
+.cst-preview-container {
+	margin-top: 1em;
+}
+
+/* DETTAGLIO */
+
+.cst-maincontainer-details {
+	 background-image: url('./imgs/polaroidpioneersverticale.jpg');
+	 background-repeat: no-repeat;
+	 background-size: 20em;
+}
+
+.cst-maincontainer2-details {
+	 background-image: url('./imgs/polaroidstudentesseverticale.jpg');
+	background-repeat: no-repeat;
+	background-size: 20em;
+}
+
+.cst-container-details {
+	background-color: white; 
+	padding-top: 2em;
+}
+
+.cst-breadcrumb-details {
+	color: var(--themeContrastColor);
+	display: flex!important;
+}
+
+.cst-breadcrumb-details-text {
+	float: left; 
+	margin-right: .25rem;
+}
+
+.cst-breadcrumb-details-item {
+	color: black!important;
+}
+
+.cst-detail-row {
+	/*background-color: var(--textBackgroundColor);*/
+	margin-top: 1em!important;
+}
+
+.cst-detail-img {
+	/*background-image: url('./copyrighted images/margarethamilton_bella.png');
+	height: 100%;
+	background-size: contain;
+	background-repeat: no-repeat;*/
+	max-width: 100%;
+	height: auto;
+}
+
+.cst-detail-img2 {
+	background-image: url('./copyrighted images/studentessa2-min.jpg');
+	height: 100%;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.cst-detail-first-col {
+	/*background-color: var(--themeContrastColor);*/
+	/*background-image: linear-gradient(to right, var(--themeContrastColor), var(--textBackgroundColor));*/
+	/*padding: 1em;*/
+}
+
+.detail-title {
+	font-size: 4em;
+    font-weight: 300;
+    padding: 1em;
+	padding-left: 0em;
+}
+
+.cst-detail-presentation {
+	text-align: center;
+}
+
+.cst-detail-presentation-image {
+	max-width: 22em;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1em;
+}
+
+.cst-detail-presentation-title {
+	font-size: 4em;
+	font-weight: 300;
+}
+
+/* DIVENTA TESTIMONIAL */
+
+.cst-testimonial-title {
+	font-size: 3em;
+    font-weight: 300;
+	text-align: center;
+}
+
+.cst-testimonial-image {
+	text-align: center;
+    background-image: url('./imgs/polaroid_testimonial.png');
+    height: 12em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cst-testimonial-language {
+	text-align: center;
+	margin-bottom: 1em;
+}
+
+.cst-form-container {
+	display: block;
+    text-align: center;
+}
+
+.cst-form {
+	max-width: 80%;
+	display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.cst-login-form {
+	max-width: 60%;
+}
+
+.cst-form-control-file {
+	display: block;
+}
+
+.cst-form-group {
+	margin-top: 1em;
+}
+
+.cst-form-group label{
+	font-weight: 500;
+}
+
+.cst-form-group-submit-container {
+	text-align: center;
+}
+
+.error-form-message {
+    margin-bottom: 1.2em;
+    color: var(--themeColor);
+    font-weight: 500;
+}
+
+/* AREA RISERVATA */
+
+.cst-private-breadcrumb-container {
+	color: var(--themeContrastColor);
+}
+
+.cst-not-approved {
+	color: var(--themeColor);
+	font-weight: 500;
+}
+
+.cst-first-paragraph-help {
+	margin-bottom: 0em;
+}
+
+.cst-modify-form-container {
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+/* MODAL */
+
+.cst-modal-close-button{
+	background-color: var(--textColor)!important;
+	border-color: var(--textColor)!important;
+	color: var(--themeContrastColor)!important;
+}
+
+.cst-modal-title-error {
+	color: var(--themeColor);
+}
+
+/* PAGINA NON TROVATA */
+.cst-404-image {
+	max-width: 100%;
+	height: auto;
+}

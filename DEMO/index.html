@@ -8,20 +8,31 @@
     <meta name="author" content="Derek Gusatto">
     <meta name="description" content="Questa applicazione ti aiuterà a decodificare e studiare la codifica e la compressione JPE">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css">
-    <!-- <link rel="stylesheet" href="styles/mini.css" media="screen and (max-width: 768px)"> -->  
-    <link rel="icon" type="image/png" href="img/logo.png">
+    <!-- <link rel="icon" type="image/png" href="img/logo.png"> -->
+    <!-- CSS -->
+		<link rel="stylesheet" media="screen" href="styles/style.css" type="text/css">
+		<!-- <link rel="stylesheet" media="screen and (max-width:991px)" href="/orientamento-1.0/mini.css" type="text/css">
+		<link rel="stylesheet" media="print" href="/orientamento-1.0/print.css" type="text/css"> -->
+    <!-- JS -->  
     <script src="scripts/jpeg_wrapper.js"></script>
     <script src="scripts/app.js"></script>  
 </head>
 <body>
     <header>     
-       <!-- <nav aria-label="navigation Help" class="navigationhelp">
-            <a href="#content">Go to content</a>
-        </nav>-->
+        <!-- Aiuti alla navigazione -->
+		<a class="nav-accessibility" href="#home">Vai al contenuto</a>
+		
+        <!-- Banner loghi-->
+		<div class="logo-banner">
+			<div class="logo-banner-container">
+				<a class="logo-container-unipd" href="https://www.unipd.it/">Università degli Studi di Padova</a>
+				<a class="logo-container-informatica" href="https://informatica.math.unipd.it/">Informatica</a>
+				<a class="logo-container-dm" href="https://www.math.unipd.it/">Dipartimento di Matematica “Tullio Levi-Civita”</a>
+			</div>
+		</div>
     </header>
-    <main id="content">
-    <h1 id="home-logo">JPEGLab</h1>
+    <main id="home">
+    <h1>JPEGLab</h1>
     <p>Questa applicazione ti aiuterà a decodificare e studiare la codifica e la compressione JPEG.</p> 
     
     <form id="imageForm" >
@@ -79,13 +90,20 @@
     </div>
    
     </main>
-    <!--<footer>
-        <p>
-            Informazioni riguardanti la realizzazione dell'applicazione: <a href="">qui</a>
-        </p>
-        <p>
-            &copy; 2025 Gusatto Derek - All rights reserved
-        </p>
-    </footer>-->
+    <a class="btn btn-go-up" href="#home" role="button">Torna su</a>
+    <div class="container">
+    <footer class="footer-flex">
+				<a href="https://www.unipd.it/" class="footer-link link-dark logo-container-footer">Università degli Studi di Padova</a>
+				
+				<ul class="col-md-4 mb-0 text-muted footer-contacts">
+					<li>Università di Padova - Dipartimento di Matematica</li>
+					<li><address>Via Trieste, 63 - 35121 Padova (Italia)</address></li>
+					<li>Telefono: +39 049 8271200</li>
+					<li>Fax: +39 049 8271499</li>
+				</ul>
+				
+				<a href="https://www.math.unipd.it/" class="footer-link link-dark logo-container-footer2">Dipartimento di Matematica “Tullio Levi-Civita”</a>
+			</footer>
+    </div>
 </body>
 </html>
