@@ -394,6 +394,11 @@ select{
     margin: 0 auto;
 }
 
+#DCTCanvasContainer p {
+    margin-top: 0;
+    margin-bottom: 0.3em;
+}
+
 #componentForm{
     display: none;
 }
