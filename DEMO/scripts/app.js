@@ -174,6 +174,11 @@ function writeHTMLresult(height, width, colorSpace, quantTable) {
     `;
 
     displayQuantizationTable(quantTable);
+
+    const dctContainerDiv = document.getElementById('DCTCanvasContainer');
+    dctContainerDiv.innerHTML = `
+        <p>Clicca su un blocco per visualizzare i coefficienti DCT</p>
+    `;
 }
 
 // Funzione per ottenere i coefficienti DCT di un blocco
