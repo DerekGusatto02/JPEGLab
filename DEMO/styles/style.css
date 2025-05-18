@@ -378,7 +378,7 @@ select{
     gap: 1em;
 }
 
-#GridCanvas {
+#DCTCanvasContainer {
     grid-area: grid;
     width: 100%;
     height: auto;
