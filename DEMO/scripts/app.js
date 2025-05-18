@@ -78,9 +78,9 @@ function displayImageWithGrid(img) {
     }
 
     const dctContainerDiv = document.getElementById('DCTCanvasContainer');
-    dctContainerDiv.innerHTML = `
-        <p>Clicca su un blocco per visualizzare i coefficienti DCT</p>
-    `;
+    const infoP = document.createElement('p');
+    infoP.textContent = 'Clicca su un blocco per visualizzare i coefficienti DCT';
+    dctContainerDiv.appendChild(infoP);
 }
 
 // Listener per il caricamento del DOM
