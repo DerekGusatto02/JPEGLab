@@ -392,6 +392,10 @@ select{
 #results {
     grid-area: results;
     width: 100%;
-    padding: 1em;
+    padding-left: 1em;
     box-sizing: border-box;
+}
+
+#generalInfo h2{
+    margin-top: 0;
 }
