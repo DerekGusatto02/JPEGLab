@@ -43,13 +43,15 @@ function displayImageWithGrid(img) {
     const canvas = document.getElementById('GridCanvas');
     const ctx = canvas.getContext('2d');
 
-    const maxWidth = document.body.clientWidth;
+    const dctContainerDiv = document.getElementById('DCTCanvasContainer');
+    const maxWidth = dctContainerDiv.clientWidth || 400; // fallback se 0
     const scale = maxWidth / img.width;
     const newWidth = img.width * scale;
     const newHeight = img.height * scale;
-
     canvas.width = newWidth;
     canvas.height = newHeight;
+
+    
 
     // Disegna l'immagine ridimensionata
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -77,7 +79,6 @@ function displayImageWithGrid(img) {
         ctx.stroke();
     }
 
-    const dctContainerDiv = document.getElementById('DCTCanvasContainer');
     const infoP = document.createElement('p');
     infoP.textContent = 'Clicca su un blocco per visualizzare i coefficienti DCT';
     dctContainerDiv.appendChild(infoP);

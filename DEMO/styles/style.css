@@ -381,8 +381,17 @@ select{
 #DCTCanvasContainer {
     grid-area: grid;
     width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
     height: auto;
     box-sizing: border-box;
+}
+
+#DCTCanvasContainer canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 #componentForm{
