@@ -401,6 +401,7 @@ select{
 #results {
     grid-area: results;
     width: 100%;
+    margin: 0 1em;
     padding-left: 1em;
     box-sizing: border-box;
 }
