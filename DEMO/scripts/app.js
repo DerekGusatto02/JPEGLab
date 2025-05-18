@@ -76,6 +76,11 @@ function displayImageWithGrid(img) {
         ctx.lineTo(newWidth, y);
         ctx.stroke();
     }
+
+    const dctContainerDiv = document.getElementById('DCTCanvasContainer');
+    dctContainerDiv.innerHTML = `
+        <p>Clicca su un blocco per visualizzare i coefficienti DCT</p>
+    `;
 }
 
 // Listener per il caricamento del DOM
@@ -172,10 +177,7 @@ function writeHTMLresult(height, width, colorSpace, quantTable) {
         <p><strong>Dimensioni:</strong> ${width} x ${height}</p>
         <p><strong>Modello di colore:</strong> ${colorSpace}</p>
     `;
-    const dctContainerDiv = document.getElementById('DCTCanvasContainer');
-    dctContainerDiv.innerHTML = `
-        <p>Clicca su un blocco per visualizzare i coefficienti DCT</p>
-    `;
+    
     
     displayQuantizationTable(quantTable);
 
