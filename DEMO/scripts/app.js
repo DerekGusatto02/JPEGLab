@@ -172,13 +172,14 @@ function writeHTMLresult(height, width, colorSpace, quantTable) {
         <p><strong>Dimensioni:</strong> ${width} x ${height}</p>
         <p><strong>Modello di colore:</strong> ${colorSpace}</p>
     `;
-
-    displayQuantizationTable(quantTable);
-
     const dctContainerDiv = document.getElementById('DCTCanvasContainer');
     dctContainerDiv.innerHTML = `
         <p>Clicca su un blocco per visualizzare i coefficienti DCT</p>
     `;
+    
+    displayQuantizationTable(quantTable);
+
+    
 }
 
 // Funzione per ottenere i coefficienti DCT di un blocco
