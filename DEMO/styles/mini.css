@@ -1,0 +1,16 @@
+#AnalysisResulst {
+    grid-template-rows: 1fr auto;
+    grid-template-columns: auto;
+    grid-template-areas: 
+        "grid"
+        "results";
+}
+
+  #canvasContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .canvas-column {
+    max-width: 100%;
+    width: 100%;
+  }
