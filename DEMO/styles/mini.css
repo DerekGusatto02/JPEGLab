@@ -52,9 +52,7 @@ html, body {
 .footer-link,
 .logo-container-footer,
 .logo-container-footer2 {
-  font-size: 1em; 
-  font-weight: bold;
-
+  font-size: 0.7em;
   padding: 0.5em 0;
 }
 
