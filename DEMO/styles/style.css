@@ -180,7 +180,6 @@ footer {
 .logo-container-footer-unipd {
     /*width: 3em;
     align-self: center;*/
-    font-size: 3em !important;
     text-indent: -999em;
     background-image: url('../imgs/unipd_logo_red.png');
     background-repeat: no-repeat;
