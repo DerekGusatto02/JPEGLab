@@ -47,14 +47,10 @@ html, body {
   max-width: 100%;
   text-align: center;
   padding: 0.3em 0;
-}
-
-.footer-link,
-.logo-container-footer,
-.logo-container-footer2 {
   font-size: 0.7em;
   padding: 0.5em 0;
 }
+
 
 .footer-contacts {
   font-size: 1.1em;
