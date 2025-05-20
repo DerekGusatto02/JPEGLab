@@ -411,3 +411,11 @@ select {
 #generalInfo h2 {
     margin-top: 0;
 }
+
+#blockZoomCanvas{
+    width: 160;
+    height: 160;
+    border: 1px solid transparent;
+    margin: 0.3em 0;
+}
+

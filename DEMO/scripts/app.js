@@ -419,9 +419,7 @@ document.addEventListener('DOMContentLoaded', function() {
         testSelect.classList.remove('disabled-select');
     });
 });
-
 function displayBlockZoomColor(blockX, blockY) {
-    // Ottieni dimensioni delle componenti
     const yWidth = Module._get_component_width(0);
     const yHeight = Module._get_component_height(0);
     const cbWidth = Module._get_component_width(1);
@@ -429,7 +427,6 @@ function displayBlockZoomColor(blockX, blockY) {
     const crWidth = Module._get_component_width(2);
     const crHeight = Module._get_component_height(2);
 
-    // Ottieni i puntatori ai dati delle componenti
     const yPtr = Module._extract_component_pixels(0);
     const cbPtr = Module._extract_component_pixels(1);
     const crPtr = Module._extract_component_pixels(2);
@@ -440,23 +437,23 @@ function displayBlockZoomColor(blockX, blockY) {
     const cb = new Uint8Array(Module.HEAPU8.buffer, cbPtr, cbWidth * cbHeight);
     const cr = new Uint8Array(Module.HEAPU8.buffer, crPtr, crWidth * crHeight);
 
-    // Prepara il canvas di zoom
     const zoomCanvas = document.getElementById('blockZoomCanvas');
     const ctx = zoomCanvas.getContext('2d');
-    const zoomSize = 20; // Ogni pixel sarà 20x20
+    const zoomSize = 20;
     ctx.clearRect(0, 0, zoomCanvas.width, zoomCanvas.height);
 
-    // Calcola la posizione del blocco
     const blockSize = 8;
     const startX = blockX * blockSize;
     const startY = blockY * blockSize;
+
+    // Debug: stampa i primi valori
+    // console.log("Y:", y.slice(0, 10), "Cb:", cb.slice(0, 10), "Cr:", cr.slice(0, 10));
 
     for (let yb = 0; yb < blockSize; yb++) {
         for (let xb = 0; xb < blockSize; xb++) {
             const px = startX + xb;
             const py = startY + yb;
             if (px < yWidth && py < yHeight) {
-                // Mappa le coordinate Y su Cb/Cr
                 const cbX = Math.floor(px * cbWidth / yWidth);
                 const cbY = Math.floor(py * cbHeight / yHeight);
                 const crX = Math.floor(px * crWidth / yWidth);
@@ -466,10 +463,15 @@ function displayBlockZoomColor(blockX, blockY) {
                 const Cb = cb[cbY * cbWidth + cbX];
                 const Cr = cr[crY * crWidth + crX];
 
-                // Conversione YCbCr -> RGB (standard JPEG)
-                let R = Y + 1.402 * (Cr - 128);
-                let G = Y - 0.344136 * (Cb - 128) - 0.714136 * (Cr - 128);
-                let B = Y + 1.772 * (Cb - 128);
+                // PROVA 1: Conversione standard
+                //let R = Y + 1.402 * (Cr - 128);
+                //let G = Y - 0.344136 * (Cb - 128) - 0.714136 * (Cr - 128);
+                //let B = Y + 1.772 * (Cb - 128);
+
+                // PROVA 2: Inverti Cb/Cr se i colori sono ancora strani
+                let R = Y + 1.402 * (Cb - 128);
+                let G = Y - 0.344136 * (Cr - 128) - 0.714136 * (Cb - 128);
+                let B = Y + 1.772 * (Cr - 128);
 
                 R = Math.max(0, Math.min(255, Math.round(R)));
                 G = Math.max(0, Math.min(255, Math.round(G)));
