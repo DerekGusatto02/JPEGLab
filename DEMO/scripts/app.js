@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (dctCoefficients) {
                 displayDCTCoefficients(dctCoefficients);
+                displayBlockZoomColor(blockX, blockY);
             } else {
                 alert('Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.');
             }
@@ -149,7 +150,7 @@ function displayDCTCoefficients(coefficients) {
     }
 
     const resultDiv = document.getElementById('DCTCoefficients');
-    resultDiv.innerHTML = '<h3>Coefficienti DCT del blocco '+selectedBlockX+' x '+selectedBlockX+'</h3>';
+    resultDiv.innerHTML = '<h3>Coefficienti DCT del blocco '+selectedBlockX+' x '+selectedBlockY+'</h3>';
     resultDiv.appendChild(table);
 }
 
