@@ -421,9 +421,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function displayBlockZoomColor(blockX, blockY) {
-    // Ottieni dimensioni immagine
-    const width = Module._get_width();
-    const height = Module._get_height();
+    // Ottieni dimensioni delle componenti
+    const yWidth = Module._get_component_width(0);
+    const yHeight = Module._get_component_height(0);
+    const cbWidth = Module._get_component_width(1);
+    const cbHeight = Module._get_component_height(1);
+    const crWidth = Module._get_component_width(2);
+    const crHeight = Module._get_component_height(2);
 
     // Ottieni i puntatori ai dati delle componenti
     const yPtr = Module._extract_component_pixels(0);
@@ -432,9 +436,9 @@ function displayBlockZoomColor(blockX, blockY) {
 
     if (!yPtr || !cbPtr || !crPtr) return;
 
-    const y = new Uint8Array(Module.HEAPU8.buffer, yPtr, width * height);
-    const cb = new Uint8Array(Module.HEAPU8.buffer, cbPtr, width * height);
-    const cr = new Uint8Array(Module.HEAPU8.buffer, crPtr, width * height);
+    const y = new Uint8Array(Module.HEAPU8.buffer, yPtr, yWidth * yHeight);
+    const cb = new Uint8Array(Module.HEAPU8.buffer, cbPtr, cbWidth * cbHeight);
+    const cr = new Uint8Array(Module.HEAPU8.buffer, crPtr, crWidth * crHeight);
 
     // Prepara il canvas di zoom
     const zoomCanvas = document.getElementById('blockZoomCanvas');
@@ -451,11 +455,16 @@ function displayBlockZoomColor(blockX, blockY) {
         for (let xb = 0; xb < blockSize; xb++) {
             const px = startX + xb;
             const py = startY + yb;
-            if (px < width && py < height) {
-                // Ottieni valori YCbCr
-                const Y = y[py * width + px];
-                const Cb = cb[py * width + px];
-                const Cr = cr[py * width + px];
+            if (px < yWidth && py < yHeight) {
+                // Mappa le coordinate Y su Cb/Cr
+                const cbX = Math.floor(px * cbWidth / yWidth);
+                const cbY = Math.floor(py * cbHeight / yHeight);
+                const crX = Math.floor(px * crWidth / yWidth);
+                const crY = Math.floor(py * crHeight / yHeight);
+
+                const Y = y[py * yWidth + px];
+                const Cb = cb[cbY * cbWidth + cbX];
+                const Cr = cr[crY * crWidth + crX];
 
                 // Conversione YCbCr -> RGB (standard JPEG)
                 let R = Y + 1.402 * (Cr - 128);
