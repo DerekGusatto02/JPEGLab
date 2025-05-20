@@ -385,6 +385,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const dctCoefficients = getDCTCoefficients(selectedComponent, selectedBlockX, selectedBlockY);
                 if (dctCoefficients) {
                     displayDCTCoefficients(dctCoefficients);
+                    displayBlockZoomColor(selectedBlockX, selectedBlockY);
                 } else {
                     console.error('Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.');
                 }
@@ -417,3 +418,56 @@ document.addEventListener('DOMContentLoaded', function() {
         testSelect.classList.remove('disabled-select');
     });
 });
+
+function displayBlockZoomColor(blockX, blockY) {
+    // Ottieni dimensioni immagine
+    const width = Module._get_width();
+    const height = Module._get_height();
+
+    // Ottieni i puntatori ai dati delle componenti
+    const yPtr = Module._extract_component_pixels(0);
+    const cbPtr = Module._extract_component_pixels(1);
+    const crPtr = Module._extract_component_pixels(2);
+
+    if (!yPtr || !cbPtr || !crPtr) return;
+
+    const y = new Uint8Array(Module.HEAPU8.buffer, yPtr, width * height);
+    const cb = new Uint8Array(Module.HEAPU8.buffer, cbPtr, width * height);
+    const cr = new Uint8Array(Module.HEAPU8.buffer, crPtr, width * height);
+
+    // Prepara il canvas di zoom
+    const zoomCanvas = document.getElementById('blockZoomCanvas');
+    const ctx = zoomCanvas.getContext('2d');
+    const zoomSize = 20; // Ogni pixel sarà 20x20
+    ctx.clearRect(0, 0, zoomCanvas.width, zoomCanvas.height);
+
+    // Calcola la posizione del blocco
+    const blockSize = 8;
+    const startX = blockX * blockSize;
+    const startY = blockY * blockSize;
+
+    for (let yb = 0; yb < blockSize; yb++) {
+        for (let xb = 0; xb < blockSize; xb++) {
+            const px = startX + xb;
+            const py = startY + yb;
+            if (px < width && py < height) {
+                // Ottieni valori YCbCr
+                const Y = y[py * width + px];
+                const Cb = cb[py * width + px];
+                const Cr = cr[py * width + px];
+
+                // Conversione YCbCr -> RGB (standard JPEG)
+                let R = Y + 1.402 * (Cr - 128);
+                let G = Y - 0.344136 * (Cb - 128) - 0.714136 * (Cr - 128);
+                let B = Y + 1.772 * (Cb - 128);
+
+                R = Math.max(0, Math.min(255, Math.round(R)));
+                G = Math.max(0, Math.min(255, Math.round(G)));
+                B = Math.max(0, Math.min(255, Math.round(B)));
+
+                ctx.fillStyle = `rgb(${R},${G},${B})`;
+                ctx.fillRect(xb * zoomSize, yb * zoomSize, zoomSize, zoomSize);
+            }
+        }
+    }
+}
