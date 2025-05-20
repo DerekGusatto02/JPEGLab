@@ -58,3 +58,7 @@ html, body {
   text-overflow: ellipsis;
   max-width: 90vw;
 }
+
+.logo-banner-container{
+  padding: 0 1em;
+}
