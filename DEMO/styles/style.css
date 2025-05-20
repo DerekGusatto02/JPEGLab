@@ -1,30 +1,30 @@
 @font-face {
-  font-family: 'Lexend';
-  src: url('fonts/Lexend-ExtraLight.ttf');
-  font-style: normal;
-  font-weight: 300;
+    font-family: 'Lexend';
+    src: url('fonts/Lexend-ExtraLight.ttf');
+    font-style: normal;
+    font-weight: 300;
 }
 
 @font-face {
-  font-family: 'Lexend';
-  src: url('fonts/Lexend-Light.ttf');
-  font-style: normal;
-  font-weight: 400;
+    font-family: 'Lexend';
+    src: url('fonts/Lexend-Light.ttf');
+    font-style: normal;
+    font-weight: 400;
 }
 
 @font-face {
-  font-family: 'Lexend';
-  src: url('fonts/Lexend-Medium.ttf');
-  font-style: normal;
-  font-weight: 500;
+    font-family: 'Lexend';
+    src: url('fonts/Lexend-Medium.ttf');
+    font-style: normal;
+    font-weight: 500;
 }
 
 :root {
-	--themeColor: #9b0014;
-	--themeSecondaryColor: #203f6d;
-	--themeContrastColor: #ffffff;
-	--textColor: #212529;
-	--textBackgroundColor: #f6f6f6;
+    --themeColor: #9b0014;
+    --themeSecondaryColor: #203f6d;
+    --themeContrastColor: #ffffff;
+    --textColor: #212529;
+    --textBackgroundColor: #f6f6f6;
 }
 
 html {
@@ -41,31 +41,31 @@ body {
 }
 
 main {
-	padding-top: 1em;
+    padding-top: 1em;
     line-height: 1.5em;
 }
 
 a:link {
-	color: #3C74C8!important;
+    color: #3C74C8 !important;
 }
 
 a:visited {
-	color: black!important;
+    color: black !important;
 }
 
 .link-dark {
-  color: #212529 !important;
+    color: #212529 !important;
 }
 
 strong {
-	font-weight: 500;
+    font-weight: 500;
 }
 
 abbr {
-	text-decoration: none!important;
+    text-decoration: none !important;
 }
 
-.btn{
+.btn {
     display: inline-block;
     font-weight: 400;
     line-height: 1.5;
@@ -77,16 +77,16 @@ abbr {
     padding: .375rem .75rem;
     font-size: 1em;
     border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; 
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
-/* ACCESSIILITA */
 
+/* ACCESSIBILITA */
 .nav-accessibility {
-	position: absolute;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	clip: rect(1px, 1px, 1px, 1px);
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
 }
 
 /* TORNA SU */
@@ -94,52 +94,45 @@ abbr {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    background-color: #203f6d!important;
-	border-color: #203f6d!important;
-	color: var(--themeContrastColor)!important;
-
+    background-color: #203f6d !important;
+    border-color: #203f6d !important;
+    color: var(--themeContrastColor) !important;
 }
 
 .btn-go-up:visited {
-	background-color: var(--themeContrastColor)!important;
-	border-color: #203f6d!important;
-	color: #203f6d!important;
+    background-color: var(--themeContrastColor) !important;
+    border-color: #203f6d !important;
+    color: #203f6d !important;
 }
 
-.btn-go-up:focus-visible, .btn-go-up:focus-visible{
-	outline: 2px solid var(--textColor);
-	border-radius: .25rem;
+.btn-go-up:focus-visible,
+.btn-go-up:focus-visible {
+    outline: 2px solid var(--textColor);
+    border-radius: .25rem;
 }
-
-
-
 
 /* NAVBAR */
-
 .navbar {
-	/*margin-bottom: 1em;*/
+    /*margin-bottom: 1em;*/
 }
 
-
-/*BANNER LOGHI*/
-
+/* BANNER LOGHI */
 .logo-banner {
-	background-color: #9b0014; 
-	padding-bottom: 12px; 
-    padding-top:5px; 
-	border-bottom: 1px solid white;
-    
+    background-color: #9b0014;
+    padding-bottom: 12px;
+    padding-top: 5px;
+    border-bottom: 1px solid white;
 }
 
 .logo-banner-container {
-	display: flex;
+    display: flex;
     justify-content: center;
 }
 
 .logo-container-unipd {
-	width: 3em;
+    width: 3em;
     align-self: center;
-    font-size: 3em!important;
+    font-size: 3em !important;
     /*line-height: 1.5em;*/
     text-indent: -999em;
     background-image: url('../imgs/unipd_logo_white.png');
@@ -149,9 +142,9 @@ abbr {
 }
 
 .logo-container-informatica {
-	width: 3em;
+    width: 3em;
     align-self: center;
-    font-size: 3em!important;
+    font-size: 3em !important;
     /*line-height: 1.5em;*/
     text-indent: -999em;
     background-image: url('../imgs/informatica_logo_white.png');
@@ -161,9 +154,9 @@ abbr {
 }
 
 .logo-container-dm {
-	width: 3em;
+    width: 3em;
     align-self: center;
-    font-size: 3em!important;
+    font-size: 3em !important;
     /*line-height: 1.5em;*/
     text-indent: -999em;
     background-image: url('../imgs/matematica_logo_white.png');
@@ -172,22 +165,22 @@ abbr {
     background-size: contain;
 }
 
-
 /* FOOTER */
-footer{
+footer {
     margin: auto;
     width: 90%;
 }
+
 .footer-link {
-	display: block;
+    display: block;
     padding: .5rem 1rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
 }
 
 .logo-container-footer {
-	/*width: 3em;
+    /*width: 3em;
     align-self: center;*/
-    font-size: 3em!important;
+    font-size: 3em !important;
     text-indent: -999em;
     background-image: url('../imgs/unipd_logo_red.png');
     background-repeat: no-repeat;
@@ -196,7 +189,7 @@ footer{
 }
 
 .logo-container-footer2 {
-	/*width: 3em;
+    /*width: 3em;
     align-self: center;
     font-size: 3em!important;*/
     text-indent: -999em;
@@ -207,60 +200,59 @@ footer{
 }
 
 .footer-contacts {
-  text-align: center;
-  list-style-type: none;
-  margin-bottom: 0 !important;
-  color: #6c757d !important;
-  flex: 1 1 0;
-  width: auto; /* rimuovi width: 100% */
-  min-width: 0;
-  padding: 0;
+    text-align: center;
+    list-style-type: none;
+    margin-bottom: 0 !important;
+    color: #6c757d !important;
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    padding: 0;
 }
 
 .footer-contacts address {
-	margin-bottom: auto;
+    margin-bottom: auto;
 }
 
 .footer-flex {
-  display: flex;
-  flex-wrap: wrap; 
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  border-top: 1px solid #dee2e6;
-  gap: 1em; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-top: 1px solid #dee2e6;
+    gap: 1em;
 }
 
 .footer-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0; 
-  text-decoration: none !important;
-  flex: 1 1 0;
-  width: auto; 
-  min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+    text-decoration: none !important;
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
 }
 
 /*
-    DEREK
+        DEREK
 */
 
-main{
+main {
     background-color: var(--themeContrastColor);
     color: var(--textColor);
     width: 95%;
     margin: auto;
 }
 
-
 .btn-analyze {
     background-color: var(--themeColor);
-	border-color: var(--themeContrastColor);
-	color: var(--themeContrastColor);
+    border-color: var(--themeContrastColor);
+    color: var(--themeContrastColor);
     padding: 0.3em 1em;
     text-align: center;
     text-decoration: none;
@@ -273,8 +265,8 @@ main{
 
 .btn-reset {
     background-color: var(--themeContrastColor);
-	border-color: var(--themeColor);
-	color: var(--themeColor);
+    border-color: var(--themeColor);
+    color: var(--themeColor);
     padding: 0.3em 1em;
     text-align: center;
     text-decoration: none;
@@ -285,18 +277,19 @@ main{
     border-radius: 5px;
 }
 
-.canvas-title{
+.canvas-title {
     font-size: 1.2em;
 }
-.title-hidden{
+
+.title-hidden {
     visibility: hidden;
 }
 
-.title-visible{
+.title-visible {
     visibility: visible;
 }
 
-select{
+select {
     font-family: "Lexend", system-ui, sans-serif;
     font-size: 1em;
     color: white;
@@ -306,6 +299,7 @@ select{
     padding: 0.2em;
     border-radius: 5px;
 }
+
 .disabled-select {
     background-color: #e0e0e0 !important;
     color: #888 !important;
@@ -313,13 +307,13 @@ select{
 }
 
 #imageForm {
-    margin-bottom: 2em; 
+    margin-bottom: 2em;
 }
 
 #canvasContainer {
     display: flex;
-    justify-content: space-between; 
-    gap: 1em; 
+    justify-content: space-between;
+    gap: 1em;
     margin-bottom: 2em;
 }
 
@@ -333,7 +327,7 @@ select{
 
 .canvas-column canvas {
     max-width: 100%;
-    max-height: 300px; 
+    max-height: 300px;
     width: auto;
     height: auto;
     display: block;
@@ -346,13 +340,15 @@ select{
     text-align: center;
 }
 
-#quantizationTable table, #DCTCoefficients table {
+#quantizationTable table,
+#DCTCoefficients table {
     border-collapse: collapse;
     margin: 1em 1em;
     text-align: center;
 }
 
-#quantizationTable td, #DCTCoefficients td {
+#quantizationTable td,
+#DCTCoefficients td {
     width: 1.5em;
     height: 1.5em;
     border: 1px solid black;
@@ -361,7 +357,8 @@ select{
     vertical-align: middle;
 }
 
-#quantizationTable th, #DCTCoefficients th {
+#quantizationTable th,
+#DCTCoefficients th {
     width: 1.5em;
     height: 1.5em;
     border: 1px solid black;
@@ -373,7 +370,7 @@ select{
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: auto;
-    grid-template-areas: 
+    grid-template-areas:
         "grid results";
     gap: 1em;
 }
@@ -399,7 +396,7 @@ select{
     margin-bottom: 0.5em;
 }
 
-#componentForm{
+#componentForm {
     display: none;
 }
 
@@ -411,6 +408,6 @@ select{
     box-sizing: border-box;
 }
 
-#generalInfo h2{
+#generalInfo h2 {
     margin-top: 0;
 }
