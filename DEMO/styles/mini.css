@@ -30,19 +30,23 @@ html, body {
 
 .footer-flex {
   display: flex;
+  flex-direction: column;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  gap: 1em;
+  gap: 0.5em;
 }
 
 .footer-link,
-.logo-container-footer,
-.logo-container-footer2,
+.logo-container-footer-unipd,
+.logo-container-footer-dm,
 .footer-contacts {
-  flex: 1 1 0;
-  min-width: 0;
+  flex: none;
+  flex: none;
+  width: 100%;
+  max-width: 100%;
   text-align: center;
+  padding: 0.3em 0;
 }
 
 .footer-link,
