@@ -177,7 +177,7 @@ footer {
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
 }
 
-.logo-container-footer {
+.logo-container-footer-unipd {
     /*width: 3em;
     align-self: center;*/
     font-size: 3em !important;
@@ -188,7 +188,7 @@ footer {
     background-size: contain;
 }
 
-.logo-container-footer2 {
+.logo-container-footer-dm {
     /*width: 3em;
     align-self: center;
     font-size: 3em!important;*/
