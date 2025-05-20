@@ -52,9 +52,9 @@ html, body {
 .footer-link,
 .logo-container-footer,
 .logo-container-footer2 {
-  font-size: 2em; /* Ingrandisci i loghi */
+  font-size: 1em; 
   font-weight: bold;
-  /* Puoi aggiungere padding se vuoi più "presenza" */
+
   padding: 0.5em 0;
 }
 
