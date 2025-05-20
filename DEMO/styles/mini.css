@@ -52,11 +52,11 @@ html, body {
 }
 
 .logo-container-footer-unipd{
-  font-size: 2em;
+  font-size: 1.5em !important;
 }
 
 .footer-contacts {
-  font-size: 1.1em;
+  font-size: 0.7em;
   padding: 0;
   margin: 0;
   list-style: none;

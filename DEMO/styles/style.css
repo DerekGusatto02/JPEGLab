@@ -180,7 +180,7 @@ footer {
 .logo-container-footer-unipd {
     /*width: 3em;
     align-self: center;*/
-    font-size: 3em;
+    font-size: 3em !important;
     text-indent: -999em;
     background-image: url('../imgs/unipd_logo_red.png');
     background-repeat: no-repeat;
@@ -190,8 +190,8 @@ footer {
 
 .logo-container-footer-dm {
     /*width: 3em;
-    align-self: center;*/
-    font-size: 3em;
+    align-self: center;
+    font-size: 3em;*/
     text-indent: -999em;
     background-image: url('../imgs/matematica_logo_red.png');
     background-repeat: no-repeat;
