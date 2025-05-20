@@ -28,35 +28,37 @@ html, body {
   box-sizing: border-box;
 }
 
+.footer-flex {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+
+.footer-link,
+.logo-container-footer,
+.logo-container-footer2,
+.footer-contacts {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+}
+
 .footer-link,
 .logo-container-footer,
 .logo-container-footer2 {
-  font-size: 1.5em !important;
-  min-width: 2em;
-  max-width: 2.5em;
-  padding: .25rem .5rem;
-  background-size: 70% auto;
+  font-size: 2em; /* Ingrandisci i loghi */
+  font-weight: bold;
+  /* Puoi aggiungere padding se vuoi più "presenza" */
+  padding: 0.5em 0;
 }
 
 .footer-contacts {
-  font-size: 0.9em;
-  padding: 0 0.5em;
-}
-
-.footer-flex {
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-}
-
-.footer-contacts li,
-.footer-contacts address {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 90vw;
+  font-size: 1.1em;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .logo-banner-container{
