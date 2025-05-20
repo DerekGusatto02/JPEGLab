@@ -48,10 +48,11 @@ html, body {
   text-align: center;
   padding: 0.3em 0;
   padding: 0.5em 0;
+  font-size: 0.7em;
 }
 
 .logo-container-footer-unipd{
-  font-size: 2em;;
+  font-size: 2em;
 }
 
 .footer-contacts {
