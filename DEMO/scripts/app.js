@@ -42,9 +42,8 @@ function displayImageInCanvas(img) {
 function displayImageWithGrid(img) {
     const canvas = document.getElementById('GridCanvas');
     const ctx = canvas.getContext('2d');
-
     const dctContainerDiv = document.getElementById('DCTCanvasContainer');
-    const maxWidth = dctContainerDiv.clientWidth || 400; // fallback se 0
+    const maxWidth = Math.min(dctContainerDiv.clientWidth || 400, 600, window.innerWidth - 32);
     const scale = maxWidth / img.width;
     const newWidth = img.width * scale;
     const newHeight = img.height * scale;
@@ -150,7 +149,7 @@ function displayDCTCoefficients(coefficients) {
     }
 
     const resultDiv = document.getElementById('DCTCoefficients');
-    resultDiv.innerHTML = '<h3>Coefficienti DCT del blocco '+selectedBlockX+' x '+selectedBlockY+'</h3>';
+    resultDiv.innerHTML = '<h3>Coefficienti DCT del blocco:</h3>';
     resultDiv.appendChild(table);
 }
 
@@ -437,6 +436,9 @@ function displayBlockZoomColor(blockX, blockY) {
     const cb = new Uint8Array(Module.HEAPU8.buffer, cbPtr, cbWidth * cbHeight);
     const cr = new Uint8Array(Module.HEAPU8.buffer, crPtr, crWidth * crHeight);
 
+    const blocktitle = document.getElementById('DCTBlockTitle');
+    blocktitle.innerHTML = `Blocco selezionato: (${blockX}, ${blockY})`;
+
     const zoomCanvas = document.getElementById('blockZoomCanvas');
     const ctx = zoomCanvas.getContext('2d');
     const zoomSize = 20;
@@ -463,15 +465,11 @@ function displayBlockZoomColor(blockX, blockY) {
                 const Cb = cb[cbY * cbWidth + cbX];
                 const Cr = cr[crY * crWidth + crX];
 
-                // PROVA 1: Conversione standard
-                //let R = Y + 1.402 * (Cr - 128);
-                //let G = Y - 0.344136 * (Cb - 128) - 0.714136 * (Cr - 128);
-                //let B = Y + 1.772 * (Cb - 128);
+                //Conversione standard
+                let R = Y + 1.402 * (Cr - 128);
+                let G = Y - 0.344136 * (Cb - 128) - 0.714136 * (Cr - 128);
+                let B = Y + 1.772 * (Cb - 128);
 
-                // PROVA 2: Inverti Cb/Cr se i colori sono ancora strani
-                let R = Y + 1.402 * (Cb - 128);
-                let G = Y - 0.344136 * (Cr - 128) - 0.714136 * (Cb - 128);
-                let B = Y + 1.772 * (Cr - 128);
 
                 R = Math.max(0, Math.min(255, Math.round(R)));
                 G = Math.max(0, Math.min(255, Math.round(G)));

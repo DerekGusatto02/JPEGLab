@@ -378,8 +378,8 @@ select {
 #DCTCanvasContainer {
     grid-area: grid;
     width: 100%;
-    max-width: 100%;
     overflow-x: auto;
+    max-width: 100vw;
     height: auto;
     box-sizing: border-box;
 }
@@ -419,3 +419,10 @@ select {
     margin: 0.3em 0;
 }
 
+#GridCanvas {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}

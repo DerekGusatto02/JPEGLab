@@ -72,26 +72,29 @@
     </div>
     </div>
     <div id="AnalysisResulst">
-    <div id="DCTCanvasContainer">
-    <canvas id="GridCanvas" aria-label="Image Canvas"></canvas>
+        <div id="DCTCanvasContainer">
+            <canvas id="GridCanvas" aria-label="Image Canvas"></canvas>
+        </div>
     
-    </div>
-    
-    <div id="results" aria-live="polite">
-        <div id="generalInfo"></div>
-        <form id="componentForm" >
-            <label for="componentInput">Seleziona una componente:</label>
-            <select id="componentInput" name="componentInput" aria-required="true">
-                <option value="0" selected>Y</option> 
-                <option value="1">Cb</option>
-                <option value="2">Cr</option>
-            </select>
-        </form>
-        <div id="quantizationTable" ></div>
-        <canvas id="blockZoomCanvas"></canvas>
-        <div id="DCTCoefficients" aria-label="DCT Results"></div>
+        <div id="results" aria-live="polite">
+            <div id="generalInfo"></div>
+            <form id="componentForm" >
+                <label for="componentInput">Seleziona una componente:</label>
+                <select id="componentInput" name="componentInput" aria-required="true">
+                    <option value="0" selected>Y</option> 
+                    <option value="1">Cb</option>
+                    <option value="2">Cr</option>
+                </select>
+            </form>
+            <div id="quantizationTable" ></div>
+            <div id="DCTBlock" aria-label="DCT Block">
+                <h2 id="DCTBlockTitle" class="canvas-title title-hidden"></h2>
+                <canvas id="blockZoomCanvas"></canvas>
+            </div>
+            
+            <div id="DCTCoefficients" aria-label="DCT Results"></div>
         
-    </div>
+        </div>
     </div>
    
     </main>
