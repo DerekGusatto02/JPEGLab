@@ -476,6 +476,7 @@ document.addEventListener('DOMContentLoaded', function() {
         testSelect.classList.remove('disabled-select');
     });
 });
+
 function displayBlockZoomColor(blockX, blockY) {
     const yWidth = Module._get_component_width(0);
     const yHeight = Module._get_component_height(0);
@@ -487,6 +488,9 @@ function displayBlockZoomColor(blockX, blockY) {
     const yPtr = Module._extract_component_pixels(0);
     const cbPtr = Module._extract_component_pixels(1);
     const crPtr = Module._extract_component_pixels(2);
+
+    console.log("Ptrs: yPtr =", yPtr, "cbPtr =", cbPtr, "crPtr =", crPtr);
+
 
     if (!yPtr || !cbPtr || !crPtr) return;
 
@@ -512,7 +516,7 @@ function displayBlockZoomColor(blockX, blockY) {
     const startY = blockY * blockSize;
 
     // Debug: stampa i primi valori
-    // console.log("Y:", y.slice(0, 10), "Cb:", cb.slice(0, 10), "Cr:", cr.slice(0, 10));
+    console.log("Y:", y.slice(0, 10), "Cb:", cb.slice(0, 10), "Cr:", cr.slice(0, 10));
 
     for (let yb = 0; yb < blockSize; yb++) {
         for (let xb = 0; xb < blockSize; xb++) {
@@ -524,11 +528,14 @@ function displayBlockZoomColor(blockX, blockY) {
                 const crX = Math.floor(px * crWidth / yWidth);
                 const crY = Math.floor(py * crHeight / yHeight);
 
-                const Y = y[py * yWidth + px];
-                const Cb = cb[cbY * cbWidth + cbX];
-                const Cr = cr[crY * crWidth + crX];
+                let Y = y[py * yWidth + px];
+                //const Cb = (cbWidth > 0 && cbHeight > 0) ? cb[cbY * cbWidth + cbX] : 128;
+                //const Cr = (crWidth > 0 && crHeight > 0) ? cr[crY * crWidth + crX] : 128;
+                //const Cb = ((cb[cbY * cbWidth + cbX] || 0) - 128) + 128;
+                //const Cr = ((cr[crY * crWidth + crX] || 0) - 128) + 128;    
+                const Cb = ((cr[crY * crWidth + crX] || 0) - 128) + 128;
+                const Cr = ((cb[cbY * cbWidth + cbX] || 0) - 128) + 128; 
 
-                //Conversione standard
                 let R = Y + 1.402 * (Cr - 128);
                 let G = Y - 0.344136 * (Cb - 128) - 0.714136 * (Cr - 128);
                 let B = Y + 1.772 * (Cb - 128);
@@ -539,8 +546,11 @@ function displayBlockZoomColor(blockX, blockY) {
                 B = Math.max(0, Math.min(255, Math.round(B)));
 
                 ctx.fillStyle = `rgb(${R},${G},${B})`;
+                //ctx.fillStyle = `rgb(${Y},${Y},${Y})`;
                 ctx.fillRect(xb * zoomSize, yb * zoomSize, zoomSize, zoomSize);
             }
         }
     }
+
+    Module._free_component_buffers();
 }

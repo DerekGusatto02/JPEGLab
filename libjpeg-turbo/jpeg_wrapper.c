@@ -157,8 +157,8 @@ unsigned char* extract_component_pixels(int componentIndex) {
             }
         }
     }
-
     return component_pixels;
+
 }
 
 // Restituisce la larghezza del componente corrente
