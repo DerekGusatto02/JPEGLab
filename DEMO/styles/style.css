@@ -277,9 +277,6 @@ main {
     border-radius: 5px;
 }
 
-.canvas-title {
-    font-size: 1.2em;
-}
 
 .title-hidden {
     visibility: hidden;
@@ -335,9 +332,16 @@ select {
 }
 
 .canvas-title {
+    font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 0.5em;
     text-align: center;
+}
+
+.block-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
 }
 
 #quantizationTable table,

@@ -437,6 +437,11 @@ function displayBlockZoomColor(blockX, blockY) {
     const cb = new Uint8Array(Module.HEAPU8.buffer, cbPtr, cbWidth * cbHeight);
     const cr = new Uint8Array(Module.HEAPU8.buffer, crPtr, crWidth * crHeight);
 
+    const boxList = document.querySelectorAll('.block-title.title-hidden');
+                boxList.forEach(box => {
+                box.classList.remove('title-hidden');
+                box.classList.add('title-visible');
+    });
     const blocktitle = document.getElementById('DCTBlockTitle');
     blocktitle.innerHTML = `Blocco selezionato: (${blockX}, ${blockY})`;
 
