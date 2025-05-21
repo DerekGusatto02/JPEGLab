@@ -42,8 +42,9 @@ function displayImageInCanvas(img) {
 function displayImageWithGrid(img) {
     const canvas = document.getElementById('GridCanvas');
     const ctx = canvas.getContext('2d');
+
     const dctContainerDiv = document.getElementById('DCTCanvasContainer');
-    const maxWidth = Math.min(dctContainerDiv.clientWidth || 400, 600, window.innerWidth - 32);
+    const maxWidth = dctContainerDiv.clientWidth || 400; // fallback se 0
     const scale = maxWidth / img.width;
     const newWidth = img.width * scale;
     const newHeight = img.height * scale;
