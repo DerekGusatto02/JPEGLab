@@ -96,8 +96,18 @@ function displayImageWithGrid(img) {
     const ctx = canvas.getContext('2d');
     const dctContainerDiv = document.getElementById('DCTCanvasContainer');
 
-    // Scala desiderata
-    const scale = 10;
+    // Numero di blocchi per riga e colonna
+    const block_per_row = Module._get_blocks_width();
+    const block_per_col = Module._get_blocks_height();
+
+    // Dimensione minima desiderata per ogni blocco (in pixel)
+    const minBlockSize = 15;
+
+    // Calcola la scala dinamica
+    const scaleX = minBlockSize * block_per_row / img.width;
+    const scaleY = minBlockSize * block_per_col / img.height;
+    // Usa la scala più grande per garantire che entrambi i lati siano almeno minBlockSize
+    const scale = Math.max(scaleX, scaleY);
 
     // Dimensioni canvas scalate
     canvas.width = img.width * scale;
@@ -108,13 +118,11 @@ function displayImageWithGrid(img) {
     ctx.drawImage(img, 0, 0, img.width * scale, img.height * scale);
 
     // Griglia
-    const block_per_row = Module._get_blocks_width();
-    const block_per_col = Module._get_blocks_height();
     const blockWidth = (img.width * scale) / block_per_row;
     const blockHeight = (img.height * scale) / block_per_col;
 
     ctx.strokeStyle = 'red';
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 1.5;
     for (let x = 0; x <= canvas.width; x += blockWidth) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
