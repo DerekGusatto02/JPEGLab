@@ -39,7 +39,7 @@ function displayImageInCanvas(img) {
 }
 
 // Funzione per visualizzare l'immagine con una griglia sovrapposta
-function displayImageWithGrid(img) {
+/*function displayImageWithGrid(img) {
     const canvas = document.getElementById('GridCanvas');
     const ctx = canvas.getContext('2d');
 
@@ -85,6 +85,55 @@ function displayImageWithGrid(img) {
         const canvas = dctContainerDiv.querySelector('canvas');
         if (canvas) {
             dctContainerDiv.insertBefore(infoP, canvas);
+        } else {
+            dctContainerDiv.appendChild(infoP);
+        }
+    }
+}*/
+
+function displayImageWithGrid(img) {
+    const canvas = document.getElementById('GridCanvas');
+    const ctx = canvas.getContext('2d');
+    const dctContainerDiv = document.getElementById('DCTCanvasContainer');
+
+    // Scala desiderata
+    const scale = 10;
+
+    // Dimensioni canvas scalate
+    canvas.width = img.width * scale;
+    canvas.height = img.height * scale;
+
+    // Disegna l'immagine scalata
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, img.width * scale, img.height * scale);
+
+    // Griglia
+    const block_per_row = Module._get_blocks_width();
+    const block_per_col = Module._get_blocks_height();
+    const blockWidth = (img.width * scale) / block_per_row;
+    const blockHeight = (img.height * scale) / block_per_col;
+
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 3;
+    for (let x = 0; x <= canvas.width; x += blockWidth) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+    }
+    for (let y = 0; y <= canvas.height; y += blockHeight) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+    }
+
+    if (!dctContainerDiv.querySelector('p')) {
+        const infoP = document.createElement('p');
+        infoP.textContent = 'Clicca su un blocco per visualizzare i coefficienti DCT';
+        const canvasElem = dctContainerDiv.querySelector('canvas');
+        if (canvasElem) {
+            dctContainerDiv.insertBefore(infoP, canvasElem);
         } else {
             dctContainerDiv.appendChild(infoP);
         }

@@ -372,7 +372,7 @@ select {
 
 #AnalysisResulst {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto auto;
     grid-template-rows: auto;
     grid-template-areas:
         "grid results";
@@ -381,10 +381,9 @@ select {
 
 #DCTCanvasContainer {
     grid-area: grid;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
-    height: auto;
+    max-width: 60vw;
+    max-height: 80vh;
+    overflow: auto;
     box-sizing: border-box;
 }
 
@@ -421,4 +420,9 @@ select {
     height: 160;
     border: 1px solid transparent;
     margin: 0.3em 0;
+}
+
+
+#GridCanvas {
+    display: block;
 }
