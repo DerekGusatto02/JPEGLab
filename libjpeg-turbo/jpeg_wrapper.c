@@ -115,9 +115,11 @@ int get_blocks_height(int componentIndex) {
     return compptr->height_in_blocks;
 }
 
-// Variabili globali per la gestione dei pixel di un componente
-unsigned char *component_pixels = NULL;
-int component_pixels_size = 0;
+
+// Variabili globali per la gestione dei pixel di ciascun componente
+#define COMPONENTS 4
+unsigned char *component_pixels[COMPONENTS] = {NULL};
+int component_pixels_size[COMPONENTS] = {0};
 
 // Estrae i pixel decodificati per un componente specifico
 unsigned char* extract_component_pixels(int componentIndex) {
@@ -131,14 +133,14 @@ unsigned char* extract_component_pixels(int componentIndex) {
 
     int size = width * height;
 
-    if (component_pixels == NULL || component_pixels_size < size) {
-        free(component_pixels);
-        component_pixels = (unsigned char*)malloc(size);
-        if (!component_pixels) {
-            component_pixels_size = 0;
+    if (component_pixels[componentIndex] == NULL || component_pixels_size[componentIndex] < size) {
+        free(component_pixels[componentIndex]);
+        component_pixels[componentIndex] = (unsigned char*)malloc(size);
+        if (!component_pixels[componentIndex]) {
+            component_pixels_size[componentIndex] = 0;
             return NULL; // Errore: memoria insufficiente
         }
-        component_pixels_size = size;
+        component_pixels_size[componentIndex] = size;
     }
 
     for (int by = 0; by < compptr->height_in_blocks; by++) {
@@ -150,15 +152,23 @@ unsigned char* extract_component_pixels(int componentIndex) {
                         int pixel_x = bx * DCTSIZE + j;
                         int pixel_y = by * DCTSIZE + i;
                         if (pixel_x < width && pixel_y < height) {
-                            component_pixels[pixel_y * width + pixel_x] = (unsigned char)block[i * DCTSIZE + j];
+                            component_pixels[componentIndex][pixel_y * width + pixel_x] = (unsigned char)block[i * DCTSIZE + j];
                         }
                     }
                 }
             }
         }
     }
-    return component_pixels;
+    return component_pixels[componentIndex];
+}
 
+// Funzione per liberare tutti i buffer dei componenti
+void free_component_buffers() {
+    for (int i = 0; i < MAX_COMPONENTS; i++) {
+        free(component_pixels[i]);
+        component_pixels[i] = NULL;
+        component_pixels_size[i] = 0;
+    }
 }
 
 // Restituisce la larghezza del componente corrente

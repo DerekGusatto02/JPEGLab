@@ -1699,6 +1699,7 @@ var _get_blocks_height = Module['_get_blocks_height'] = createExportWrapper('get
 var _extract_component_pixels = Module['_extract_component_pixels'] = createExportWrapper('extract_component_pixels', 1);
 var _free = Module['_free'] = createExportWrapper('free', 1);
 var _malloc = Module['_malloc'] = createExportWrapper('malloc', 1);
+var _free_component_buffers = Module['_free_component_buffers'] = createExportWrapper('free_component_buffers', 0);
 var _get_component_width = Module['_get_component_width'] = createExportWrapper('get_component_width', 1);
 var _get_component_height = Module['_get_component_height'] = createExportWrapper('get_component_height', 1);
 var _get_last_error_message = Module['_get_last_error_message'] = createExportWrapper('get_last_error_message', 0);

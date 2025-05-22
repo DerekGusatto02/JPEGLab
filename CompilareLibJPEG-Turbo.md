@@ -58,7 +58,7 @@ emcc jpeg_wrapper.c -o jpeg_wrapper.js \
     -I/Users/derekgusatto/Documents/Git/libjpeg-turbo/include \
     -I/Users/derekgusatto/Documents/Git/libjpeg-turbo/build \
     /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/libjpeg.a \
-    -s EXPORTED_FUNCTIONS="['_malloc', '_free', '_init_decoder', '_get_width', '_get_height', '_get_color_space', '_get_quant_table', '_get_dct_coefficients', '_get_blocks_height', '_get_blocks_width', '_get_last_error_message', '_destroy_decoder', '_extract_component_pixels', '_get_component_width', '_get_component_height']" \
+    -s EXPORTED_FUNCTIONS="['_malloc', '_free', '_init_decoder', '_get_width', '_get_height', '_get_color_space', '_get_quant_table', '_get_dct_coefficients', '_get_blocks_height', '_get_blocks_width', '_get_last_error_message', '_destroy_decoder', '_extract_component_pixels', '_get_component_width', '_get_component_height', '_free_component_buffers']" \
     -s EXPORTED_RUNTIME_METHODS="['HEAPU8', 'HEAP16', 'ccall', 'cwrap']" \
     -s ENVIRONMENT='web'
 ```
