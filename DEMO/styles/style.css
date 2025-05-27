@@ -413,7 +413,7 @@ select {
     margin-top: 0;
 }
 
-#blockZoomCanvas{
+#blockZoomCanvas, #blockZoomCanvasY, #blockZoomCanvasOriginale{
     width: 160;
     height: 160;
     border: 1px solid transparent;

@@ -1,6 +1,8 @@
 let selectedBlockX = -1;
 let selectedBlockY = -1;
 let selectedComponent = 0;
+let imageScale = 1;
+let img = new Image();
 // Funzione per leggere un array dalla memoria WebAssembly
 function readArrayFromMemory(ptr, length) {
     // Converte una porzione della memoria HEAPU8 in un array JavaScript
@@ -29,8 +31,8 @@ function displayImageInCanvas(img) {
     canvas.width = maxWidth;
 
     // Calcola l'altezza mantenendo le proporzioni
-    const scale = maxWidth / img.width;
-    const newHeight = img.height * scale;
+    imageScale  = maxWidth / img.width;
+    const newHeight = img.height * imageScale;
     canvas.height = newHeight;
 
     // Pulisce il canvas e disegna l'immagine ridimensionata
@@ -178,8 +180,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (dctCoefficients) {
                 displayDCTCoefficients(dctCoefficients);
-                displayBlockZoomColor(blockX, blockY);
-                displayBlockZoomY(blockX, blockY);
+                //displayBlockZoomColor(blockX, blockY);
+                //displayBlockZoomY(blockX, blockY);
+                displayBlockZoomOriginal(blockX, blockY);
             } else {
                 alert('Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.');
             }
@@ -280,7 +283,7 @@ async function analyzeImage() {
     const selectedTestImage = testImageSelect.value; // Immagine di test selezionata
 
     let arrayBuffer;
-    let img = new Image();
+    img = new Image();
 
     // Controlla se è stata caricata un'immagine dal dispositivo
     if (fileInput.files && fileInput.files.length > 0) {
@@ -444,8 +447,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 const dctCoefficients = getDCTCoefficients(selectedComponent, selectedBlockX, selectedBlockY);
                 if (dctCoefficients) {
                     displayDCTCoefficients(dctCoefficients);
-                    displayBlockZoomColor(selectedBlockX, selectedBlockY);
-                    displayBlockZoomY(selectedBlockX, selectedBlockY);
+                    //displayBlockZoomColor(selectedBlockX, selectedBlockY);
+                    //displayBlockZoomY(selectedBlockX, selectedBlockY);
+                    displayBlockZoomOriginal(selectedBlockX, selectedBlockY);
                 } else {
                     console.error('Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.');
                 }
@@ -510,10 +514,13 @@ function displayBlockZoomColor(blockX, blockY) {
 
     const zoomCanvas = document.getElementById('blockZoomCanvas');
     const ctx = zoomCanvas.getContext('2d');
+    const blockSize = 8;
     const zoomSize = 20;
+    const canvasSize = blockSize * zoomSize;
+    zoomCanvas.width = canvasSize;
+    zoomCanvas.height = canvasSize;
     ctx.clearRect(0, 0, zoomCanvas.width, zoomCanvas.height);
 
-    const blockSize = 8;
     const startX = blockX * blockSize;
     const startY = blockY * blockSize;
 
@@ -569,10 +576,13 @@ function displayBlockZoomY(blockX, blockY) {
     const zoomCanvasY = document.getElementById('blockZoomCanvasY');
     if (!zoomCanvasY) return;
     const ctxY = zoomCanvasY.getContext('2d');
+    const blockSize = 8;
     const zoomSize = 20;
+    const canvasSize = blockSize * zoomSize;
+    zoomCanvasY.width = canvasSize;
+    zoomCanvasY.height = canvasSize;
     ctxY.clearRect(0, 0, zoomCanvasY.width, zoomCanvasY.height);
 
-    const blockSize = 8;
     const startX = blockX * blockSize;
     const startY = blockY * blockSize;
 
@@ -588,4 +598,62 @@ function displayBlockZoomY(blockX, blockY) {
         }
     }
     Module._free_component_buffers();
+}
+
+function displayBlockZoomOriginal(blockX, blockY) {
+    console.log(`DEBUG: Visualizzazione blocco originale (${blockX}, ${blockY})`);
+
+    const boxList = document.querySelectorAll('.block-title.title-hidden');
+                boxList.forEach(box => {
+                box.classList.remove('title-hidden');
+                box.classList.add('title-visible');
+    });
+    const blocktitle = document.getElementById('DCTBlockTitle');
+    blocktitle.innerHTML = `Blocco selezionato: (${blockX}, ${blockY})`;
+
+    const blockSize = 8;
+    const zoomSize = 20;
+    const canvasSize = blockSize * zoomSize;
+
+    const zoomCanvas = document.getElementById('blockZoomCanvasOriginale');
+    if (!img) {
+        console.warn('displayBlockZoomOriginal: img non trovato');
+        return;
+    }
+    if (!zoomCanvas) {
+        console.warn('displayBlockZoomOriginal: zoomCanvas non trovato');
+        return;
+    }
+
+    zoomCanvas.width = canvasSize;
+    zoomCanvas.height = canvasSize;
+
+    const ctxDst = zoomCanvas.getContext('2d');
+
+    // Calcola la posizione e la dimensione effettiva del blocco
+    const srcX = blockX * blockSize;
+    const srcY = blockY * blockSize;
+    const srcW = Math.min(blockSize, img.naturalWidth - srcX);
+    const srcH = Math.min(blockSize, img.naturalHeight - srcY);
+
+    // Crea un canvas temporaneo della dimensione effettiva
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = srcW;
+    tempCanvas.height = srcH;
+    const tempCtx = tempCanvas.getContext('2d');
+
+    // Disegna il blocco effettivo dal frame originale
+    tempCtx.drawImage(
+        img,
+        srcX, srcY, srcW, srcH,
+        0, 0, srcW, srcH
+    );
+
+    ctxDst.clearRect(0, 0, zoomCanvas.width, zoomCanvas.height);
+
+    // Scala il blocco effettivo su tutto lo zoom (sempre 8x8 ingrandito)
+    ctxDst.imageSmoothingEnabled = false;
+    ctxDst.drawImage(tempCanvas, 0, 0, blockSize * zoomSize, blockSize * zoomSize);
+
+    console.log(`DEBUG: Blocco originale (${blockX}, ${blockY}) visualizzato correttamente.`);
 }
