@@ -13,6 +13,12 @@
 8. Facilitata selezione di un blocco dell'immagine
 9. Visualizzazione blocco ingrandito [NON DEL TUTTO FUNZIONANTE -> colori sballati]
 
+## al 27 maggio 2025
+9. Visualizzazione blocco ingrandito
+
+---
+🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
+---
 
 # To-Do
 ## al 14 maggio 2025
@@ -22,4 +28,6 @@
 4. Possibilità di modifica della tabella di quantizzazione?
 
 ## al 22 maggio 2025
-5. Funzionamentp blocco ingrandito -> Colori corretti
+5. ~~Funzionamentp blocco ingrandito -> Colori corretti~~
+
+## al 27 maggio 2025
