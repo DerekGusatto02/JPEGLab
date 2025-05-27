@@ -179,6 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (dctCoefficients) {
                 displayDCTCoefficients(dctCoefficients);
                 displayBlockZoomColor(blockX, blockY);
+                displayBlockZoomY(blockX, blockY);
             } else {
                 alert('Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.');
             }
@@ -444,6 +445,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (dctCoefficients) {
                     displayDCTCoefficients(dctCoefficients);
                     displayBlockZoomColor(selectedBlockX, selectedBlockY);
+                    displayBlockZoomY(selectedBlockX, selectedBlockY);
                 } else {
                     console.error('Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.');
                 }
@@ -552,5 +554,38 @@ function displayBlockZoomColor(blockX, blockY) {
         }
     }
 
+    Module._free_component_buffers();
+}
+
+function displayBlockZoomY(blockX, blockY) {
+    const yWidth = Module._get_component_width(0);
+    const yHeight = Module._get_component_height(0);
+    const yPtr = Module._extract_component_pixels(0);
+
+    if (!yPtr) return;
+
+    const y = new Uint8Array(Module.HEAPU8.buffer, yPtr, yWidth * yHeight);
+
+    const zoomCanvasY = document.getElementById('blockZoomCanvasY');
+    if (!zoomCanvasY) return;
+    const ctxY = zoomCanvasY.getContext('2d');
+    const zoomSize = 20;
+    ctxY.clearRect(0, 0, zoomCanvasY.width, zoomCanvasY.height);
+
+    const blockSize = 8;
+    const startX = blockX * blockSize;
+    const startY = blockY * blockSize;
+
+    for (let yb = 0; yb < blockSize; yb++) {
+        for (let xb = 0; xb < blockSize; xb++) {
+            const px = startX + xb;
+            const py = startY + yb;
+            if (px < yWidth && py < yHeight) {
+                const Yval = y[py * yWidth + px];
+                ctxY.fillStyle = `rgb(${Yval},${Yval},${Yval})`;
+                ctxY.fillRect(xb * zoomSize, yb * zoomSize, zoomSize, zoomSize);
+            }
+        }
+    }
     Module._free_component_buffers();
 }
