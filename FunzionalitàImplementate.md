@@ -27,7 +27,13 @@
 3. ~~Visualizzazione blocco ingrandito~~
 4. Possibilità di modifica della tabella di quantizzazione?
 
+
 ## al 22 maggio 2025
 5. ~~Funzionamentp blocco ingrandito -> Colori corretti~~
 
-## al 27 maggio 2025
+## al 29 maggio 2025
+6. Problema di Cache 
+7. Inversione risultati analisi nell'analisi completa
+8. Pagine separate per parti dell'analisi 
+9. Area riservata
+10. English
