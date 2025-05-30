@@ -94,15 +94,15 @@ abbr {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    background-color: #203f6d !important;
-    border-color: #203f6d !important;
-    color: var(--themeContrastColor) !important;
+    background-color: #203f6d ;
+    border-color: #203f6d ;
+    color: var(--textBackgroundColor) ;
 }
 
 .btn-go-up:visited {
-    background-color: var(--themeContrastColor) !important;
-    border-color: #203f6d !important;
-    color: #203f6d !important;
+    background-color: var(--themeContrastColor) ;
+    border-color: #203f6d ;
+    color: var(--textBackgroundColor) ;
 }
 
 .btn-go-up:focus-visible,
@@ -112,9 +112,7 @@ abbr {
 }
 
 /* NAVBAR */
-.navbar {
-    /*margin-bottom: 1em;*/
-}
+
 
 /* BANNER LOGHI */
 .logo-banner {
