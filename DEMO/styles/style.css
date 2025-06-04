@@ -100,9 +100,9 @@ abbr {
 }
 
 .btn-go-up:visited {
-    background-color: var(--themeContrastColor) ;
+    background-color: var(--themeSecondaryColor) !important;
     border-color: #203f6d ;
-    color: var(--textBackgroundColor) ;
+    color: var(--textBackgroundColor) !important;
 }
 
 .btn-go-up:focus-visible,
