@@ -381,7 +381,8 @@ async function analyzeImageDCT(event) {
         }
 
         writeHTMLresult(height, width, colorSpace, quantTable);
-
+        const componentForm = document.getElementById('componentForm');
+        if (componentForm) componentForm.style.display = 'block';
         
 
 
