@@ -49,8 +49,13 @@
             <label for="imageInput">Carica un'immagine JPEG:</label>
             <input type="file" class="btn" id="imageInput" name="imageInput" accept="image/jpeg" aria-required="true">
         </div>
-        <button type="button" class="btn btn-analyze" id="analyzeButton"  onclick="analyzeImage()">Analisi</button>
+        <button type="button" class="btn btn-analyze" name="view" value="dct" onclick="analyzeImageDCT()">DCT &amp; Quantizzazione</button>
+        <button type="button" class="btn btn-analyze" name="view" value="canvas" onclick="analyzeImageComponent()">Componenti</button>
+        <button type="button" class="btn btn-analyze" name="view" value="all" onclick="analyzeImage()">Analisi completa</button>
         <button type="button" class="btn btn-reset" id="resetButton">Reset</button>
+
+        <!--<button type="button" class="btn btn-analyze" id="analyzeButton"  onclick="analyzeImage()">Analisi</button>
+        <button type="button" class="btn btn-reset" id="resetButton">Reset</button>-->
     </form>
 
     <div id="canvasContainer" >
@@ -70,14 +75,14 @@
         <h2 class="canvas-title title-hidden">Componente Cr</h2>
         <canvas id="CrCompCanvas"></canvas>
     </div>
-    </div>
-    <div id="AnalysisResulst">
+</div>
+
+    <div id="AnalysisResults">
+        <h2> Clicca su un blocco per visualizzare i coefficienti DCT </h2>
         <div id="DCTCanvasContainer">
             <canvas id="GridCanvas" aria-label="Image Canvas"></canvas>
         </div>
-    
         <div id="results" aria-live="polite">
-            <div id="generalInfo"></div>
             <form id="componentForm" >
                 <label for="componentInput">Seleziona una componente:</label>
                 <select id="componentInput" name="componentInput" aria-required="true">
@@ -86,16 +91,13 @@
                     <option value="2">Cr</option>
                 </select>
             </form>
-            <div id="quantizationTable" ></div>
+            <h2 id="DCTBlockTitle" class="block-title title-hidden"></h2>
             <div id="DCTBlock" aria-label="DCT Block">
-                <h2 id="DCTBlockTitle" class="block-title title-hidden"></h2>
-                <!--<canvas id="blockZoomCanvasY"></canvas>
-                <canvas id="blockZoomCanvas"></canvas>-->
                 <canvas id="blockZoomCanvasOriginale"></canvas>
-
             </div>
-            
             <div id="DCTCoefficients" aria-label="DCT Results"></div>
+            <div id="quantizationTable" ></div>
+            <div id="generalInfo"></div>
         
         </div>
     </div>

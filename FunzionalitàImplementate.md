@@ -16,6 +16,10 @@
 ## al 27 maggio 2025
 9. Visualizzazione blocco ingrandito
 
+## al 04 giugno 2025
+10. Inversione risultati analisi nell'analisi completa
+11. Pagine separate per parti dell'analisi 
+12. Risolto problema ricaricamento di immagini con cache
 ---
 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 ---
@@ -32,8 +36,8 @@
 5. ~~Funzionamentp blocco ingrandito -> Colori corretti~~
 
 ## al 29 maggio 2025
-6. Problema di Cache 
-7. Inversione risultati analisi nell'analisi completa
-8. Pagine separate per parti dell'analisi 
+6. ~~Problema di Cache~~
+7. ~~Inversione risultati analisi nell'analisi completa~~
+8. ~~Pagine separate per parti dell'analisi~~
 9. Area riservata
-10. English
+10. English version

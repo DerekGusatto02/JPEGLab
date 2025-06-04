@@ -1,0 +1,17 @@
+    <form id="imageForm" >
+        <div>
+            <label for="testImageSelect">Seleziona un'immagine di test:</label>
+            <select id="testImageSelect" name="testImageSelect">
+                <option value="Test12.jpg" selected>Test12 - vecchio SW</option>
+                <option value="Test00.jpg">Test00 - vecchio SW</option>
+                <option value="pontile.jpg">Pontile</option>
+                <option value="montagna.jpg">Montagna GreyScale</option>
+            </select>
+        </div>
+        <div>
+            <label for="imageInput">Carica un'immagine JPEG:</label>
+            <input type="file" class="btn" id="imageInput" name="imageInput" accept="image/jpeg" aria-required="true">
+        </div>
+        <button type="button" class="btn btn-analyze" id="analyzeButton"  onclick="analyzeImage()">Analisi</button>
+        <button type="button" class="btn btn-reset" id="resetButton">Reset</button>
+    </form>

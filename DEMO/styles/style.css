@@ -46,15 +46,15 @@ main {
 }
 
 a:link {
-    color: #3C74C8 !important;
+    color: #3C74C8;
 }
 
 a:visited {
-    color: black !important;
+    color: black;
 }
 
 .link-dark {
-    color: #212529 !important;
+    color: #212529;
 }
 
 strong {
@@ -96,7 +96,7 @@ abbr {
     left: 20px;
     background-color: #203f6d ;
     border-color: #203f6d ;
-    color: var(--textBackgroundColor) ;
+    color: var(--textBackgroundColor) !important;
 }
 
 .btn-go-up:visited {
@@ -306,7 +306,7 @@ select {
 }
 
 #canvasContainer {
-    display: flex;
+    display: none;
     justify-content: space-between;
     gap: 1em;
     margin-bottom: 2em;
@@ -368,13 +368,19 @@ select {
     vertical-align: middle;
 }
 
-#AnalysisResulst {
-    display: grid;
+#AnalysisResults {
+    display: none;
     grid-template-columns: auto auto;
     grid-template-rows: auto;
     grid-template-areas:
+        "title title"
         "grid results";
     gap: 1em;
+}
+
+#AnalysisResults h2 {
+    grid-area: title;
+    margin-top: 0;
 }
 
 #DCTCanvasContainer {
@@ -401,6 +407,7 @@ select {
 
 #results {
     grid-area: results;
+    display: block;
     width: 100%;
     margin: 0 1em;
     padding-left: 1em;

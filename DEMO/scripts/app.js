@@ -2,10 +2,10 @@ let selectedBlockX = -1;
 let selectedBlockY = -1;
 let selectedComponent = 0;
 let imageScale = 1;
-let img = new Image();
+let image = new Image();
+
 // Funzione per leggere un array dalla memoria WebAssembly
 function readArrayFromMemory(ptr, length) {
-    // Converte una porzione della memoria HEAPU8 in un array JavaScript
     return Array.from(Module.HEAPU8.subarray(ptr, ptr + length));
 }
 
@@ -13,7 +13,6 @@ function readArrayFromMemory(ptr, length) {
 function readStringFromMemory(ptr) {
     let str = '';
     let byte;
-    // Legge byte per byte fino a trovare un terminatore nullo (0)
     while ((byte = Module.HEAPU8[ptr++]) !== 0) {
         str += String.fromCharCode(byte);
     }
@@ -22,104 +21,37 @@ function readStringFromMemory(ptr) {
 
 // Funzione per visualizzare l'immagine caricata nel canvas principale
 function displayImageInCanvas(img) {
-    console.log('DEBUG: Visualizzazione dell\'immagine nel canvas principale');
-    const canvas = document.getElementById('imageCanvas'); // Canvas principale
-    const ctx = canvas.getContext('2d'); // Contesto 2D del canvas
-
-    // Imposta la larghezza del canvas alla larghezza massima della pagina
+    const canvas = document.getElementById('imageCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
     const maxWidth = document.body.clientWidth;
     canvas.width = maxWidth;
-
-    // Calcola l'altezza mantenendo le proporzioni
     imageScale  = maxWidth / img.width;
     const newHeight = img.height * imageScale;
     canvas.height = newHeight;
-
-    // Pulisce il canvas e disegna l'immagine ridimensionata
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 }
 
 // Funzione per visualizzare l'immagine con una griglia sovrapposta
-/*function displayImageWithGrid(img) {
-    const canvas = document.getElementById('GridCanvas');
-    const ctx = canvas.getContext('2d');
-
-    const dctContainerDiv = document.getElementById('DCTCanvasContainer');
-    const maxWidth = dctContainerDiv.clientWidth || 400; // fallback se 0
-    const scale = maxWidth / img.width;
-    const newWidth = img.width * scale;
-    const newHeight = img.height * scale;
-    canvas.width = newWidth;
-    canvas.height = newHeight;
-
-    
-
-    // Disegna l'immagine ridimensionata
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(img, 0, 0, newWidth, newHeight);
-
-    // Ottiene il numero di blocchi per riga e colonna
-    const block_per_row = Module._get_blocks_width();
-    const block_per_col = Module._get_blocks_height();
-    const blocksHeight = newWidth / block_per_col;
-    const blocksWidth = newHeight / block_per_row;
-
-    // Disegna la griglia
-    ctx.strokeStyle = 'red';
-    ctx.lineWidth = 1;
-    for (let x = 0; x <= newWidth; x += blocksWidth) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, newHeight);
-        ctx.stroke();
-    }
-    for (let y = 0; y <= newHeight; y += blocksHeight) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(newWidth, y);
-        ctx.stroke();
-    }
-
-        if (!dctContainerDiv.querySelector('p')) {
-        const infoP = document.createElement('p');
-        infoP.textContent = 'Clicca su un blocco per visualizzare i coefficienti DCT';
-        const canvas = dctContainerDiv.querySelector('canvas');
-        if (canvas) {
-            dctContainerDiv.insertBefore(infoP, canvas);
-        } else {
-            dctContainerDiv.appendChild(infoP);
-        }
-    }
-}*/
-
 function displayImageWithGrid(img) {
     const canvas = document.getElementById('GridCanvas');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     const dctContainerDiv = document.getElementById('DCTCanvasContainer');
+    if (!dctContainerDiv) return;
 
-    // Numero di blocchi per riga e colonna
     const block_per_row = Module._get_blocks_width();
     const block_per_col = Module._get_blocks_height();
-
-    // Dimensione minima desiderata per ogni blocco (in pixel)
     const minBlockSize = 15;
-
-    // Calcola la scala dinamica
     const scaleX = minBlockSize * block_per_row / img.width;
     const scaleY = minBlockSize * block_per_col / img.height;
-    // Usa la scala più grande per garantire che entrambi i lati siano almeno minBlockSize
     const scale = Math.max(scaleX, scaleY);
-
-    // Dimensioni canvas scalate
     canvas.width = img.width * scale;
     canvas.height = img.height * scale;
-
-    // Disegna l'immagine scalata
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(img, 0, 0, img.width * scale, img.height * scale);
 
-    // Griglia
     const blockWidth = (img.width * scale) / block_per_row;
     const blockHeight = (img.height * scale) / block_per_col;
 
@@ -137,17 +69,6 @@ function displayImageWithGrid(img) {
         ctx.lineTo(canvas.width, y);
         ctx.stroke();
     }
-
-    if (!dctContainerDiv.querySelector('p')) {
-        const infoP = document.createElement('p');
-        infoP.textContent = 'Clicca su un blocco per visualizzare i coefficienti DCT';
-        const canvasElem = dctContainerDiv.querySelector('canvas');
-        if (canvasElem) {
-            dctContainerDiv.insertBefore(infoP, canvasElem);
-        } else {
-            dctContainerDiv.appendChild(infoP);
-        }
-    }
 }
 
 // Listener per il caricamento del DOM
@@ -155,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const canvasGrid = document.getElementById('GridCanvas');
     const componentSelect = document.getElementById('componentInput');
 
-    if (canvasGrid) {
+    if (canvasGrid && componentSelect) {
         canvasGrid.addEventListener('click', function (event) {
             const rect = canvasGrid.getBoundingClientRect();
             const x = event.clientX - rect.left;
@@ -170,25 +91,19 @@ document.addEventListener('DOMContentLoaded', function () {
             const blockX = Math.floor(x / blockWidth);
             const blockY = Math.floor(y / blockHeight);
 
-            console.log(`DEBUG: Blocco selezionato: (${blockX}, ${blockY})`);
             selectedBlockX = blockX;
             selectedBlockY = blockY;
 
-            // Ottiene l'indice della componente selezionata
             const componentIndex = componentSelect.value;
             const dctCoefficients = getDCTCoefficients(componentIndex, blockX, blockY);
 
             if (dctCoefficients) {
                 displayDCTCoefficients(dctCoefficients);
-                //displayBlockZoomColor(blockX, blockY);
-                //displayBlockZoomY(blockX, blockY);
-                displayBlockZoomOriginal(blockX, blockY);
+                displayBlockZoomOriginal(blockX, blockY, image);
             } else {
                 alert('Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.');
             }
         });
-    } else {
-        console.error('Errore: elemento con ID "GridCanvas" non trovato.');
     }
 });
 
@@ -211,8 +126,10 @@ function displayDCTCoefficients(coefficients) {
     }
 
     const resultDiv = document.getElementById('DCTCoefficients');
-    resultDiv.innerHTML = '<h3>Coefficienti DCT del blocco:</h3>';
-    resultDiv.appendChild(table);
+    if (resultDiv) {
+        resultDiv.innerHTML = '<h3>Coefficienti DCT del blocco:</h3>';
+        resultDiv.appendChild(table);
+    }
 }
 
 // Funzione per visualizzare la tabella di quantizzazione
@@ -234,24 +151,23 @@ function displayQuantizationTable(quantTable) {
     }
 
     const resultDiv = document.getElementById('quantizationTable');
-    resultDiv.innerHTML = '<h3>Tabella di Quantizzazione</h3>';
-    resultDiv.appendChild(table);
+    if (resultDiv) {
+        resultDiv.innerHTML = '<h3>Tabella di Quantizzazione</h3>';
+        resultDiv.appendChild(table);
+    }
 }
 
 // Funzione per scrivere i risultati HTML
 function writeHTMLresult(height, width, colorSpace, quantTable) {
     const resultDiv = document.getElementById('generalInfo');
-
-    resultDiv.innerHTML = `
-        <h2>Risultati dell'analisi</h2>
-        <p><strong>Dimensioni:</strong> ${width} x ${height}</p>
-        <p><strong>Modello di colore:</strong> ${colorSpace}</p>
-    `;
-    
-    
+    if (resultDiv) {
+        resultDiv.innerHTML = `
+            <h2>Altre informazioni</h2>
+            <p><strong>Dimensioni:</strong> ${width} x ${height}</p>
+            <p><strong>Modello di colore:</strong> ${colorSpace}</p>
+        `;
+    }
     displayQuantizationTable(quantTable);
-
-    
 }
 
 // Funzione per ottenere i coefficienti DCT di un blocco
@@ -261,141 +177,315 @@ function getDCTCoefficients(componentIndex, blockX, blockY) {
         console.error('Errore: puntatore nullo restituito da get_dct_coefficients');
         return null;
     }
-
     const coefficients = [];
     for (let i = 0; i < 64; i++) {
         coefficients.push(Module['HEAP16'][(ptr >> 1) + i]);
     }
-
     return coefficients;
 }
 
 // Funzione principale per analizzare l'immagine
 async function analyzeImage() {
     console.log('DEBUG: Analisi del file JPEG in corso...');
-     const analyzeButton = document.getElementById('analyzeButton');
-    analyzeButton.disabled = true; // Disabilita il pulsante
-    analyzeButton.classList.add('disabled-select'); // Applica stile grigio
+    // const analyzeButton = document.getElementById('analyzeButton');
+    // if (analyzeButton) {
+    //     analyzeButton.disabled = true;
+    //     analyzeButton.classList.add('disabled-select');
+    // }
 
-    Module._free(); // Libera la memoria allocata precedentemente
-    const fileInput = document.getElementById('imageInput'); // Input per il caricamento di immagini
-    const testImageSelect = document.getElementById('testImageSelect'); // Select per le immagini di test
-    const selectedTestImage = testImageSelect.value; // Immagine di test selezionata
+    Module._free();
+    const fileInput = document.getElementById('imageInput');
+    const testImageSelect = document.getElementById('testImageSelect');
+    if (!fileInput || !testImageSelect) return;
+    const selectedTestImage = testImageSelect.value;
 
     let arrayBuffer;
-    img = new Image();
+    let img = new Image();
+    
 
-    // Controlla se è stata caricata un'immagine dal dispositivo
+    img.onload = async function () {
+            showAllSections();
+            const boxList = document.querySelectorAll('.canvas-title.title-hidden');
+            boxList.forEach(box => {
+                box.classList.remove('title-hidden');
+                box.classList.add('title-visible');
+            });
+            requestAnimationFrame(() => {
+        displayImageInCanvas(img);
+        displayImageWithGrid(img);
+        drawComponentOnCanvas(0, 'YCompCanvas');
+        drawComponentOnCanvas(1, 'CbCompCanvas');
+        drawComponentOnCanvas(2, 'CrCompCanvas');
+    });
+            image = img;
+        };
+        img.onerror = function () {
+            alert('Errore durante il caricamento dell\'immagine.');
+        };
+
     if (fileInput.files && fileInput.files.length > 0) {
         const file = fileInput.files[0];
         if (file.type !== 'image/jpeg') {
             alert('Il file caricato non è un JPEG valido.');
             return;
         }
-
         const reader = new FileReader();
-        reader.onload = function (event) {
-            img.src = event.target.result;
+         reader.onload = function (event) {
+            img.src = event.target.result + '?nocache=' + Date.now();
         };
         reader.readAsDataURL(file);
-
         arrayBuffer = await file.arrayBuffer();
-    } 
-    // Altrimenti usa l'immagine di test selezionata
-    else if (selectedTestImage) {
-        img.src = `imgs/test/${selectedTestImage}`;
+    } else if (selectedTestImage) {
+        img.src = `imgs/test/${selectedTestImage}?nocache=${Date.now()}`;
         const response = await fetch(`imgs/test/${selectedTestImage}`);
         if (!response.ok) {
             alert('Errore durante il caricamento dell\'immagine di test.');
             return;
         }
         arrayBuffer = await response.arrayBuffer();
-    } 
-    // Nessuna immagine caricata o selezionata
-    else {
+    } else {
         alert('Carica un\'immagine o seleziona un\'immagine di test prima di procedere.');
         return;
     }
     const input = new Uint8Array(arrayBuffer);
 
     if (input[0] !== 0xFF || input[1] !== 0xD8) {
-        console.error('Il file non è un JPEG valido: marker iniziale non trovato.');
         alert('Errore: il file caricato non è un JPEG valido.');
         return;
     }
 
     if (typeof Module === 'undefined' || !Module._init_decoder) {
-        console.error('Il modulo WebAssembly non è pronto.');
         alert('Errore: il modulo WebAssembly non è pronto.');
         return;
     }
 
     try {
-        console.log('DEBUG: Modulo WebAssembly pronto. Inizio analisi...');
         const inputPtr = Module._malloc(input.length);
         Module['HEAPU8'].set(input, inputPtr);
-        console.log('DEBUG: Dati JPEG copiati nella memoria WebAssembly.');
-
         const decoderPtr = Module._init_decoder(inputPtr, input.length);
-        if (!decoderPtr) {
-            throw new Error('Impossibile inizializzare il decoder.');
-        }
+        if (!decoderPtr) throw new Error('Impossibile inizializzare il decoder.');
 
         const width = Module._get_width();
         const height = Module._get_height();
-        console.log(`DEBUG: Dimensioni immagine: ${width}x${height}`);
-
         const colorSpacePtr = Module._get_color_space();
         const colorSpace = readStringFromMemory(colorSpacePtr);
-        
+
         const componentSelect = document.getElementById('componentInput');
-        const quantTablePtr1 = Module._get_quant_table(0);
-        const quantTablePtr2 = Module._get_quant_table(1);
-        let quantTable = readArrayFromMemory(quantTablePtr1, 64);
-        if(componentSelect.value == 0) {
-            quantTable = readArrayFromMemory(quantTablePtr1, 64);
-        } else {
-            quantTable = readArrayFromMemory(quantTablePtr2, 64);
+        let quantTable = [];
+        if (componentSelect) {
+            const quantTablePtr1 = Module._get_quant_table(0);
+            const quantTablePtr2 = Module._get_quant_table(1);
+            quantTable = componentSelect.value == 0
+                ? readArrayFromMemory(quantTablePtr1, 64)
+                : readArrayFromMemory(quantTablePtr2, 64);
         }
-        img.onload = async function () {
+
+        
+        writeHTMLresult(height, width, colorSpace, quantTable);
+        const componentForm = document.getElementById('componentForm');
+        if (componentForm) componentForm.style.display = 'block';
+
+        Module._free(inputPtr);
+    } catch (error) {
+        alert('Errore durante l\'analisi del file JPEG.');
+    } finally {
+        // if (analyzeButton) {
+        //     analyzeButton.disabled = false;
+        //     analyzeButton.classList.remove('disabled-select');
+        // }
+        console.log('DEBUG: Analisi del file JPEG completata.');
+
+    }
+    
+}
+
+async function analyzeImageDCT(event) {
+     console.log('DEBUG: analyzeImageDCT chiamata');
+    if (event) event.preventDefault();
+
+    const fileInput = document.getElementById('imageInput');
+    const testImageSelect = document.getElementById('testImageSelect');
+    if (!fileInput || !testImageSelect) return;
+    const selectedTestImage = testImageSelect.value;
+
+    let arrayBuffer;
+    let img = new Image();
+    
+
+    img.onload = function () {
+            requestAnimationFrame(() => {
+        
+        displayImageWithGrid(img);
+    });
+            image = img;
+        };
+        img.onerror = function () {
+            alert('Errore durante il caricamento dell\'immagine.');
+        };
+
+    if (fileInput.files && fileInput.files.length > 0) {
+        reader.onload = function (event) {
+            img.src = event.target.result + '?nocache=' + Date.now();
+        };
+        const file = fileInput.files[0];
+        if (file.type !== 'image/jpeg') {
+            alert('Il file caricato non è un JPEG valido.');
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+        arrayBuffer = await file.arrayBuffer();
+    } else if (selectedTestImage) {
+        img.src = `imgs/test/${selectedTestImage}?nocache=${Date.now()}`;
+        const response = await fetch(`imgs/test/${selectedTestImage}`);
+        if (!response.ok) {
+            alert('Errore durante il caricamento dell\'immagine di test.');
+            return;
+        }
+        arrayBuffer = await response.arrayBuffer();
+    } else {
+        alert('Carica un\'immagine o seleziona un\'immagine di test prima di procedere.');
+        return;
+    }
+    const input = new Uint8Array(arrayBuffer);
+
+    if (input[0] !== 0xFF || input[1] !== 0xD8) {
+        alert('Errore: il file caricato non è un JPEG valido.');
+        return;
+    }
+
+    if (typeof Module === 'undefined' || !Module._init_decoder) {
+        alert('Errore: il modulo WebAssembly non è pronto.');
+        return;
+    }
+
+    try {
+        const inputPtr = Module._malloc(input.length);
+        Module['HEAPU8'].set(input, inputPtr);
+        const decoderPtr = Module._init_decoder(inputPtr, input.length);
+        if (!decoderPtr) throw new Error('Impossibile inizializzare il decoder.');
+
+        const width = Module._get_width();
+        const height = Module._get_height();
+        const colorSpacePtr = Module._get_color_space();
+        const colorSpace = readStringFromMemory(colorSpacePtr);
+
+        const componentSelect = document.getElementById('componentInput');
+        let quantTable = [];
+        if (componentSelect) {
+            const quantTablePtr = Module._get_quant_table(componentSelect.value == 0 ? 0 : 1);
+            quantTable = readArrayFromMemory(quantTablePtr, 64);
+        }
+
+        writeHTMLresult(height, width, colorSpace, quantTable);
+
+        
+
+
+        Module._free(inputPtr);
+    } catch (error) {
+        alert('Errore durante l\'analisi del file JPEG.');
+    }
+
+    showDCTSection();
+}
+
+async function analyzeImageComponent(event) {
+    console.log('DEBUG: analyzeImageComponent chiamata');
+    if (event) event.preventDefault();
+
+    const fileInput = document.getElementById('imageInput');
+    const testImageSelect = document.getElementById('testImageSelect');
+    if (!fileInput || !testImageSelect) return;
+    const selectedTestImage = testImageSelect.value;
+
+    let arrayBuffer;
+    let img = new Image();
+    
+
+    img.onload = function () {
+            showComponents();
+
             const boxList = document.querySelectorAll('.canvas-title.title-hidden');
-                boxList.forEach(box => {
+            boxList.forEach(box => {
                 box.classList.remove('title-hidden');
                 box.classList.add('title-visible');
             });
+            requestAnimationFrame(() => {
             displayImageInCanvas(img);
-            displayImageWithGrid(img);
             drawComponentOnCanvas(0, 'YCompCanvas');
             drawComponentOnCanvas(1, 'CbCompCanvas');
             drawComponentOnCanvas(2, 'CrCompCanvas');
-        }
+            });
+            image = img;
+        };
         img.onerror = function () {
-            console.error('DEBUG: Errore durante il caricamento dell\'immagine.');
             alert('Errore durante il caricamento dell\'immagine.');
+        };
+
+    if (fileInput.files && fileInput.files.length > 0) {
+        reader.onload = function (event) {
+            img.src = event.target.result + '?nocache=' + Date.now();
+        };
+        const file = fileInput.files[0];
+        if (file.type !== 'image/jpeg') {
+            alert('Il file caricato non è un JPEG valido.');
+            return;
         }
-        writeHTMLresult(height, width, colorSpace, quantTable);
-        const componentForm = document.getElementById('componentForm');
-        componentForm.style.display = 'block';
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+        arrayBuffer = await file.arrayBuffer();
+    } else if (selectedTestImage) {
+        img.src = `imgs/test/${selectedTestImage}?nocache=${Date.now()}`;
+        const response = await fetch(`imgs/test/${selectedTestImage}`);
+        if (!response.ok) {
+            alert('Errore durante il caricamento dell\'immagine di test.');
+            return;
+        }
+        arrayBuffer = await response.arrayBuffer();
+    } else {
+        alert('Carica un\'immagine o seleziona un\'immagine di test prima di procedere.');
+        return;
+    }
+    const input = new Uint8Array(arrayBuffer);
+
+    if (input[0] !== 0xFF || input[1] !== 0xD8) {
+        alert('Errore: il file caricato non è un JPEG valido.');
+        return;
+    }
+
+    if (typeof Module === 'undefined' || !Module._init_decoder) {
+        alert('Errore: il modulo WebAssembly non è pronto.');
+        return;
+    }
+
+    try {
+        const inputPtr = Module._malloc(input.length);
+        Module['HEAPU8'].set(input, inputPtr);
+        const decoderPtr = Module._init_decoder(inputPtr, input.length);
+        if (!decoderPtr) throw new Error('Impossibile inizializzare il decoder.');
+
+        
+
 
         Module._free(inputPtr);
-        console.log('DEBUG: Memoria liberata.');
     } catch (error) {
-        console.error('Errore durante l\'analisi del file JPEG:', error);
         alert('Errore durante l\'analisi del file JPEG.');
-    } finally {
-        analyzeButton.disabled = false; // Riabilita il pulsante
-        analyzeButton.classList.remove('disabled-select');
-        console.log('DEBUG: Immagine caricata e visualizzata.');
-
     }
+
+    
 }
 
 // Funzione per distruggere il decoder e liberare memoria
 function destroy() {
     Module._destroy_decoder();
-    console.log('DEBUG: Decoder distrutto.');
     Module._free();
-    console.log('DEBUG: Memoria liberata.');
 }
 
 // Funzione per disegnare una componente (Y, Cb, Cr) su un canvas
@@ -405,13 +495,13 @@ async function drawComponentOnCanvas(componentIndex, canvasId) {
     const pixelsPtr = Module._extract_component_pixels(componentIndex);
 
     if (pixelsPtr === 0 || width <= 0 || height <= 0) {
-        console.error("Errore durante l'estrazione dei pixel");
         return;
     }
 
     const pixels = new Uint8Array(Module.HEAPU8.buffer, pixelsPtr, width * height);
 
     const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
     canvas.width = width;
     canvas.height = height;
     const ctx = canvas.getContext("2d");
@@ -419,230 +509,88 @@ async function drawComponentOnCanvas(componentIndex, canvasId) {
 
     for (let i = 0; i < pixels.length; i++) {
         const value = pixels[i];
-        imageData.data[i * 4] = value;     // Rosso
-        imageData.data[i * 4 + 1] = value; // Verde
-        imageData.data[i * 4 + 2] = value; // Blu
-        imageData.data[i * 4 + 3] = 255;   // Alpha
+        imageData.data[i * 4] = value;
+        imageData.data[i * 4 + 1] = value;
+        imageData.data[i * 4 + 2] = value;
+        imageData.data[i * 4 + 3] = 255;
     }
 
     ctx.putImageData(imageData, 0, 0);
 }
 
-// Aggiungi un listener per il cambiamento del valore di componente
+// Listener per il cambiamento del valore di componente
 document.addEventListener('DOMContentLoaded', function () {
     const componentInput = document.getElementById('componentInput');
     if (componentInput) {
         componentInput.addEventListener('change', function () {
             const selectedComponent = parseInt(this.value, 10);
-            console.log(`DEBUG: Componente selezionata: ${selectedComponent}`);
-
-            // Aggiorna la tabella di quantizzazione
             const quantTablePtr = Module._get_quant_table(selectedComponent === 0 ? 0 : 1);
             const quantTable = readArrayFromMemory(quantTablePtr, 64);
             displayQuantizationTable(quantTable);
 
             if (selectedBlockX !== -1 && selectedBlockY !== -1) {
-                // Aggiorna i coefficienti DCT per il primo blocco (ad esempio, blocco 0,0)
-                console.log(`DEBUG: Aggiornamento dei coefficienti DCT per il blocco (${selectedBlockX}, ${selectedBlockY})`);
                 const dctCoefficients = getDCTCoefficients(selectedComponent, selectedBlockX, selectedBlockY);
                 if (dctCoefficients) {
                     displayDCTCoefficients(dctCoefficients);
-                    //displayBlockZoomColor(selectedBlockX, selectedBlockY);
-                    //displayBlockZoomY(selectedBlockX, selectedBlockY);
                     displayBlockZoomOriginal(selectedBlockX, selectedBlockY);
-                } else {
-                    console.error('Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.');
                 }
             }
-            
         });
-    } else {
-        console.error('Errore: elemento con ID "componentInput" non trovato.');
     }
 });
 
-// Funzione per gestire la disabilitazione del select quando si carica un'immagine
+// Gestione disabilitazione select quando si carica un'immagine
 document.addEventListener('DOMContentLoaded', function() {
     const testSelect = document.getElementById('testImageSelect');
     const imageInput = document.getElementById('imageInput');
     const resetButton = document.getElementById('resetButton');
 
-    imageInput.addEventListener('change', function() {
-        if (imageInput.files && imageInput.files.length > 0) {
-            testSelect.disabled = true;
-            testSelect.classList.add('disabled-select');
-        }
-    });
-
-    resetButton.addEventListener('click', function() {
-        // Svuota il file input
-        imageInput.value = '';
-        // Riabilita il select
-        testSelect.disabled = false;
-        testSelect.classList.remove('disabled-select');
-    });
+    if (imageInput && testSelect) {
+        imageInput.addEventListener('change', function() {
+            if (imageInput.files && imageInput.files.length > 0) {
+                testSelect.disabled = true;
+                testSelect.classList.add('disabled-select');
+            }
+        });
+    }
+    if (resetButton && testSelect && imageInput) {
+        resetButton.addEventListener('click', function() {
+            imageInput.value = '';
+            testSelect.disabled = false;
+            testSelect.classList.remove('disabled-select');
+        });
+    }
 });
 
-function displayBlockZoomColor(blockX, blockY) {
-    const yWidth = Module._get_component_width(0);
-    const yHeight = Module._get_component_height(0);
-    const cbWidth = Module._get_component_width(1);
-    const cbHeight = Module._get_component_height(1);
-    const crWidth = Module._get_component_width(2);
-    const crHeight = Module._get_component_height(2);
-
-    const yPtr = Module._extract_component_pixels(0);
-    const cbPtr = Module._extract_component_pixels(1);
-    const crPtr = Module._extract_component_pixels(2);
-
-    console.log("Ptrs: yPtr =", yPtr, "cbPtr =", cbPtr, "crPtr =", crPtr);
-
-
-    if (!yPtr || !cbPtr || !crPtr) return;
-
-    const y = new Uint8Array(Module.HEAPU8.buffer, yPtr, yWidth * yHeight);
-    const cb = new Uint8Array(Module.HEAPU8.buffer, cbPtr, cbWidth * cbHeight);
-    const cr = new Uint8Array(Module.HEAPU8.buffer, crPtr, crWidth * crHeight);
-
+function displayBlockZoomOriginal(blockX, blockY, img) {
     const boxList = document.querySelectorAll('.block-title.title-hidden');
-                boxList.forEach(box => {
-                box.classList.remove('title-hidden');
-                box.classList.add('title-visible');
+    boxList.forEach(box => {
+        box.classList.remove('title-hidden');
+        box.classList.add('title-visible');
     });
     const blocktitle = document.getElementById('DCTBlockTitle');
-    blocktitle.innerHTML = `Blocco selezionato: (${blockX}, ${blockY})`;
-
-    const zoomCanvas = document.getElementById('blockZoomCanvas');
-    const ctx = zoomCanvas.getContext('2d');
-    const blockSize = 8;
-    const zoomSize = 20;
-    const canvasSize = blockSize * zoomSize;
-    zoomCanvas.width = canvasSize;
-    zoomCanvas.height = canvasSize;
-    ctx.clearRect(0, 0, zoomCanvas.width, zoomCanvas.height);
-
-    const startX = blockX * blockSize;
-    const startY = blockY * blockSize;
-
-    // Debug: stampa i primi valori
-    console.log("Y:", y.slice(0, 10), "Cb:", cb.slice(0, 10), "Cr:", cr.slice(0, 10));
-
-    for (let yb = 0; yb < blockSize; yb++) {
-        for (let xb = 0; xb < blockSize; xb++) {
-            const px = startX + xb;
-            const py = startY + yb;
-            if (px < yWidth && py < yHeight) {
-                const cbX = Math.floor(px * cbWidth / yWidth);
-                const cbY = Math.floor(py * cbHeight / yHeight);
-                const crX = Math.floor(px * crWidth / yWidth);
-                const crY = Math.floor(py * crHeight / yHeight);
-
-                let Y = y[py * yWidth + px];
-                //const Cb = (cbWidth > 0 && cbHeight > 0) ? cb[cbY * cbWidth + cbX] : 128;
-                //const Cr = (crWidth > 0 && crHeight > 0) ? cr[crY * crWidth + crX] : 128;
-                //const Cb = ((cb[cbY * cbWidth + cbX] || 0) - 128) + 128;
-                //const Cr = ((cr[crY * crWidth + crX] || 0) - 128) + 128;    
-                const Cb = ((cr[crY * crWidth + crX] || 0) - 128) + 128;
-                const Cr = ((cb[cbY * cbWidth + cbX] || 0) - 128) + 128; 
-
-                let R = Y + 1.402 * (Cr - 128);
-                let G = Y - 0.344136 * (Cb - 128) - 0.714136 * (Cr - 128);
-                let B = Y + 1.772 * (Cb - 128);
-
-
-                R = Math.max(0, Math.min(255, Math.round(R)));
-                G = Math.max(0, Math.min(255, Math.round(G)));
-                B = Math.max(0, Math.min(255, Math.round(B)));
-
-                ctx.fillStyle = `rgb(${R},${G},${B})`;
-                //ctx.fillStyle = `rgb(${Y},${Y},${Y})`;
-                ctx.fillRect(xb * zoomSize, yb * zoomSize, zoomSize, zoomSize);
-            }
-        }
-    }
-
-    Module._free_component_buffers();
-}
-
-function displayBlockZoomY(blockX, blockY) {
-    const yWidth = Module._get_component_width(0);
-    const yHeight = Module._get_component_height(0);
-    const yPtr = Module._extract_component_pixels(0);
-
-    if (!yPtr) return;
-
-    const y = new Uint8Array(Module.HEAPU8.buffer, yPtr, yWidth * yHeight);
-
-    const zoomCanvasY = document.getElementById('blockZoomCanvasY');
-    if (!zoomCanvasY) return;
-    const ctxY = zoomCanvasY.getContext('2d');
-    const blockSize = 8;
-    const zoomSize = 20;
-    const canvasSize = blockSize * zoomSize;
-    zoomCanvasY.width = canvasSize;
-    zoomCanvasY.height = canvasSize;
-    ctxY.clearRect(0, 0, zoomCanvasY.width, zoomCanvasY.height);
-
-    const startX = blockX * blockSize;
-    const startY = blockY * blockSize;
-
-    for (let yb = 0; yb < blockSize; yb++) {
-        for (let xb = 0; xb < blockSize; xb++) {
-            const px = startX + xb;
-            const py = startY + yb;
-            if (px < yWidth && py < yHeight) {
-                const Yval = y[py * yWidth + px];
-                ctxY.fillStyle = `rgb(${Yval},${Yval},${Yval})`;
-                ctxY.fillRect(xb * zoomSize, yb * zoomSize, zoomSize, zoomSize);
-            }
-        }
-    }
-    Module._free_component_buffers();
-}
-
-function displayBlockZoomOriginal(blockX, blockY) {
-    console.log(`DEBUG: Visualizzazione blocco originale (${blockX}, ${blockY})`);
-
-    const boxList = document.querySelectorAll('.block-title.title-hidden');
-                boxList.forEach(box => {
-                box.classList.remove('title-hidden');
-                box.classList.add('title-visible');
-    });
-    const blocktitle = document.getElementById('DCTBlockTitle');
-    blocktitle.innerHTML = `Blocco selezionato: (${blockX}, ${blockY})`;
+    if (blocktitle) blocktitle.innerHTML = `Blocco selezionato: (${blockX}, ${blockY})`;
 
     const blockSize = 8;
     const zoomSize = 20;
     const canvasSize = blockSize * zoomSize;
 
     const zoomCanvas = document.getElementById('blockZoomCanvasOriginale');
-    if (!img) {
-        console.warn('displayBlockZoomOriginal: img non trovato');
-        return;
-    }
-    if (!zoomCanvas) {
-        console.warn('displayBlockZoomOriginal: zoomCanvas non trovato');
-        return;
-    }
+    if (!img || !zoomCanvas) return;
 
     zoomCanvas.width = canvasSize;
     zoomCanvas.height = canvasSize;
 
     const ctxDst = zoomCanvas.getContext('2d');
-
-    // Calcola la posizione e la dimensione effettiva del blocco
     const srcX = blockX * blockSize;
     const srcY = blockY * blockSize;
     const srcW = Math.min(blockSize, img.naturalWidth - srcX);
     const srcH = Math.min(blockSize, img.naturalHeight - srcY);
 
-    // Crea un canvas temporaneo della dimensione effettiva
     const tempCanvas = document.createElement('canvas');
     tempCanvas.width = srcW;
     tempCanvas.height = srcH;
     const tempCtx = tempCanvas.getContext('2d');
-
-    // Disegna il blocco effettivo dal frame originale
     tempCtx.drawImage(
         img,
         srcX, srcY, srcW, srcH,
@@ -650,10 +598,27 @@ function displayBlockZoomOriginal(blockX, blockY) {
     );
 
     ctxDst.clearRect(0, 0, zoomCanvas.width, zoomCanvas.height);
-
-    // Scala il blocco effettivo su tutto lo zoom (sempre 8x8 ingrandito)
     ctxDst.imageSmoothingEnabled = false;
     ctxDst.drawImage(tempCanvas, 0, 0, blockSize * zoomSize, blockSize * zoomSize);
+}
 
-    console.log(`DEBUG: Blocco originale (${blockX}, ${blockY}) visualizzato correttamente.`);
+function showAllSections() {
+    const canvasContainer = document.getElementById('canvasContainer');
+    const analysisResults = document.getElementById('AnalysisResults');
+    if (canvasContainer) canvasContainer.style.display = 'flex';
+    if (analysisResults) analysisResults.style.display = 'grid';
+}
+
+function showDCTSection() {
+   const canvasContainer = document.getElementById('canvasContainer');
+    const analysisResults = document.getElementById('AnalysisResults');
+    if (canvasContainer) canvasContainer.style.display = 'none';
+    if (analysisResults) analysisResults.style.display = 'grid';
+}
+
+function showComponents() {
+const canvasContainer = document.getElementById('canvasContainer');
+    const analysisResults = document.getElementById('AnalysisResults');
+    if (canvasContainer) canvasContainer.style.display = 'flex';
+    if (analysisResults) analysisResults.style.display = 'none';
 }
