@@ -559,6 +559,7 @@ document.addEventListener('DOMContentLoaded', function() {
             imageInput.value = '';
             testSelect.disabled = false;
             testSelect.classList.remove('disabled-select');
+            hideAllSections();
         });
     }
 });
@@ -621,5 +622,12 @@ function showComponents() {
 const canvasContainer = document.getElementById('canvasContainer');
     const analysisResults = document.getElementById('AnalysisResults');
     if (canvasContainer) canvasContainer.style.display = 'flex';
+    if (analysisResults) analysisResults.style.display = 'none';
+}
+
+function hideAllSections() {
+    const canvasContainer = document.getElementById('canvasContainer');
+    const analysisResults = document.getElementById('AnalysisResults');
+    if (canvasContainer) canvasContainer.style.display = 'none';
     if (analysisResults) analysisResults.style.display = 'none';
 }
