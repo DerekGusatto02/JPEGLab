@@ -122,7 +122,7 @@ abbr {
 .lang-toggle {
   display: inline-block;
   position: relative;
-  width: 60px;
+  width: 80px;
   height: 32px;
 }
 
@@ -143,9 +143,9 @@ abbr {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 8px;
+  padding: 0 12px;
   box-sizing: border-box;
-  gap: 18px
+  gap: 12px
 }
 
 .lang-label {
