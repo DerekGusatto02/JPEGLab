@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 displayDCTCoefficients(dctCoefficients);
                 displayBlockZoomOriginal(blockX, blockY, image);
             } else {
-                alert('Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.');
+                alert(LANG[currentLang].errorDCT);
             }
         });
     }
@@ -127,7 +127,7 @@ function displayDCTCoefficients(coefficients) {
 
     const resultDiv = document.getElementById('DCTCoefficients');
     if (resultDiv) {
-        resultDiv.innerHTML = '<h3>Coefficienti DCT del blocco:</h3>';
+        resultDiv.innerHTML = `<h3>${LANG[currentLang].dctTitle}</h3>`;
         resultDiv.appendChild(table);
     }
 }
@@ -152,7 +152,7 @@ function displayQuantizationTable(quantTable) {
 
     const resultDiv = document.getElementById('quantizationTable');
     if (resultDiv) {
-        resultDiv.innerHTML = '<h3>Tabella di Quantizzazione</h3>';
+        resultDiv.innerHTML = `<h3>${LANG[currentLang].quantTitle}</h3>`;
         resultDiv.appendChild(table);
     }
 }
@@ -162,9 +162,9 @@ function writeHTMLresult(height, width, colorSpace, quantTable) {
     const resultDiv = document.getElementById('generalInfo');
     if (resultDiv) {
         resultDiv.innerHTML = `
-            <h2>Altre informazioni</h2>
-            <p><strong>Dimensioni:</strong> ${width} x ${height}</p>
-            <p><strong>Modello di colore:</strong> ${colorSpace}</p>
+            <h2>${LANG[currentLang].infoTitle}</h2>
+            <p><strong>${LANG[currentLang].size}:</strong> ${width} x ${height}</p>
+            <p><strong>${LANG[currentLang].colorModel}:</strong> ${colorSpace}</p>
         `;
     }
     displayQuantizationTable(quantTable);
@@ -220,7 +220,7 @@ async function analyzeImage() {
             image = img;
         };
         img.onerror = function () {
-            alert('Errore durante il caricamento dell\'immagine.');
+            alert(LANG[currentLang].errorLoad);
         };
 
     if (fileInput.files && fileInput.files.length > 0) {
@@ -239,23 +239,23 @@ async function analyzeImage() {
         img.src = `imgs/test/${selectedTestImage}?nocache=${Date.now()}`;
         const response = await fetch(`imgs/test/${selectedTestImage}`);
         if (!response.ok) {
-            alert('Errore durante il caricamento dell\'immagine di test.');
+            alert(LANG[currentLang].errorTestImage);
             return;
         }
         arrayBuffer = await response.arrayBuffer();
     } else {
-        alert('Carica un\'immagine o seleziona un\'immagine di test prima di procedere.');
+        alert(LANG[currentLang].errorNoImage);
         return;
     }
     const input = new Uint8Array(arrayBuffer);
 
     if (input[0] !== 0xFF || input[1] !== 0xD8) {
-        alert('Errore: il file caricato non è un JPEG valido.');
+        alert(LANG[currentLang].errorNotJPEG);
         return;
     }
 
     if (typeof Module === 'undefined' || !Module._init_decoder) {
-        alert('Errore: il modulo WebAssembly non è pronto.');
+        alert(LANG[currentLang].errorWasm);
         return;
     }
 
@@ -263,7 +263,7 @@ async function analyzeImage() {
         const inputPtr = Module._malloc(input.length);
         Module['HEAPU8'].set(input, inputPtr);
         const decoderPtr = Module._init_decoder(inputPtr, input.length);
-        if (!decoderPtr) throw new Error('Impossibile inizializzare il decoder.');
+        if (!decoderPtr) throw new Error(LANG[currentLang].errorDecoder);
 
         const width = Module._get_width();
         const height = Module._get_height();
@@ -287,7 +287,7 @@ async function analyzeImage() {
 
         Module._free(inputPtr);
     } catch (error) {
-        alert('Errore durante l\'analisi del file JPEG.');
+        alert(LANG[currentLang].errorAnalyze);
     } finally {
         // if (analyzeButton) {
         //     analyzeButton.disabled = false;
@@ -320,7 +320,7 @@ async function analyzeImageDCT(event) {
             image = img;
         };
         img.onerror = function () {
-            alert('Errore durante il caricamento dell\'immagine.');
+            alert(LANG[currentLang].errorLoad);
         };
 
     if (fileInput.files && fileInput.files.length > 0) {
@@ -329,7 +329,7 @@ async function analyzeImageDCT(event) {
         };
         const file = fileInput.files[0];
         if (file.type !== 'image/jpeg') {
-            alert('Il file caricato non è un JPEG valido.');
+            alert(LANG[currentLang].errorNotJPEG);
             return;
         }
         const reader = new FileReader();
@@ -342,23 +342,23 @@ async function analyzeImageDCT(event) {
         img.src = `imgs/test/${selectedTestImage}?nocache=${Date.now()}`;
         const response = await fetch(`imgs/test/${selectedTestImage}`);
         if (!response.ok) {
-            alert('Errore durante il caricamento dell\'immagine di test.');
+            alert(LANG[currentLang].errorTestImage);
             return;
         }
         arrayBuffer = await response.arrayBuffer();
     } else {
-        alert('Carica un\'immagine o seleziona un\'immagine di test prima di procedere.');
+        alert(LANG[currentLang].errorNoImage);
         return;
     }
     const input = new Uint8Array(arrayBuffer);
 
     if (input[0] !== 0xFF || input[1] !== 0xD8) {
-        alert('Errore: il file caricato non è un JPEG valido.');
+        alert(LANG[currentLang].errorNotJPEG);
         return;
     }
 
     if (typeof Module === 'undefined' || !Module._init_decoder) {
-        alert('Errore: il modulo WebAssembly non è pronto.');
+        alert(LANG[currentLang].errorWasm);
         return;
     }
 
@@ -366,7 +366,7 @@ async function analyzeImageDCT(event) {
         const inputPtr = Module._malloc(input.length);
         Module['HEAPU8'].set(input, inputPtr);
         const decoderPtr = Module._init_decoder(inputPtr, input.length);
-        if (!decoderPtr) throw new Error('Impossibile inizializzare il decoder.');
+        if (!decoderPtr) throw new Error(LANG[currentLang].errorDecoder);
 
         const width = Module._get_width();
         const height = Module._get_height();
@@ -388,7 +388,7 @@ async function analyzeImageDCT(event) {
 
         Module._free(inputPtr);
     } catch (error) {
-        alert('Errore durante l\'analisi del file JPEG.');
+        alert(LANG[currentLang].errorAnalyze);
     }
 
     showDCTSection();
@@ -424,7 +424,7 @@ async function analyzeImageComponent(event) {
             image = img;
         };
         img.onerror = function () {
-            alert('Errore durante il caricamento dell\'immagine.');
+            alert(LANG[currentLang].errorLoad);
         };
 
     if (fileInput.files && fileInput.files.length > 0) {
@@ -433,7 +433,7 @@ async function analyzeImageComponent(event) {
         };
         const file = fileInput.files[0];
         if (file.type !== 'image/jpeg') {
-            alert('Il file caricato non è un JPEG valido.');
+            alert(LANG[currentLang].errorNotJPEG);
             return;
         }
         const reader = new FileReader();
@@ -446,23 +446,23 @@ async function analyzeImageComponent(event) {
         img.src = `imgs/test/${selectedTestImage}?nocache=${Date.now()}`;
         const response = await fetch(`imgs/test/${selectedTestImage}`);
         if (!response.ok) {
-            alert('Errore durante il caricamento dell\'immagine di test.');
+            alert(LANG[currentLang].errorTestImage);
             return;
         }
         arrayBuffer = await response.arrayBuffer();
     } else {
-        alert('Carica un\'immagine o seleziona un\'immagine di test prima di procedere.');
+        alert(LANG[currentLang].errorNoImage);
         return;
     }
     const input = new Uint8Array(arrayBuffer);
 
     if (input[0] !== 0xFF || input[1] !== 0xD8) {
-        alert('Errore: il file caricato non è un JPEG valido.');
+        alert(LANG[currentLang].errorNotJPEG);
         return;
     }
 
     if (typeof Module === 'undefined' || !Module._init_decoder) {
-        alert('Errore: il modulo WebAssembly non è pronto.');
+        alert(LANG[currentLang].errorWasm);
         return;
     }
 
@@ -571,7 +571,7 @@ function displayBlockZoomOriginal(blockX, blockY, img) {
         box.classList.add('title-visible');
     });
     const blocktitle = document.getElementById('DCTBlockTitle');
-    if (blocktitle) blocktitle.innerHTML = `Blocco selezionato: (${blockX}, ${blockY})`;
+    if (blocktitle) blocktitle.innerHTML = `${LANG[currentLang].blockSelected}: (${blockX}, ${blockY})`;
 
     const blockSize = 8;
     const zoomSize = 20;
