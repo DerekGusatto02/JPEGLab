@@ -74,3 +74,24 @@ html, body {
     overflow: auto;
     box-sizing: border-box;
 }
+
+.language-switch {
+  margin: 0.5em 0.5em 0.5em auto !important;
+  width: auto !important;
+  max-width: none !important;
+  box-sizing: border-box;
+  justify-content: flex-end !important;
+  display: flex;
+}
+
+.lang-toggle {
+  width: 90px !important;
+  min-width: 90px !important;
+}
+
+.slider {
+  width: 90px !important;
+  min-width: 90px !important;
+  padding: 0 8px !important;
+  gap: 6px
+}
