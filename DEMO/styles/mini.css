@@ -2,10 +2,11 @@ html, body {
   overflow-x: hidden;
 }
 
-#AnalysisResulst {
-  grid-template-rows: 1fr auto;
+#AnalysisResults {
+  grid-template-rows: 1fr auto auto;
   grid-template-columns: auto;
   grid-template-areas: 
+    "title"
     "grid"
     "results";
 }
