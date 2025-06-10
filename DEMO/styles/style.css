@@ -113,12 +113,13 @@ abbr {
 
 /* LANG SWITCH */
 .language-switch {
-  margin: 0.5em 0.2em 0.5em auto;
+  width: 95%;
+  max-width: 95vw;
+  margin: 0.5em auto 0.5em auto;
   display: flex;
   justify-content: flex-end;
-  width: 100%;
-  max-width: none;
   position: static;
+  padding-right: 1em;
 }
 
 .lang-toggle {
@@ -144,10 +145,11 @@ abbr {
   transition: background 0.3s;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 12px;
+  margin: 0 0.5em;
   box-sizing: border-box;
-  gap: 12px
+  gap: 12px;
 }
 
 .lang-label {
@@ -378,6 +380,25 @@ select {
     box-sizing: border-box;
 }
 
+@media (min-width: 901px) {
+.canvasContainer-2x2{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1em;
+}
+
+.canvasContainer-2x2 .canvas-column {
+    max-width: 100%;
+}
+
+.canvasContainer-2x2 .canvas-column canvas {
+    height: 40vh;
+    max-height: none;
+}
+
+}
+
 .canvas-column canvas {
     max-width: 100%;
     max-height: 300px;
@@ -477,8 +498,8 @@ select {
 }
 
 #blockZoomCanvas, #blockZoomCanvasY, #blockZoomCanvasOriginale{
-    width: 160;
-    height: 160;
+    width: 160px;
+    height: 160px;
     border: 1px solid transparent;
     margin: 0.3em 0;
 }

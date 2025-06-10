@@ -21,6 +21,24 @@
 11. Pagine separate per parti dell'analisi 
 12. Risolto problema ricaricamento di immagini con cache
 ---
+
+## al 09 giugno 2025
+13. English version
+
+## al 10 giugno 2025
+Risolti i seguenti punti riscontrati dai test eseguiti:
+- Dare un po’ di margine destro al selettore IT/EN? 
+- Caricare nessuna immagine dà due errori, errore nel caricamento … e undefined
+- Quando si seleziona la componente Y/Cb/Cr il blocco giustamente non cambia perché rappresenta la combinazione dei tre componenti. Però visto che si trova esattamente sotto il selettore, dà l’impressione che sia un errore. Posizionare il testo “Blocco selezionato …”, poi dimensioni e modello di colore (senza il titolo “Altre informazioni”) e poi il selettore e le tabelle
+- Cambiare l’ordine dei bottoni, prima Analisi completa, poi DCT & … e poi componenti
+- Nella sola visualizzazione delle componenti metterle in una matrice 2x2
+- visualizzazione delle componenti spesso non funziona dice “errore durante l’analisi jpeg”
+- Quando si fa il reset, resettare anche il selettore Y/Cb/Cr, anche quando cambia immagine
+- “Questa applicazione ti aiuterà a decodificare e studiare la codifica e la compressione JPEG.” In “Questa applicazione ti aiuterà a comprendere e studiare la codifica e la compressione JPEG.” 
+- Cambiare il testo “Full Analysis” in “Complete Analysis”
+- Nel tag title JPEG – Dipartimento di Matematica – UniPD
+- Gli aiuti alla navigazione devono essere visibili quando ricevono il focus. 
+
 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 ---
 
@@ -40,4 +58,20 @@
 7. ~~Inversione risultati analisi nell'analisi completa~~
 8. ~~Pagine separate per parti dell'analisi~~
 9. Area riservata
-10. English version
+10. ~~English version~~
+
+## TEST prof.ssa Gaggi (10 giugno 2025)
+- ~~Potresti dare un po’ di margine destro al selettore IT/EN? ~~
+- ~~Io non riesco a caricare nessuna immagine mi dà due errori, errore nel caricamento … e undefined~~
+- ~~Quando si seleziona la componente Y/Cb/Cr il blocco giustamente non cambia perché rappresenta la combinazione dei tre componenti. Però visto che si trova esattamente sotto il selettore, dà l’impressione che sia un errore. Io quindi metterei il testo “Blocco selezionato …”, poi dimensioni e modello di colore (senza il titolo “Altre informazioni”) e poi il selettore e le tabelle~~
+- ~~Cambia l’ordine dei bottoni, prima Analisi completa, poi DCT & … e poi componenti~~
+- ~~Nella sola visualizzazione delle componenti le puoi ingrandire? Mettile in una matrice 2x2~~
+- ~~visualizzazione delle componenti spesso non funziona dice “errore durante l’analisi jpeg”. Probabilmente lasci sporca qualche variabile perché il problema si risolve con il reload (non con reset)~~
+- ~~Quando fai il reset, anche devi resettare anche il selettore Y/Cb/Cr, io lo resetterei anche quando cambi immagine~~
+- ~~Cambia il testo “Questa applicazione ti aiuterà a decodificare e studiare la codifica e la compressione JPEG.” In “Questa applicazione ti aiuterà a comprendere e studiare la codifica e la compressione JPEG.” Idem per l’inglese, to understand and study~~
+- ~~Cambia il testo “Full Analysis” in “Complete Analysis”~~
+- ~~Nel tag title metti JPEG – Dipartimento di Matematica – UniPD~~
+- ~~Ci sono due tag viewport, togline uno~~
+- ~~Perché usi un h2 vuoto e poi un <div id="DCTBlock" aria-label="DCT Block">?~~
+- ~~Alla fine del css hai due width e height senza px~~
+- ~~Gli aiuti alla navigazione devono essere visibili quando ricevono il focus. Secondo me però trattandosi di pagina singola forse è meglio che li togli~~

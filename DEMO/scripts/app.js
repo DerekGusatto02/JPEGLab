@@ -3,6 +3,8 @@ let selectedBlockY = -1;
 let selectedComponent = 0;
 let imageScale = 1;
 let image = new Image();
+let imageArrayBuffer = null;
+let isAnalyzing = false;
 
 // Funzione per leggere un array dalla memoria WebAssembly
 function readArrayFromMemory(ptr, length) {
@@ -26,7 +28,7 @@ function displayImageInCanvas(img) {
     const ctx = canvas.getContext('2d');
     const maxWidth = document.body.clientWidth;
     canvas.width = maxWidth;
-    imageScale  = maxWidth / img.width;
+    imageScale = maxWidth / img.width;
     const newHeight = img.height * imageScale;
     canvas.height = newHeight;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -162,7 +164,6 @@ function writeHTMLresult(height, width, colorSpace, quantTable) {
     const resultDiv = document.getElementById('generalInfo');
     if (resultDiv) {
         resultDiv.innerHTML = `
-            <h2>${LANG[currentLang].infoTitle}</h2>
             <p><strong>${LANG[currentLang].size}:</strong> ${width} x ${height}</p>
             <p><strong>${LANG[currentLang].colorModel}:</strong> ${colorSpace}</p>
         `;
@@ -184,26 +185,94 @@ function getDCTCoefficients(componentIndex, blockX, blockY) {
     return coefficients;
 }
 
-// Funzione principale per analizzare l'immagine
+async function loadImageAndBuffer(retries = 3, forceReload = false) {
+    if (!forceReload && image && image.src && imageArrayBuffer) {
+        return { img: image, arrayBuffer: imageArrayBuffer };
+    }
+    for (let attempt = 1; attempt <= retries; attempt++) {
+        try {
+            return await new Promise(async (resolve, reject) => {
+                const fileInput = document.getElementById('imageInput');
+                const testImageSelect = document.getElementById('testImageSelect');
+                if (!fileInput || !testImageSelect) return reject('Missing input elements');
+                const selectedTestImage = testImageSelect.value;
+
+                let img = new Image();
+                let arrayBuffer;
+                let timeoutId;
+
+                img.onerror = function () {
+                    clearTimeout(timeoutId);
+                    reject(LANG[currentLang].errorLoad);
+                };
+
+                if (fileInput.files && fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    if (file.type !== 'image/jpeg') {
+                        reject(LANG[currentLang].errorNotJPEG);
+                        return;
+                    }
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        img.src = event.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                    arrayBuffer = await file.arrayBuffer();
+                } else if (selectedTestImage) {
+                    img.src = `imgs/test/${selectedTestImage}?nocache=${Date.now()}`;
+                    const response = await fetch(`imgs/test/${selectedTestImage}`);
+                    if (!response.ok) {
+                        reject(LANG[currentLang].errorTestImage);
+                        return;
+                    }
+                    arrayBuffer = await response.arrayBuffer();
+                } else {
+                    reject(LANG[currentLang].errorNoImage);
+                    return;
+                }
+
+                img.onload = function () {
+                    clearTimeout(timeoutId);
+                    image = img; // aggiorna la variabile globale
+                    imageArrayBuffer = arrayBuffer; // aggiorna la variabile globale
+                    resolve({ img, arrayBuffer });
+                };
+
+                // Timeout di 5 secondi
+                timeoutId = setTimeout(() => {
+                    reject(LANG[currentLang].errorLoadTimeout);
+                }, 5000);
+            });
+        } catch (error) {
+            console.warn(`Tentativo ${attempt} fallito: ${error}`);
+            if (attempt === retries) throw error;
+            await new Promise(res => setTimeout(res, 500));
+        }
+    }
+}
+
 async function analyzeImage() {
     console.log('DEBUG: Analisi del file JPEG in corso...');
-    // const analyzeButton = document.getElementById('analyzeButton');
-    // if (analyzeButton) {
-    //     analyzeButton.disabled = true;
-    //     analyzeButton.classList.add('disabled-select');
-    // }
+    if (isAnalyzing) {
+        console.warn('DEBUG: Analisi già in corso, ignorata la richiesta.');
+        alert(LANG[currentLang].errorAlreadyAnalyzing);
+        return;
+    }
+    isAnalyzing = true;
+    setAnalysisButtonsEnabled(false);
 
-    Module._free();
-    const fileInput = document.getElementById('imageInput');
-    const testImageSelect = document.getElementById('testImageSelect');
-    if (!fileInput || !testImageSelect) return;
-    const selectedTestImage = testImageSelect.value;
+    try {
+        Module._free();
 
-    let arrayBuffer;
-    let img = new Image();
-    
+        let img, arrayBuffer;
+        try {
+            ({ img, arrayBuffer } = await loadImageAndBuffer());
+        } catch (error) {
+            alert(error);
+            throw error; // Così il finally viene sempre eseguito
+        }
 
-    img.onload = async function () {
+        if (img.complete) {
             showAllSections();
             const boxList = document.querySelectorAll('.canvas-title.title-hidden');
             boxList.forEach(box => {
@@ -211,55 +280,46 @@ async function analyzeImage() {
                 box.classList.add('title-visible');
             });
             requestAnimationFrame(() => {
-        displayImageInCanvas(img);
-        displayImageWithGrid(img);
-        drawComponentOnCanvas(0, 'YCompCanvas');
-        drawComponentOnCanvas(1, 'CbCompCanvas');
-        drawComponentOnCanvas(2, 'CrCompCanvas');
-    });
+                displayImageInCanvas(img);
+                displayImageWithGrid(img);
+                drawComponentOnCanvas(0, 'YCompCanvas');
+                drawComponentOnCanvas(1, 'CbCompCanvas');
+                drawComponentOnCanvas(2, 'CrCompCanvas');
+            });
             image = img;
-        };
-        img.onerror = function () {
-            alert(LANG[currentLang].errorLoad);
-        };
-
-    if (fileInput.files && fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-        if (file.type !== 'image/jpeg') {
-            alert('Il file caricato non è un JPEG valido.');
-            return;
+        } else {
+            img.onload = async function () {
+                showAllSections();
+                const boxList = document.querySelectorAll('.canvas-title.title-hidden');
+                boxList.forEach(box => {
+                    box.classList.remove('title-hidden');
+                    box.classList.add('title-visible');
+                });
+                requestAnimationFrame(() => {
+                    displayImageInCanvas(img);
+                    displayImageWithGrid(img);
+                    drawComponentOnCanvas(0, 'YCompCanvas');
+                    drawComponentOnCanvas(1, 'CbCompCanvas');
+                    drawComponentOnCanvas(2, 'CrCompCanvas');
+                });
+                image = img;
+            };
+            img.onerror = function () {
+                alert(LANG[currentLang].errorLoad);
+            };
         }
-        const reader = new FileReader();
-         reader.onload = function (event) {
-            img.src = event.target.result + '?nocache=' + Date.now();
-        };
-        reader.readAsDataURL(file);
-        arrayBuffer = await file.arrayBuffer();
-    } else if (selectedTestImage) {
-        img.src = `imgs/test/${selectedTestImage}?nocache=${Date.now()}`;
-        const response = await fetch(`imgs/test/${selectedTestImage}`);
-        if (!response.ok) {
-            alert(LANG[currentLang].errorTestImage);
-            return;
+
+        const input = new Uint8Array(arrayBuffer);
+        if (input[0] !== 0xFF || input[1] !== 0xD8) {
+            alert(LANG[currentLang].errorNotJPEG);
+            throw new Error('Not a JPEG');
         }
-        arrayBuffer = await response.arrayBuffer();
-    } else {
-        alert(LANG[currentLang].errorNoImage);
-        return;
-    }
-    const input = new Uint8Array(arrayBuffer);
 
-    if (input[0] !== 0xFF || input[1] !== 0xD8) {
-        alert(LANG[currentLang].errorNotJPEG);
-        return;
-    }
+        if (typeof Module === 'undefined' || !Module._init_decoder) {
+            alert(LANG[currentLang].errorWasm);
+            throw new Error('WASM not loaded');
+        }
 
-    if (typeof Module === 'undefined' || !Module._init_decoder) {
-        alert(LANG[currentLang].errorWasm);
-        return;
-    }
-
-    try {
         const inputPtr = Module._malloc(input.length);
         Module['HEAPU8'].set(input, inputPtr);
         const decoderPtr = Module._init_decoder(inputPtr, input.length);
@@ -280,89 +340,70 @@ async function analyzeImage() {
                 : readArrayFromMemory(quantTablePtr2, 64);
         }
 
-        
         writeHTMLresult(height, width, colorSpace, quantTable);
         const componentForm = document.getElementById('componentForm');
         if (componentForm) componentForm.style.display = 'block';
 
         Module._free(inputPtr);
     } catch (error) {
-        alert(LANG[currentLang].errorAnalyze);
+        console.error('DEBUG: Errore durante l\'analisi:', error);
+        // alert già mostrato sopra
     } finally {
-        // if (analyzeButton) {
-        //     analyzeButton.disabled = false;
-        //     analyzeButton.classList.remove('disabled-select');
-        // }
+        setAnalysisButtonsEnabled(true);
+        isAnalyzing = false;
         console.log('DEBUG: Analisi del file JPEG completata.');
-
     }
-    
 }
 
 async function analyzeImageDCT(event) {
-     console.log('DEBUG: analyzeImageDCT chiamata');
-    if (event) event.preventDefault();
-
-    const fileInput = document.getElementById('imageInput');
-    const testImageSelect = document.getElementById('testImageSelect');
-    if (!fileInput || !testImageSelect) return;
-    const selectedTestImage = testImageSelect.value;
-
-    let arrayBuffer;
-    let img = new Image();
-    
-
-    img.onload = function () {
-            requestAnimationFrame(() => {
-        
-        displayImageWithGrid(img);
-    });
-            image = img;
-        };
-        img.onerror = function () {
-            alert(LANG[currentLang].errorLoad);
-        };
-
-    if (fileInput.files && fileInput.files.length > 0) {
-        reader.onload = function (event) {
-            img.src = event.target.result + '?nocache=' + Date.now();
-        };
-        const file = fileInput.files[0];
-        if (file.type !== 'image/jpeg') {
-            alert(LANG[currentLang].errorNotJPEG);
-            return;
-        }
-        const reader = new FileReader();
-        reader.onload = function (event) {
-            img.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-        arrayBuffer = await file.arrayBuffer();
-    } else if (selectedTestImage) {
-        img.src = `imgs/test/${selectedTestImage}?nocache=${Date.now()}`;
-        const response = await fetch(`imgs/test/${selectedTestImage}`);
-        if (!response.ok) {
-            alert(LANG[currentLang].errorTestImage);
-            return;
-        }
-        arrayBuffer = await response.arrayBuffer();
-    } else {
-        alert(LANG[currentLang].errorNoImage);
+    console.log('DEBUG: analyzeImageDCT chiamata');
+    if (isAnalyzing) {
+        console.warn('DEBUG: Analisi già in corso, ignorata la richiesta.');
+        alert(LANG[currentLang].errorAlreadyAnalyzing);
         return;
     }
-    const input = new Uint8Array(arrayBuffer);
-
-    if (input[0] !== 0xFF || input[1] !== 0xD8) {
-        alert(LANG[currentLang].errorNotJPEG);
-        return;
-    }
-
-    if (typeof Module === 'undefined' || !Module._init_decoder) {
-        alert(LANG[currentLang].errorWasm);
-        return;
-    }
+    isAnalyzing = true;
+    setAnalysisButtonsEnabled(false);
 
     try {
+        if (event) event.preventDefault();
+
+        let img, arrayBuffer;
+        try {
+            ({ img, arrayBuffer } = await loadImageAndBuffer());
+        } catch (error) {
+            alert(error);
+            throw error;
+        }
+
+        if (img.complete) {
+            requestAnimationFrame(() => {
+                displayImageWithGrid(img);
+            });
+            image = img;
+        } else {
+            img.onload = function () {
+                requestAnimationFrame(() => {
+                    displayImageWithGrid(img);
+                });
+                image = img;
+            };
+            img.onerror = function () {
+                alert(LANG[currentLang].errorLoad);
+            };
+        }
+
+        const input = new Uint8Array(arrayBuffer);
+        if (input[0] !== 0xFF || input[1] !== 0xD8) {
+            alert(LANG[currentLang].errorNotJPEG);
+            throw new Error('Not a JPEG');
+        }
+
+        if (typeof Module === 'undefined' || !Module._init_decoder) {
+            alert(LANG[currentLang].errorWasm);
+            throw new Error('WASM not loaded');
+        }
+
         const inputPtr = Module._malloc(input.length);
         Module['HEAPU8'].set(input, inputPtr);
         const decoderPtr = Module._init_decoder(inputPtr, input.length);
@@ -383,104 +424,98 @@ async function analyzeImageDCT(event) {
         writeHTMLresult(height, width, colorSpace, quantTable);
         const componentForm = document.getElementById('componentForm');
         if (componentForm) componentForm.style.display = 'block';
-        
-
 
         Module._free(inputPtr);
     } catch (error) {
-        alert(LANG[currentLang].errorAnalyze);
+        console.error('DEBUG: Errore durante l\'analisi DCT:', error);
+    } finally {
+        setAnalysisButtonsEnabled(true);
+        isAnalyzing = false;
+        showDCTSection();
+        console.log('DEBUG: Analisi del file JPEG completata.');
     }
-
-    showDCTSection();
 }
 
 async function analyzeImageComponent(event) {
     console.log('DEBUG: analyzeImageComponent chiamata');
-    if (event) event.preventDefault();
+    if (isAnalyzing) {
+        console.warn('DEBUG: Analisi già in corso, ignorata la richiesta.');
+        alert(LANG[currentLang].errorAlreadyAnalyzing);
+        return;
+    }
+    isAnalyzing = true;
+    setAnalysisButtonsEnabled(false);
 
-    const fileInput = document.getElementById('imageInput');
-    const testImageSelect = document.getElementById('testImageSelect');
-    if (!fileInput || !testImageSelect) return;
-    const selectedTestImage = testImageSelect.value;
+    try {
+        if (event) event.preventDefault();
 
-    let arrayBuffer;
-    let img = new Image();
-    
+        let img, arrayBuffer;
+        try {
+            ({ img, arrayBuffer } = await loadImageAndBuffer());
+        } catch (error) {
+            alert(error);
+            throw error;
+        }
 
-    img.onload = function () {
+        if (img.complete) {
             showComponents();
-
             const boxList = document.querySelectorAll('.canvas-title.title-hidden');
             boxList.forEach(box => {
                 box.classList.remove('title-hidden');
                 box.classList.add('title-visible');
             });
             requestAnimationFrame(() => {
-            displayImageInCanvas(img);
-            drawComponentOnCanvas(0, 'YCompCanvas');
-            drawComponentOnCanvas(1, 'CbCompCanvas');
-            drawComponentOnCanvas(2, 'CrCompCanvas');
+                displayImageInCanvas(img);
+                drawComponentOnCanvas(0, 'YCompCanvas');
+                drawComponentOnCanvas(1, 'CbCompCanvas');
+                drawComponentOnCanvas(2, 'CrCompCanvas');
             });
             image = img;
-        };
-        img.onerror = function () {
-            alert(LANG[currentLang].errorLoad);
-        };
+        } else {
+            img.onload = function () {
+                showComponents();
+                const boxList = document.querySelectorAll('.canvas-title.title-hidden');
+                boxList.forEach(box => {
+                    box.classList.remove('title-hidden');
+                    box.classList.add('title-visible');
+                });
+                requestAnimationFrame(() => {
+                    displayImageInCanvas(img);
+                    drawComponentOnCanvas(0, 'YCompCanvas');
+                    drawComponentOnCanvas(1, 'CbCompCanvas');
+                    drawComponentOnCanvas(2, 'CrCompCanvas');
+                });
+                image = img;
+            };
+            img.onerror = function () {
+                alert(LANG[currentLang].errorLoad);
+            };
+        }
 
-    if (fileInput.files && fileInput.files.length > 0) {
-        reader.onload = function (event) {
-            img.src = event.target.result + '?nocache=' + Date.now();
-        };
-        const file = fileInput.files[0];
-        if (file.type !== 'image/jpeg') {
+        const input = new Uint8Array(arrayBuffer);
+        if (input[0] !== 0xFF || input[1] !== 0xD8) {
             alert(LANG[currentLang].errorNotJPEG);
-            return;
+            throw new Error('Not a JPEG');
         }
-        const reader = new FileReader();
-        reader.onload = function (event) {
-            img.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-        arrayBuffer = await file.arrayBuffer();
-    } else if (selectedTestImage) {
-        img.src = `imgs/test/${selectedTestImage}?nocache=${Date.now()}`;
-        const response = await fetch(`imgs/test/${selectedTestImage}`);
-        if (!response.ok) {
-            alert(LANG[currentLang].errorTestImage);
-            return;
+
+        if (typeof Module === 'undefined' || !Module._init_decoder) {
+            alert(LANG[currentLang].errorWasm);
+            throw new Error('WASM not loaded');
         }
-        arrayBuffer = await response.arrayBuffer();
-    } else {
-        alert(LANG[currentLang].errorNoImage);
-        return;
-    }
-    const input = new Uint8Array(arrayBuffer);
 
-    if (input[0] !== 0xFF || input[1] !== 0xD8) {
-        alert(LANG[currentLang].errorNotJPEG);
-        return;
-    }
-
-    if (typeof Module === 'undefined' || !Module._init_decoder) {
-        alert(LANG[currentLang].errorWasm);
-        return;
-    }
-
-    try {
         const inputPtr = Module._malloc(input.length);
         Module['HEAPU8'].set(input, inputPtr);
         const decoderPtr = Module._init_decoder(inputPtr, input.length);
         if (!decoderPtr) throw new Error('Impossibile inizializzare il decoder.');
 
-        
-
-
         Module._free(inputPtr);
     } catch (error) {
-        alert('Errore durante l\'analisi del file JPEG.');
+        console.error('DEBUG: Errore durante l\'analisi componenti:', error);
+    } finally {
+        setAnalysisButtonsEnabled(true);
+        isAnalyzing = false;
+        console.log('DEBUG: Analisi del file JPEG completata.');
     }
-
-    
 }
 
 // Funzione per distruggere il decoder e liberare memoria
@@ -541,36 +576,53 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Gestione disabilitazione select quando si carica un'immagine
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const testSelect = document.getElementById('testImageSelect');
     const imageInput = document.getElementById('imageInput');
     const resetButton = document.getElementById('resetButton');
+    const componentSelect = document.getElementById('componentInput');
 
     if (imageInput && testSelect) {
-        imageInput.addEventListener('change', function() {
+        imageInput.addEventListener('change', function () {
             if (imageInput.files && imageInput.files.length > 0) {
+                image = new Image();
+                imageArrayBuffer = null;
                 testSelect.disabled = true;
                 testSelect.classList.add('disabled-select');
+                componentSelect.value = '0';
+                resetZoomBlock();
             }
         });
     }
+    if (testSelect) {
+        testSelect.addEventListener('change', function () {
+            resetZoomBlock();
+            image = new Image();
+            imageArrayBuffer = null;
+        });
+    }
     if (resetButton && testSelect && imageInput) {
-        resetButton.addEventListener('click', function() {
+        resetButton.addEventListener('click', function () {
             imageInput.value = '';
+            image = new Image();
+            imageArrayBuffer = null;
             testSelect.disabled = false;
             testSelect.classList.remove('disabled-select');
+            componentSelect.value = '0';
             hideAllSections();
+            resetZoomBlock();
         });
     }
 });
 
 function displayBlockZoomOriginal(blockX, blockY, img) {
+    showZoomBlock();
     const boxList = document.querySelectorAll('.block-title.title-hidden');
     boxList.forEach(box => {
         box.classList.remove('title-hidden');
         box.classList.add('title-visible');
     });
-    const blocktitle = document.getElementById('DCTBlockTitle');
+    const blocktitle = document.getElementById('BlockTitle');
     if (blocktitle) blocktitle.innerHTML = `${LANG[currentLang].blockSelected}: (${blockX}, ${blockY})`;
 
     const blockSize = 8;
@@ -607,27 +659,60 @@ function displayBlockZoomOriginal(blockX, blockY, img) {
 function showAllSections() {
     const canvasContainer = document.getElementById('canvasContainer');
     const analysisResults = document.getElementById('AnalysisResults');
-    if (canvasContainer) canvasContainer.style.display = 'flex';
+    if (canvasContainer) {
+        canvasContainer.style.display = 'flex';
+        canvasContainer.classList.remove('canvasContainer-2x2');
+    }
     if (analysisResults) analysisResults.style.display = 'grid';
 }
 
 function showDCTSection() {
-   const canvasContainer = document.getElementById('canvasContainer');
+    const canvasContainer = document.getElementById('canvasContainer');
     const analysisResults = document.getElementById('AnalysisResults');
-    if (canvasContainer) canvasContainer.style.display = 'none';
+    if (canvasContainer) {
+        canvasContainer.style.display = 'none';
+        canvasContainer.classList.remove('canvasContainer-2x2');
+    }
     if (analysisResults) analysisResults.style.display = 'grid';
 }
 
 function showComponents() {
-const canvasContainer = document.getElementById('canvasContainer');
+    const canvasContainer = document.getElementById('canvasContainer');
     const analysisResults = document.getElementById('AnalysisResults');
-    if (canvasContainer) canvasContainer.style.display = 'flex';
+    if (canvasContainer) {
+        canvasContainer.style.display = 'grid';
+        canvasContainer.classList.add('canvasContainer-2x2');
+    }
     if (analysisResults) analysisResults.style.display = 'none';
 }
 
 function hideAllSections() {
     const canvasContainer = document.getElementById('canvasContainer');
     const analysisResults = document.getElementById('AnalysisResults');
-    if (canvasContainer) canvasContainer.style.display = 'none';
+    if (canvasContainer) {
+        canvasContainer.style.display = 'none';
+        canvasContainer.classList.remove('canvasContainer-2x2'); // <-- aggiungi questa riga
+    }
     if (analysisResults) analysisResults.style.display = 'none';
+}
+
+function resetZoomBlock() {
+    const zoomBlock = document.getElementById('ZoomBlock');
+    const blockTitle = document.getElementById('BlockTitle');
+    if (zoomBlock) zoomBlock.style.display = 'none';
+    if (blockTitle) blockTitle.classList.add('title-hidden');
+    // Reset anche le coordinate selezionate
+    selectedBlockX = -1;
+    selectedBlockY = -1;
+}
+
+function showZoomBlock() {
+    const zoomBlock = document.getElementById('ZoomBlock');
+    const blockTitle = document.getElementById('BlockTitle');
+    if (zoomBlock) zoomBlock.style.display = '';
+    if (blockTitle) blockTitle.classList.remove('title-hidden');
+}
+
+function setAnalysisButtonsEnabled(enabled) {
+    document.querySelectorAll('.btn-analyze').forEach(btn => btn.disabled = !enabled);
 }

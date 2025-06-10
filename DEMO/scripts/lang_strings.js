@@ -7,7 +7,8 @@ const LANG = {
     quantTitle: "Tabella di Quantizzazione",
     blockSelected: "Blocco selezionato",
     errorDCT: "Errore: impossibile ottenere i coefficienti DCT per il blocco selezionato.",
-    errorLoad: "Errore durante il caricamento dell'immagine.",
+    errorLoad: "Errore durante il caricamento dell'immagine",
+    errorLoadTimeout: "Errore durante il caricamento dell'immagine (timeout). Per favore, riprova.",
     errorNotJPEG: "Il file caricato non è un JPEG valido.",
     errorTestImage: "Errore durante il caricamento dell'immagine di test.",
     errorNoImage: "Carica un'immagine o seleziona un'immagine di test prima di procedere.",
@@ -25,7 +26,8 @@ const LANG = {
     components: "Componenti",
     fullAnalysis: "Analisi completa",
     reset: "Reset",
-    backToTop: "Torna su"
+    backToTop: "Torna su",
+    errorAlreadyAnalyzing: "Errore: Analisi già in corso. Attendi il completamento prima di avviarne una nuova.",
   },
   en: {
     infoTitle: "Other information",
@@ -36,6 +38,7 @@ const LANG = {
     blockSelected: "Selected block",
     errorDCT: "Error: unable to get DCT coefficients for the selected block.",
     errorLoad: "Error loading image.",
+    errorLoadTimeout: "Error loading image (timeout). Please try again.",
     errorNotJPEG: "The uploaded file is not a valid JPEG.",
     errorTestImage: "Error loading test image.",
     errorNoImage: "Upload an image or select a test image before proceeding.",
@@ -53,6 +56,7 @@ const LANG = {
     components: "Components",
     fullAnalysis: "Full Analysis",
     reset: "Reset",
-    backToTop: "Back to top"
+    backToTop: "Back to top",
+    errorAlreadyAnalyzing: "Error: Analysis already in progress. Please wait for it to complete before starting a new one.",
   }
 };
