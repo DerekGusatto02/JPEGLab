@@ -6,9 +6,138 @@ let image = new Image();
 let imageArrayBuffer = null;
 let isAnalyzing = false;
 
-// Funzione per leggere un array dalla memoria WebAssembly
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Event listener per GridCanvas e selezione blocchi
+    const canvasGrid = document.getElementById('GridCanvas');
+    const componentSelect = document.getElementById('componentInput');
+
+    if (canvasGrid && componentSelect) {
+        canvasGrid.addEventListener('click', function (event) {
+            const rect = canvasGrid.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            const blocksWidth = Module._get_blocks_width();
+            const blocksHeight = Module._get_blocks_height();
+
+            const blockWidth = canvasGrid.width / blocksWidth;
+            const blockHeight = canvasGrid.height / blocksHeight;
+
+            const blockX = Math.floor(x / blockWidth);
+            const blockY = Math.floor(y / blockHeight);
+
+            selectedBlockX = blockX;
+            selectedBlockY = blockY;
+
+            const componentIndex = componentSelect.value;
+            const dctCoefficients = getDCTCoefficients(componentIndex, blockX, blockY);
+
+            if (dctCoefficients) {
+                displayDCTCoefficients(dctCoefficients);
+                displayBlockZoomOriginal(blockX, blockY, image);
+            } else {
+                alert(LANG[currentLang].errorDCT);
+            }
+        });
+    }
+
+    // 2. Event listener per cambio componente
+    if (componentSelect) {
+        componentSelect.addEventListener('change', function () {
+            const selectedComponent = parseInt(this.value, 10);
+            const quantTablePtr = Module._get_quant_table(selectedComponent === 0 ? 0 : 1);
+            const quantTable = readArrayFromMemory(quantTablePtr, 64);
+            displayQuantizationTable(quantTable);
+
+            if (selectedBlockX !== -1 && selectedBlockY !== -1) {
+                const dctCoefficients = getDCTCoefficients(selectedComponent, selectedBlockX, selectedBlockY);
+                if (dctCoefficients) {
+                    displayDCTCoefficients(dctCoefficients);
+                    displayBlockZoomOriginal(selectedBlockX, selectedBlockY);
+                }
+            }
+        });
+    }
+
+    // 3. Gestione input immagine e reset
+    const testSelect = document.getElementById('testImageSelect');
+    const imageInput = document.getElementById('imageInput');
+    const resetButton = document.getElementById('resetButton');
+
+    if (imageInput && testSelect) {
+        imageInput.addEventListener('change', function () {
+            if (imageInput.files && imageInput.files.length > 0) {
+                image = new Image();
+                imageArrayBuffer = null;
+                testSelect.disabled = true;
+                testSelect.classList.add('disabled-select');
+                componentSelect.value = '0';
+                resetZoomBlock();
+            }
+        });
+    }
+
+    if (testSelect) {
+        testSelect.addEventListener('change', function () {
+            resetZoomBlock();
+            image = new Image();
+            imageArrayBuffer = null;
+        });
+    }
+
+    if (resetButton && testSelect && imageInput) {
+        resetButton.addEventListener('click', function () {
+            imageInput.value = '';
+            image = new Image();
+            imageArrayBuffer = null;
+            testSelect.disabled = false;
+            testSelect.classList.remove('disabled-select');
+            componentSelect.value = '0';
+            hideAllSections();
+            resetZoomBlock();
+        });
+    }
+
+    // 4. Event listener per i bottoni di modifica quantizzazione
+    const modQuantButton = document.getElementById('ModQuantizTable');
+    const applyQuantButton = document.getElementById('ApplyQuantizTable');
+    
+    if (modQuantButton) {
+        modQuantButton.addEventListener('click', makeQuantizationTableEditable);
+    }
+    
+    if (applyQuantButton) {
+        applyQuantButton.addEventListener('click', applyQuantizationTableChanges);
+        // Nascondi inizialmente il bottone "Applica"
+        applyQuantButton.style.display = 'none';
+    }
+    
+    // 5. Se l'elemento applyQuant esiste, aggiungi l'event listener
+    const applyQuantElement = document.getElementById('applyQuant');
+    if (applyQuantElement) {
+        applyQuantElement.onclick = async function() {
+            // Tabella identità: tutti 1 (per esempio, per Y)
+            const identityTable = Array(64).fill(1);
+
+            // Imposta la tabella per il componente Y (0)
+            setQuantizationTable(0, identityTable);
+
+            // Ricomprimi e visualizza
+            await showRecompressedJpegInImg('jpegResult');
+        };
+    }
+});
+
+
+// Funzione per leggere un array dalla memoria WebAssembly - CORRETTA
 function readArrayFromMemory(ptr, length) {
-    return Array.from(Module.HEAPU8.subarray(ptr, ptr + length));
+    // Le tabelle di quantizzazione in libjpeg sono UINT16 (2 bytes)
+    // quindi dobbiamo usare HEAPU16 invece di HEAPU8
+    const result = [];
+    for (let i = 0; i < length; i++) {
+        result.push(Module['HEAPU16'][(ptr >> 1) + i]);
+    }
+    return result;
 }
 
 // Funzione per leggere una stringa dalla memoria WebAssembly
@@ -73,41 +202,7 @@ function displayImageWithGrid(img) {
     }
 }
 
-// Listener per il caricamento del DOM
-document.addEventListener('DOMContentLoaded', function () {
-    const canvasGrid = document.getElementById('GridCanvas');
-    const componentSelect = document.getElementById('componentInput');
 
-    if (canvasGrid && componentSelect) {
-        canvasGrid.addEventListener('click', function (event) {
-            const rect = canvasGrid.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-
-            const blocksWidth = Module._get_blocks_width();
-            const blocksHeight = Module._get_blocks_height();
-
-            const blockWidth = canvasGrid.width / blocksWidth;
-            const blockHeight = canvasGrid.height / blocksHeight;
-
-            const blockX = Math.floor(x / blockWidth);
-            const blockY = Math.floor(y / blockHeight);
-
-            selectedBlockX = blockX;
-            selectedBlockY = blockY;
-
-            const componentIndex = componentSelect.value;
-            const dctCoefficients = getDCTCoefficients(componentIndex, blockX, blockY);
-
-            if (dctCoefficients) {
-                displayDCTCoefficients(dctCoefficients);
-                displayBlockZoomOriginal(blockX, blockY, image);
-            } else {
-                alert(LANG[currentLang].errorDCT);
-            }
-        });
-    }
-});
 
 // Funzione per visualizzare i coefficienti DCT in una tabella
 function displayDCTCoefficients(coefficients) {
@@ -554,66 +649,6 @@ async function drawComponentOnCanvas(componentIndex, canvasId) {
     ctx.putImageData(imageData, 0, 0);
 }
 
-// Listener per il cambiamento del valore di componente
-document.addEventListener('DOMContentLoaded', function () {
-    const componentInput = document.getElementById('componentInput');
-    if (componentInput) {
-        componentInput.addEventListener('change', function () {
-            const selectedComponent = parseInt(this.value, 10);
-            const quantTablePtr = Module._get_quant_table(selectedComponent === 0 ? 0 : 1);
-            const quantTable = readArrayFromMemory(quantTablePtr, 64);
-            displayQuantizationTable(quantTable);
-
-            if (selectedBlockX !== -1 && selectedBlockY !== -1) {
-                const dctCoefficients = getDCTCoefficients(selectedComponent, selectedBlockX, selectedBlockY);
-                if (dctCoefficients) {
-                    displayDCTCoefficients(dctCoefficients);
-                    displayBlockZoomOriginal(selectedBlockX, selectedBlockY);
-                }
-            }
-        });
-    }
-});
-
-// Gestione disabilitazione select quando si carica un'immagine
-document.addEventListener('DOMContentLoaded', function () {
-    const testSelect = document.getElementById('testImageSelect');
-    const imageInput = document.getElementById('imageInput');
-    const resetButton = document.getElementById('resetButton');
-    const componentSelect = document.getElementById('componentInput');
-
-    if (imageInput && testSelect) {
-        imageInput.addEventListener('change', function () {
-            if (imageInput.files && imageInput.files.length > 0) {
-                image = new Image();
-                imageArrayBuffer = null;
-                testSelect.disabled = true;
-                testSelect.classList.add('disabled-select');
-                componentSelect.value = '0';
-                resetZoomBlock();
-            }
-        });
-    }
-    if (testSelect) {
-        testSelect.addEventListener('change', function () {
-            resetZoomBlock();
-            image = new Image();
-            imageArrayBuffer = null;
-        });
-    }
-    if (resetButton && testSelect && imageInput) {
-        resetButton.addEventListener('click', function () {
-            imageInput.value = '';
-            image = new Image();
-            imageArrayBuffer = null;
-            testSelect.disabled = false;
-            testSelect.classList.remove('disabled-select');
-            componentSelect.value = '0';
-            hideAllSections();
-            resetZoomBlock();
-        });
-    }
-});
 
 function displayBlockZoomOriginal(blockX, blockY, img) {
     showZoomBlock();
@@ -656,46 +691,6 @@ function displayBlockZoomOriginal(blockX, blockY, img) {
     ctxDst.drawImage(tempCanvas, 0, 0, blockSize * zoomSize, blockSize * zoomSize);
 }
 
-function showAllSections() {
-    const canvasContainer = document.getElementById('canvasContainer');
-    const analysisResults = document.getElementById('AnalysisResults');
-    if (canvasContainer) {
-        canvasContainer.style.display = 'flex';
-        canvasContainer.classList.remove('canvasContainer-2x2');
-    }
-    if (analysisResults) analysisResults.style.display = 'grid';
-}
-
-function showDCTSection() {
-    const canvasContainer = document.getElementById('canvasContainer');
-    const analysisResults = document.getElementById('AnalysisResults');
-    if (canvasContainer) {
-        canvasContainer.style.display = 'none';
-        canvasContainer.classList.remove('canvasContainer-2x2');
-    }
-    if (analysisResults) analysisResults.style.display = 'grid';
-}
-
-function showComponents() {
-    const canvasContainer = document.getElementById('canvasContainer');
-    const analysisResults = document.getElementById('AnalysisResults');
-    if (canvasContainer) {
-        canvasContainer.style.display = 'grid';
-        canvasContainer.classList.add('canvasContainer-2x2');
-    }
-    if (analysisResults) analysisResults.style.display = 'none';
-}
-
-function hideAllSections() {
-    const canvasContainer = document.getElementById('canvasContainer');
-    const analysisResults = document.getElementById('AnalysisResults');
-    if (canvasContainer) {
-        canvasContainer.style.display = 'none';
-        canvasContainer.classList.remove('canvasContainer-2x2'); // <-- aggiungi questa riga
-    }
-    if (analysisResults) analysisResults.style.display = 'none';
-}
-
 function resetZoomBlock() {
     const zoomBlock = document.getElementById('ZoomBlock');
     const blockTitle = document.getElementById('BlockTitle');
@@ -716,3 +711,318 @@ function showZoomBlock() {
 function setAnalysisButtonsEnabled(enabled) {
     document.querySelectorAll('.btn-analyze').forEach(btn => btn.disabled = !enabled);
 }
+
+// Funzione per impostare la tabella di quantizzazione
+function setQuantizationTable(componentIndex, quantTable) {
+    if (!Array.isArray(quantTable) || quantTable.length !== 64) {
+        console.error('DEBUG: Quantization table must be an array of 64 elements.');
+        return;
+    }
+
+    const ptr = Module._malloc(quantTable.length * 2); // 2 bytes per elemento (HEAPU16)
+    Module['HEAPU16'].set(quantTable, ptr >> 1);
+    Module._set_quant_table(componentIndex, ptr);
+    Module._free(ptr);
+}
+
+// Funzione per ricomprimere l'immagine con la nuova tabella di quantizzazione
+async function recompressAndGetJpegBlob() {
+    if (typeof Module === 'undefined' || !Module._recompress_jpeg_with_new_quant) {
+        throw new Error("WASM module not loaded or function not available");
+    }
+    
+    try {
+        const outSizePtr = Module._malloc(4);
+        const jpegPtr = Module._recompress_jpeg_with_new_quant(outSizePtr);
+        const jpegSize = Module['HEAP32'][outSizePtr >> 2];
+
+        if (!jpegPtr || jpegSize <= 0) {
+            Module._free(outSizePtr);
+            // Get the last error message from the WASM module
+            const errorMsgPtr = Module._get_last_error_message();
+            const errorMsg = errorMsgPtr ? Module.UTF8ToString(errorMsgPtr) : "Unknown error";
+            throw new Error(`Errore nella ricompressione JPEG: ${errorMsg}`);
+        }
+
+        // Copia il buffer JPEG dalla memoria WASM
+        const jpegData = new Uint8Array(Module['HEAPU8'].buffer, jpegPtr, jpegSize);
+        const blob = new Blob([jpegData], { type: 'image/jpeg' });
+
+        // Libera la memoria allocata in C
+        Module._free_exported_jpeg_buffer(jpegPtr);
+        Module._free(outSizePtr);
+
+        return blob;
+    } catch (error) {
+        console.error('Recompression error:', error);
+        throw error;
+    }
+}
+
+// Funzione per rendere modificabile la tabella di quantizzazione
+function makeQuantizationTableEditable() {
+    const quantTableDiv = document.getElementById('quantizationTable');
+    if (!quantTableDiv) return;
+    
+    const table = quantTableDiv.querySelector('table');
+    if (!table) return;
+    
+    // Ottieni tutte le celle della tabella (escludendo eventuali header)
+    const cells = table.querySelectorAll('td');
+    console.log('DEBUG: Numero di celle td trovate:', cells.length);
+    
+    cells.forEach((cell, index) => {
+        const currentValue = cell.textContent.trim();
+        console.log(`DEBUG: Cella ${index}: valore="${currentValue}"`);
+        
+        // Sostituisci il contenuto della cella con un input solo se ha un valore numerico
+        if (currentValue && !isNaN(parseInt(currentValue))) {
+            cell.innerHTML = `<input type="number" value="${currentValue}" min="1" max="255" class="quant-input">`;
+        }
+    });
+    
+    // Verifica quanti input sono stati creati
+    const inputs = table.querySelectorAll('input.quant-input');
+    console.log('DEBUG: Numero di input creati:', inputs.length);
+    
+    // Nascondi il bottone "Modifica" e mostra il bottone "Applica"
+    const modButton = document.getElementById('ModQuantizTable');
+    const applyButton = document.getElementById('ApplyQuantizTable');
+    
+    if (modButton) modButton.style.display = 'none';
+    if (applyButton) applyButton.style.display = 'inline-block';
+}
+
+// Funzione per applicare le modifiche alla tabella di quantizzazione
+async function applyQuantizationTableChanges() {
+    const quantTableDiv = document.getElementById('quantizationTable');
+    if (!quantTableDiv) return;
+    
+    const table = quantTableDiv.querySelector('table');
+    if (!table) return;
+    
+    // Raccoglie i valori dagli input
+    const inputs = table.querySelectorAll('input.quant-input');
+    console.log('DEBUG: Numero di input trovati:', inputs.length);
+    
+    const newQuantTable = [];
+    
+    let hasError = false;
+    inputs.forEach((input, index) => {
+        const value = parseInt(input.value);
+        console.log(`DEBUG: Input ${index}: valore="${input.value}", parsed=${value}`);
+        
+        if (isNaN(value) || value < 1 || value > 255) {
+            console.log(`DEBUG: Errore nel valore ${index}: ${input.value}`);
+            alert('Errore: tutti i valori devono essere numeri interi tra 1 e 255');
+            hasError = true;
+            return;
+        }
+        newQuantTable.push(value);
+    });
+    
+    console.log('DEBUG: Lunghezza array finale:', newQuantTable.length);
+    console.log('DEBUG: Array finale:', newQuantTable);
+    
+    if (hasError) return;
+    
+    // Verifica che abbiamo 64 valori
+    if (newQuantTable.length !== 64) {
+        console.error(`DEBUG: Errore - trovati ${newQuantTable.length} valori invece di 64`);
+        alert(`Errore: la tabella deve contenere esattamente 64 valori (trovati: ${newQuantTable.length})`);
+        return;
+    }
+    
+    try {
+        // Applica la nuova tabella di quantizzazione
+        setQuantizationTable(selectedComponent, newQuantTable);
+        
+        // Ricomprimi l'immagine e visualizzala nel ModifiedCanvas
+        await showRecompressedImageInModifiedCanvas();
+        
+        // Ricrea la tabella normale con i nuovi valori
+        displayQuantizationTable(newQuantTable);
+        
+        // Mostra il bottone "Modifica" e nascondi il bottone "Applica"
+        const modButton = document.getElementById('ModQuantizTable');
+        const applyButton = document.getElementById('ApplyQuantizTable');
+        
+        if (modButton) modButton.style.display = 'inline-block';
+        if (applyButton) applyButton.style.display = 'none';
+        
+        console.log('Tabella di quantizzazione aggiornata con successo e immagine ricompressa');
+        
+    } catch (error) {
+        console.error('Errore nell\'applicazione della tabella di quantizzazione:', error);
+        alert('Errore nell\'applicazione della tabella di quantizzazione: ' + error.message);
+    }
+}
+
+// Modifica la funzione showRecompressedImageInModifiedCanvas per assicurarsi che il canvas sia visibile
+async function showRecompressedImageInModifiedCanvas() {
+    try {
+        const blob = await recompressAndGetJpegBlob();
+        const url = URL.createObjectURL(blob);
+        
+        const modifiedCanvas = document.getElementById('ModifiedCanvas');
+        if (!modifiedCanvas) {
+            console.error('ModifiedCanvas non trovato');
+            return;
+        }
+        
+        // Prima mostra il canvas
+        toggleModifiedCanvasVisibility(true);
+        
+        const ctx = modifiedCanvas.getContext('2d');
+        const img = new Image();
+        
+        img.onload = function() {
+            // Dimensiona il canvas esattamente come il GridCanvas
+            const gridCanvas = document.getElementById('GridCanvas');
+            if (gridCanvas) {
+                modifiedCanvas.width = gridCanvas.width;
+                modifiedCanvas.height = gridCanvas.height;
+                
+                // Calcola le proporzioni per mantenere l'aspect ratio
+                const imgAspectRatio = img.width / img.height;
+                const canvasAspectRatio = modifiedCanvas.width / modifiedCanvas.height;
+                
+                let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
+                
+                if (imgAspectRatio > canvasAspectRatio) {
+                    drawWidth = modifiedCanvas.width;
+                    drawHeight = drawWidth / imgAspectRatio;
+                    offsetY = (modifiedCanvas.height - drawHeight) / 2;
+                } else {
+                    drawHeight = modifiedCanvas.height;
+                    drawWidth = drawHeight * imgAspectRatio;
+                    offsetX = (modifiedCanvas.width - drawWidth) / 2;
+                }
+                
+                ctx.clearRect(0, 0, modifiedCanvas.width, modifiedCanvas.height);
+                ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+            } else {
+                modifiedCanvas.width = img.width;
+                modifiedCanvas.height = img.height;
+                ctx.clearRect(0, 0, modifiedCanvas.width, modifiedCanvas.height);
+                ctx.drawImage(img, 0, 0);
+            }
+            
+            URL.revokeObjectURL(url);
+        };
+        
+        img.onerror = function() {
+            console.error('Errore nel caricamento dell\'immagine ricompressa');
+            URL.revokeObjectURL(url);
+        };
+        
+        img.src = url;
+        
+    } catch (error) {
+        console.error('Errore nella visualizzazione dell\'immagine ricompressa:', error);
+        throw error;
+    }
+}
+
+
+// Funzione per resettare la tabella di quantizzazione e il canvas modificato
+function resetQuantizationTableAndCanvas() {
+    // Nasconde il bottone "Applica" e mostra il bottone "Modifica"
+    const modButton = document.getElementById('ModQuantizTable');
+    const applyButton = document.getElementById('ApplyQuantizTable');
+    
+    if (modButton) modButton.style.display = 'inline-block';
+    if (applyButton) applyButton.style.display = 'none';
+    
+    // Pulisce e nasconde il canvas dell'immagine modificata
+    const modifiedCanvas = document.getElementById('ModifiedCanvas');
+    if (modifiedCanvas) {
+        const ctx = modifiedCanvas.getContext('2d');
+        ctx.clearRect(0, 0, modifiedCanvas.width, modifiedCanvas.height);
+        modifiedCanvas.width = 0;
+        modifiedCanvas.height = 0;
+    }
+    
+    // Nasconde il canvas dell'immagine modificata
+    toggleModifiedCanvasVisibility(false);
+    
+    // Ripristina la tabella di quantizzazione originale se esiste un componente selezionato
+    const componentSelect = document.getElementById('componentInput');
+    if (componentSelect && typeof Module !== 'undefined' && Module._get_quant_table) {
+        try {
+            const quantTablePtr = Module._get_quant_table(componentSelect.value == 0 ? 0 : 1);
+            const quantTable = readArrayFromMemory(quantTablePtr, 64);
+            displayQuantizationTable(quantTable);
+        } catch (error) {
+            console.warn('Impossibile ripristinare la tabella di quantizzazione originale:', error);
+        }
+    }
+}
+
+// Modifica la funzione hideAllSections per includere il reset
+function hideAllSections() {
+    const canvasContainer = document.getElementById('canvasContainer');
+    const analysisResults = document.getElementById('AnalysisResults');
+    if (canvasContainer) {
+        canvasContainer.style.display = 'none';
+        canvasContainer.classList.remove('canvasContainer-2x2');
+    }
+    if (analysisResults) analysisResults.style.display = 'none';
+    
+    // Reset della tabella di quantizzazione e canvas modificato
+    resetQuantizationTableAndCanvas();
+}
+
+// Modifica la funzione showDCTSection per includere il reset
+function showDCTSection() {
+    const canvasContainer = document.getElementById('canvasContainer');
+    const analysisResults = document.getElementById('AnalysisResults');
+    if (canvasContainer) {
+        canvasContainer.style.display = 'none';
+        canvasContainer.classList.remove('canvasContainer-2x2');
+    }
+    if (analysisResults) analysisResults.style.display = 'grid';
+    
+    // Reset della tabella di quantizzazione e canvas modificato quando si cambia analisi
+    resetQuantizationTableAndCanvas();
+}
+
+// Modifica la funzione showComponents per includere il reset
+function showComponents() {
+    const canvasContainer = document.getElementById('canvasContainer');
+    const analysisResults = document.getElementById('AnalysisResults');
+    if (canvasContainer) {
+        canvasContainer.style.display = 'grid';
+        canvasContainer.classList.add('canvasContainer-2x2');
+    }
+    if (analysisResults) analysisResults.style.display = 'none';
+    
+    // Reset della tabella di quantizzazione e canvas modificato quando si cambia analisi
+    resetQuantizationTableAndCanvas();
+}
+
+// Modifica la funzione showAllSections per includere il reset
+function showAllSections() {
+    const canvasContainer = document.getElementById('canvasContainer');
+    const analysisResults = document.getElementById('AnalysisResults');
+    if (canvasContainer) {
+        canvasContainer.style.display = 'flex';
+        canvasContainer.classList.remove('canvasContainer-2x2');
+    }
+    if (analysisResults) analysisResults.style.display = 'grid';
+    
+    // Reset della tabella di quantizzazione e canvas modificato quando si cambia analisi
+    resetQuantizationTableAndCanvas();
+}
+
+
+// Funzione per mostrare/nascondere il canvas dell'immagine modificata
+function toggleModifiedCanvasVisibility(show) {
+    const modifiedCanvasColumn = document.querySelector('.comparison-canvas-column:nth-child(2)');
+    
+    if (modifiedCanvasColumn) {
+        modifiedCanvasColumn.style.display = show ? 'flex' : 'none';
+    }
+}
+
+

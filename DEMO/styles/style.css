@@ -449,11 +449,10 @@ select {
 
 #AnalysisResults {
     display: none;
-    grid-template-columns: auto auto;
+    grid-template-columns: 60vh 40vh;
     grid-template-rows: auto;
     grid-template-areas:
-        "title title"
-        "grid results";
+        "canvas text";
     gap: 1em;
 }
 
@@ -484,15 +483,22 @@ select {
     display: none;
 }
 
-#results {
-    grid-area: results;
+#TextResults {
+    grid-area: text;
     display: block;
     width: 100%;
     margin: 0 1em;
     padding-left: 1em;
     box-sizing: border-box;
 }
-
+#CanvasResults{
+    grid-area: canvas;
+    display: block;
+    width: 100%;
+    margin: 0 1em;
+    padding-left: 1em;
+    box-sizing: border-box;
+}
 #generalInfo h2 {
     margin-top: 0;
 }
@@ -502,4 +508,18 @@ select {
     height: 160px;
     border: 1px solid transparent;
     margin: 0.3em 0;
+}
+
+#ApplyQuantizTable {
+    display: none;
+}
+
+#ModQuantTitle{
+    grid-area: modtitle;
+}
+
+#ModQuantContainer{
+    grid-area: modcanvas;
+    align-items: center;
+    justify-content: center;
 }

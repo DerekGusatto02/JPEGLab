@@ -45,21 +45,25 @@ Assicurati di avere Emscripten installato e configurato. Se non lo hai già fatt
     ```
 2. Configurare e compilare la libreria con Emscripten:
     ```bash
+    rm -rf build
     mkdir build
     cd build
-    emcmake cmake .. -DCMAKE_BUILD_TYPE=Release
-    emmake make
+    emcmake cmake .. -DCMAKE_BUILD_TYPE=Release -DENABLE_SHARED=0 -DENABLE_STATIC=1
+    emmake make jpeg-static
     ```
 
 ### 3. Compilare il wrapper
 Se si sta usando la versione di libjpeg-turbo all'interno del repository di JPEGLab si può compilare il wrapper già esistente con:
 ```bash
-emcc jpeg_wrapper.c -o jpeg_wrapper.js \
-    -I/Users/derekgusatto/Documents/Git/libjpeg-turbo/include \
-    -I/Users/derekgusatto/Documents/Git/libjpeg-turbo/build \
-    /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/libjpeg.a \
-    -s EXPORTED_FUNCTIONS="['_malloc', '_free', '_init_decoder', '_get_width', '_get_height', '_get_color_space', '_get_quant_table', '_get_dct_coefficients', '_get_blocks_height', '_get_blocks_width', '_get_last_error_message', '_destroy_decoder', '_extract_component_pixels', '_get_component_width', '_get_component_height', '_free_component_buffers']" \
-    -s EXPORTED_RUNTIME_METHODS="['HEAPU8', 'HEAP16', 'ccall', 'cwrap']" \
+cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo
+emcc -O0 jpeg_wrapper.c -o jpeg_wrapper.js \
+    -I/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/include \
+    -I/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm \
+    /Users/derekgusatto/Documents/Git//JPEGLab/libjpeg-turbo/build-wasm/libjpeg.a \
+    -s EXPORTED_FUNCTIONS="['_malloc', '_free', '_init_decoder', '_get_width', '_get_height', '_get_color_space', '_get_quant_table', '_get_dct_coefficients', '_get_blocks_height', '_get_blocks_width', '_get_last_error_message', '_destroy_decoder', '_extract_component_pixels', '_get_component_width', '_get_component_height', '_set_quant_table', '_recompress_jpeg_with_new_quant', '_free_exported_jpeg_buffer', '_jpeg_std_error', '_jpeg_CreateCompress', '_jpeg_mem_dest', '_jpeg_set_defaults', '_jpeg_start_compress', '_jpeg_write_scanlines', '_jpeg_finish_compress', '_jpeg_destroy_compress', '_jpeg_mem_dest_wrapper', '_my_error_exit']" \
+    -s EXPORTED_RUNTIME_METHODS="['HEAPU8', 'HEAP16', 'HEAPU16', 'HEAP32', 'ccall', 'cwrap', 'UTF8ToString']" \
     -s ENVIRONMENT='web' \
-    -s ALLOW_MEMORY_GROWTH=1
+    -s ALLOW_MEMORY_GROWTH=1 \
+    -s ERROR_ON_UNDEFINED_SYMBOLS=0 \
+    -s ASSERTIONS=2
 ```

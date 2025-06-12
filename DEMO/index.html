@@ -89,11 +89,16 @@
 </div>
 
     <div id="AnalysisResults">
+        <div id="CanvasResults">
         <h2> Clicca su un blocco per visualizzare i coefficienti DCT </h2>
         <div id="DCTCanvasContainer">
-            <canvas id="GridCanvas" aria-label="Image Canvas"></canvas>
+            <canvas id="GridCanvas" ></canvas>
         </div>
-        <div id="results" aria-live="polite">
+        <h2 id="ModQuantTitle"> Immagine con la tabella di quantizzazione modificata: </h2>
+        <div id="ModQuantContainer">
+            <canvas id="ModifiedCanvas"></canvas>
+            </div>
+        <div id="TextResults" aria-live="polite">
             
             <h2 id="BlockTitle" class="block-title title-hidden"></h2>
             <div id="ZoomBlock">
@@ -111,7 +116,10 @@
             
             <div id="DCTCoefficients" aria-label="DCT Results"></div>
             <div id="quantizationTable" ></div>
-            
+            <div> 
+                <button id="ModQuantizTable" type="button" class="btn btn-analyze" name="view" onclick="makeQuantizationTableEditable()">Modifica tabella di quantizzazione</button>
+                <button id="ApplyQuantizTable" type="button" class="btn btn-analyze" name="view" onclick="applyQuantizationTableChanges()">Applica tabella di quantizzazione</button>
+            </div>
         
         </div>
     </div>
