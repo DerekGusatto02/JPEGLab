@@ -1,4 +1,4 @@
-# Install script for directory: /Users/derekgusatto/Documents/Git/libjpeg-turbo
+# Install script for directory: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,47 +39,44 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/simd/cmake_install.cmake")
+  include("/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/simd/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/sharedlib/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5/cmake_install.cmake")
+  include("/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "lib" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib32" TYPE STATIC_LIBRARY FILES "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/libturbojpeg.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib32" TYPE STATIC_LIBRARY FILES "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/libturbojpeg.a")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "bin" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/tjbench.js")
-  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/tjbench.js" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/tjbench.js")
-    if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/tjbench.js")
-    endif()
-  endif()
-endif()
-
-if(CMAKE_INSTALL_COMPONENT STREQUAL "lib" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib32" TYPE STATIC_LIBRARY FILES "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/libturbojpeg.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE PROGRAM RENAME "tjbench.js" FILES "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/tjbench-static.js")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "include" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "/Users/derekgusatto/Documents/Git/libjpeg-turbo/src/turbojpeg.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/turbojpeg.h")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "lib" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib32" TYPE STATIC_LIBRARY FILES "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/libjpeg.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib32" TYPE STATIC_LIBRARY FILES "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/libjpeg.a")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "bin" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/rdjpgcom.js")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE PROGRAM RENAME "cjpeg.js" FILES "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/cjpeg-static.js")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "bin" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE PROGRAM RENAME "djpeg.js" FILES "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/djpeg-static.js")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "bin" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE PROGRAM RENAME "jpegtran.js" FILES "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/jpegtran-static.js")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "bin" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/rdjpgcom.js")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/rdjpgcom.js" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/rdjpgcom.js")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -89,7 +86,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "bin" OR NOT CMAKE_INSTALL_COMPONENT)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "bin" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/wrjpgcom.js")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/wrjpgcom.js")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/wrjpgcom.js" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/wrjpgcom.js")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -100,42 +97,42 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "doc" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/doc" TYPE FILE FILES
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/README.ijg"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/README.md"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/src/example.c"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjcomp.c"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjdecomp.c"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjtran.c"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/doc/libjpeg.txt"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/doc/structure.txt"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/doc/usage.txt"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/doc/wizard.txt"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/LICENSE.md"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/README.ijg"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/README.md"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/example.c"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjcomp.c"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjdecomp.c"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjtran.c"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/doc/libjpeg.txt"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/doc/structure.txt"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/doc/usage.txt"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/doc/wizard.txt"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/LICENSE.md"
     )
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "man" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/man/man1" TYPE FILE FILES
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/doc/cjpeg.1"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/doc/djpeg.1"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/doc/jpegtran.1"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/doc/rdjpgcom.1"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/doc/wrjpgcom.1"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/doc/cjpeg.1"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/doc/djpeg.1"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/doc/jpegtran.1"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/doc/rdjpgcom.1"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/doc/wrjpgcom.1"
     )
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "lib" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib32/pkgconfig" TYPE FILE FILES "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/pkgscripts/libjpeg.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib32/pkgconfig" TYPE FILE FILES "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/pkgscripts/libjpeg.pc")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "lib" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib32/pkgconfig" TYPE FILE FILES "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/pkgscripts/libturbojpeg.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib32/pkgconfig" TYPE FILE FILES "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/pkgscripts/libturbojpeg.pc")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "lib" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib32/cmake/libjpeg-turbo" TYPE FILE FILES
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/pkgscripts/libjpeg-turboConfig.cmake"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/pkgscripts/libjpeg-turboConfigVersion.cmake"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/pkgscripts/libjpeg-turboConfig.cmake"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/pkgscripts/libjpeg-turboConfigVersion.cmake"
     )
 endif()
 
@@ -143,7 +140,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "lib" OR NOT CMAKE_INSTALL_COMPONENT)
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib32/cmake/libjpeg-turbo/libjpeg-turboTargets.cmake")
     file(DIFFERENT _cmake_export_file_changed FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib32/cmake/libjpeg-turbo/libjpeg-turboTargets.cmake"
-         "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles/Export/a49e8630ad8d1c31c1c0cd3196981171/libjpeg-turboTargets.cmake")
+         "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles/Export/a49e8630ad8d1c31c1c0cd3196981171/libjpeg-turboTargets.cmake")
     if(_cmake_export_file_changed)
       file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib32/cmake/libjpeg-turbo/libjpeg-turboTargets-*.cmake")
       if(_cmake_old_config_files)
@@ -156,25 +153,25 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "lib" OR NOT CMAKE_INSTALL_COMPONENT)
     endif()
     unset(_cmake_export_file_changed)
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib32/cmake/libjpeg-turbo" TYPE FILE FILES "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles/Export/a49e8630ad8d1c31c1c0cd3196981171/libjpeg-turboTargets.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib32/cmake/libjpeg-turbo" TYPE FILE FILES "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles/Export/a49e8630ad8d1c31c1c0cd3196981171/libjpeg-turboTargets.cmake")
   if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib32/cmake/libjpeg-turbo" TYPE FILE FILES "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles/Export/a49e8630ad8d1c31c1c0cd3196981171/libjpeg-turboTargets-release.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib32/cmake/libjpeg-turbo" TYPE FILE FILES "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles/Export/a49e8630ad8d1c31c1c0cd3196981171/libjpeg-turboTargets-release.cmake")
   endif()
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "include" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/jconfig.h"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jerror.h"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jmorecfg.h"
-    "/Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jpeglib.h"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/jconfig.h"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jerror.h"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jmorecfg.h"
+    "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jpeglib.h"
     )
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/install_local_manifest.txt"
+  file(WRITE "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -190,6 +187,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

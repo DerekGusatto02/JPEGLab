@@ -1,4 +1,4 @@
-# Install script for directory: /Users/derekgusatto/Documents/Git/libjpeg-turbo/simd
+# Install script for directory: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/simd
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,6 +40,6 @@ endif()
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/simd/install_local_manifest.txt"
+  file(WRITE "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/simd/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

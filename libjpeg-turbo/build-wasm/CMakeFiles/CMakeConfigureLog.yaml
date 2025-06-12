@@ -1,0 +1,550 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineSystem.cmake:200 (message)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      The target system is: Emscripten - 1 - x86
+      The host system is: Darwin - 24.5.0 - arm64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out.js"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out.wasm"
+      
+      The C compiler identification could not be found in:
+        /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/4.0.1/CompilerIdC/a.out.js
+      
+      The C compiler identification is Clang, found in:
+        /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/4.0.1/CompilerIdC/a.out.wasm
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-VVelmj"
+      binary: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-VVelmj"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emscan-deps"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-VVelmj'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_1c40e/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_1c40e.dir/build.make CMakeFiles/cmTC_1c40e.dir/build
+        Building C object CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc   -v -MD -MT CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
+         /Users/derekgusatto/Documents/Git/emsdk/upstream/bin/clang -target wasm32-unknown-emscripten -fignore-exceptions -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr --sysroot=/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot -DEMSCRIPTEN -Xclang -iwithsysroot/include/fakesdl -Xclang -iwithsysroot/include/compat -v -MD -MT CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o.d -oCMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
+        clang version 21.0.0git (https:/github.com/llvm/llvm-project 23e3cbb2e82b62586266116c8ab77ce68e412cf8)
+        Target: wasm32-unknown-emscripten
+        Thread model: posix
+        InstalledDir: /Users/derekgusatto/Documents/Git/emsdk/upstream/bin
+         (in-process)
+         "/Users/derekgusatto/Documents/Git/emsdk/upstream/bin/clang-21" -cc1 -triple wasm32-unknown-emscripten -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mframe-pointer=none -ffp-contract=on -fno-rounding-math -mconstructor-aliases -target-cpu generic -fvisibility=hidden -debugger-tuning=gdb -fdebug-compilation-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-VVelmj -v -fcoverage-compilation-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-VVelmj -resource-dir /Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21 -dependency-file CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o -sys-header-deps -D EMSCRIPTEN -isysroot /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot -internal-isystem /Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21/include -internal-isystem /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/wasm32-emscripten -internal-isystem /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include -ferror-limit 19 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fignore-exceptions -iwithsysroot/include/fakesdl -iwithsysroot/include/compat -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr -o CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
+        clang -cc1 version 21.0.0git based upon LLVM 21.0.0git default target x86_64-apple-darwin24.5.0
+        ignoring nonexistent directory "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/wasm32-emscripten"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/fakesdl
+         /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/compat
+         /Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21/include
+         /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include
+        End of search list.
+        Linking C executable cmTC_1c40e.js
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1c40e.dir/link.txt --verbose=1
+         /Users/derekgusatto/Documents/Git/emsdk/upstream/bin/clang --version
+         /Users/derekgusatto/Documents/Git/emsdk/upstream/bin/wasm-ld -o cmTC_1c40e.wasm CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o -L/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten -L/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/src/lib -lGL-getprocaddr -lal -lhtml5 -lstubs-debug -lnoexit -lc-debug -ldlmalloc-debug -lcompiler_rt -lc++-noexcept -lc++abi-debug-noexcept -lsockets -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr /var/folders/fh/zw944swx6xl51vdwny73f6j80000gn/T/tmpr1szg50ilibemscripten_js_symbols.so --strip-debug --export=emscripten_stack_get_end --export=emscripten_stack_get_free --export=emscripten_stack_get_base --export=emscripten_stack_get_current --export=emscripten_stack_init --export=_emscripten_stack_alloc --export=__wasm_call_ctors --export=_emscripten_stack_restore --export-if-defined=__start_em_asm --export-if-defined=__stop_em_asm --export-if-defined=__start_em_lib_deps --export-if-defined=__stop_em_lib_deps --export-if-defined=__start_em_js --export-if-defined=__stop_em_js --export-if-defined=main --export-if-defined=__main_argc_argv --export-if-defined=fflush --export-table -z stack-size=65536 --no-growable-memory --initial-heap=16777216 --no-entry --stack-first --table-base=1
+         /Users/derekgusatto/Documents/Git/emsdk/upstream/bin/llvm-objcopy cmTC_1c40e.wasm cmTC_1c40e.wasm '--remove-section=.debug*' --remove-section=producers --remove-section=name
+         /Users/derekgusatto/Documents/Git/emsdk/node/20.18.0_64bit/bin/node /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/tools/compiler.mjs -
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc  -v @CMakeFiles/cmTC_1c40e.dir/objects1.rsp -o cmTC_1c40e.js
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:191 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/fakesdl]
+          add: [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/compat]
+          add: [/Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21/include]
+          add: [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include]
+        end of search list found
+        collapse include dir [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/fakesdl] ==> [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/fakesdl]
+        collapse include dir [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/compat] ==> [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/compat]
+        collapse include dir [/Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21/include] ==> [/Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21/include]
+        collapse include dir [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include] ==> [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include]
+        implicit include dirs: [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/fakesdl;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/compat;/Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21/include;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:227 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: '/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-VVelmj']
+        ignore line: []
+        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_1c40e/fast]
+        ignore line: [/Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_1c40e.dir/build.make CMakeFiles/cmTC_1c40e.dir/build]
+        ignore line: [Building C object CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc   -v -MD -MT CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [ /Users/derekgusatto/Documents/Git/emsdk/upstream/bin/clang -target wasm32-unknown-emscripten -fignore-exceptions -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr --sysroot=/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot -DEMSCRIPTEN -Xclang -iwithsysroot/include/fakesdl -Xclang -iwithsysroot/include/compat -v -MD -MT CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o.d -oCMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [clang version 21.0.0git (https:/github.com/llvm/llvm-project 23e3cbb2e82b62586266116c8ab77ce68e412cf8)]
+        ignore line: [Target: wasm32-unknown-emscripten]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Users/derekgusatto/Documents/Git/emsdk/upstream/bin]
+        ignore line: [ (in-process)]
+        ignore line: [ "/Users/derekgusatto/Documents/Git/emsdk/upstream/bin/clang-21" -cc1 -triple wasm32-unknown-emscripten -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mframe-pointer=none -ffp-contract=on -fno-rounding-math -mconstructor-aliases -target-cpu generic -fvisibility=hidden -debugger-tuning=gdb -fdebug-compilation-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-VVelmj -v -fcoverage-compilation-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-VVelmj -resource-dir /Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21 -dependency-file CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o -sys-header-deps -D EMSCRIPTEN -isysroot /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot -internal-isystem /Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21/include -internal-isystem /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/wasm32-emscripten -internal-isystem /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include -ferror-limit 19 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fignore-exceptions -iwithsysroot/include/fakesdl -iwithsysroot/include/compat -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr -o CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [clang -cc1 version 21.0.0git based upon LLVM 21.0.0git default target x86_64-apple-darwin24.5.0]
+        ignore line: [ignoring nonexistent directory "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/wasm32-emscripten"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/fakesdl]
+        ignore line: [ /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/compat]
+        ignore line: [ /Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21/include]
+        ignore line: [ /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include]
+        ignore line: [End of search list.]
+        ignore line: [Linking C executable cmTC_1c40e.js]
+        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1c40e.dir/link.txt --verbose=1]
+        ignore line: [ /Users/derekgusatto/Documents/Git/emsdk/upstream/bin/clang --version]
+        link line: [ /Users/derekgusatto/Documents/Git/emsdk/upstream/bin/wasm-ld -o cmTC_1c40e.wasm CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o -L/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten -L/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/src/lib -lGL-getprocaddr -lal -lhtml5 -lstubs-debug -lnoexit -lc-debug -ldlmalloc-debug -lcompiler_rt -lc++-noexcept -lc++abi-debug-noexcept -lsockets -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr /var/folders/fh/zw944swx6xl51vdwny73f6j80000gn/T/tmpr1szg50ilibemscripten_js_symbols.so --strip-debug --export=emscripten_stack_get_end --export=emscripten_stack_get_free --export=emscripten_stack_get_base --export=emscripten_stack_get_current --export=emscripten_stack_init --export=_emscripten_stack_alloc --export=__wasm_call_ctors --export=_emscripten_stack_restore --export-if-defined=__start_em_asm --export-if-defined=__stop_em_asm --export-if-defined=__start_em_lib_deps --export-if-defined=__stop_em_lib_deps --export-if-defined=__start_em_js --export-if-defined=__stop_em_js --export-if-defined=main --export-if-defined=__main_argc_argv --export-if-defined=fflush --export-table -z stack-size=65536 --no-growable-memory --initial-heap=16777216 --no-entry --stack-first --table-base=1]
+          arg [/Users/derekgusatto/Documents/Git/emsdk/upstream/bin/wasm-ld] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_1c40e.wasm] ==> ignore
+          arg [CMakeFiles/cmTC_1c40e.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-L/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten] ==> dir [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten]
+          arg [-L/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/src/lib] ==> dir [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/src/lib]
+          arg [-lGL-getprocaddr] ==> lib [GL-getprocaddr]
+          arg [-lal] ==> lib [al]
+          arg [-lhtml5] ==> lib [html5]
+          arg [-lstubs-debug] ==> lib [stubs-debug]
+          arg [-lnoexit] ==> lib [noexit]
+          arg [-lc-debug] ==> lib [c-debug]
+          arg [-ldlmalloc-debug] ==> lib [dlmalloc-debug]
+          arg [-lcompiler_rt] ==> lib [compiler_rt]
+          arg [-lc++-noexcept] ==> lib [c++-noexcept]
+          arg [-lc++abi-debug-noexcept] ==> lib [c++abi-debug-noexcept]
+          arg [-lsockets] ==> lib [sockets]
+          arg [-mllvm] ==> ignore
+          arg [-combiner-global-alias-analysis=false] ==> ignore
+          arg [-mllvm] ==> ignore
+          arg [-enable-emscripten-sjlj] ==> ignore
+          arg [-mllvm] ==> ignore
+          arg [-disable-lsr] ==> ignore
+          arg [/var/folders/fh/zw944swx6xl51vdwny73f6j80000gn/T/tmpr1szg50ilibemscripten_js_symbols.so] ==> ignore
+          arg [--strip-debug] ==> ignore
+          arg [--export=emscripten_stack_get_end] ==> ignore
+          arg [--export=emscripten_stack_get_free] ==> ignore
+          arg [--export=emscripten_stack_get_base] ==> ignore
+          arg [--export=emscripten_stack_get_current] ==> ignore
+          arg [--export=emscripten_stack_init] ==> ignore
+          arg [--export=_emscripten_stack_alloc] ==> ignore
+          arg [--export=__wasm_call_ctors] ==> ignore
+          arg [--export=_emscripten_stack_restore] ==> ignore
+          arg [--export-if-defined=__start_em_asm] ==> ignore
+          arg [--export-if-defined=__stop_em_asm] ==> ignore
+          arg [--export-if-defined=__start_em_lib_deps] ==> ignore
+          arg [--export-if-defined=__stop_em_lib_deps] ==> ignore
+          arg [--export-if-defined=__start_em_js] ==> ignore
+          arg [--export-if-defined=__stop_em_js] ==> ignore
+          arg [--export-if-defined=main] ==> ignore
+          arg [--export-if-defined=__main_argc_argv] ==> ignore
+          arg [--export-if-defined=fflush] ==> ignore
+          arg [--export-table] ==> ignore
+          arg [-zstack-size=65536] ==> ignore
+          arg [--no-growable-memory] ==> ignore
+          arg [--initial-heap=16777216] ==> ignore
+          arg [--no-entry] ==> ignore
+          arg [--stack-first] ==> ignore
+          arg [--table-base=1] ==> ignore
+        ignore line: [ /Users/derekgusatto/Documents/Git/emsdk/upstream/bin/llvm-objcopy cmTC_1c40e.wasm cmTC_1c40e.wasm '--remove-section=.debug*' --remove-section=producers --remove-section=name]
+        ignore line: [ /Users/derekgusatto/Documents/Git/emsdk/node/20.18.0_64bit/bin/node /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/tools/compiler.mjs -]
+        ignore line: [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc  -v @CMakeFiles/cmTC_1c40e.dir/objects1.rsp -o cmTC_1c40e.js]
+        ignore line: []
+        ignore line: []
+        collapse library dir [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten] ==> [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten]
+        collapse library dir [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/src/lib] ==> [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/src/lib]
+        implicit libs: [GL-getprocaddr;al;html5;stubs-debug;noexit;c-debug;dlmalloc-debug;compiler_rt;c++-noexcept;c++abi-debug-noexcept;sockets]
+        implicit objs: []
+        implicit dirs: [/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/src/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CheckIncludeFile.cmake:99 (try_compile)"
+      - "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules/CheckTypeSize.cmake:223 (check_include_file)"
+      - "CMakeLists.txt:462 (check_type_size)"
+    checks:
+      - "Looking for sys/types.h"
+    directories:
+      source: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-h12zj3"
+      binary: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-h12zj3"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emscan-deps"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules"
+    buildResult:
+      variable: "HAVE_SYS_TYPES_H"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-h12zj3'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_2ed23/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_2ed23.dir/build.make CMakeFiles/cmTC_2ed23.dir/build
+        Building C object CMakeFiles/cmTC_2ed23.dir/CheckIncludeFile.c.o
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc    -MD -MT CMakeFiles/cmTC_2ed23.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_2ed23.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_2ed23.dir/CheckIncludeFile.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-h12zj3/CheckIncludeFile.c
+        Linking C executable cmTC_2ed23.js
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2ed23.dir/link.txt --verbose=1
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc @CMakeFiles/cmTC_2ed23.dir/objects1.rsp -o cmTC_2ed23.js
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CheckIncludeFile.cmake:99 (try_compile)"
+      - "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules/CheckTypeSize.cmake:224 (check_include_file)"
+      - "CMakeLists.txt:462 (check_type_size)"
+    checks:
+      - "Looking for stdint.h"
+    directories:
+      source: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-pgALcX"
+      binary: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-pgALcX"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emscan-deps"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules"
+    buildResult:
+      variable: "HAVE_STDINT_H"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-pgALcX'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_43c22/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_43c22.dir/build.make CMakeFiles/cmTC_43c22.dir/build
+        Building C object CMakeFiles/cmTC_43c22.dir/CheckIncludeFile.c.o
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc    -MD -MT CMakeFiles/cmTC_43c22.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_43c22.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_43c22.dir/CheckIncludeFile.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-pgALcX/CheckIncludeFile.c
+        Linking C executable cmTC_43c22.js
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_43c22.dir/link.txt --verbose=1
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc @CMakeFiles/cmTC_43c22.dir/objects1.rsp -o cmTC_43c22.js
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CheckIncludeFile.cmake:99 (try_compile)"
+      - "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules/CheckTypeSize.cmake:225 (check_include_file)"
+      - "CMakeLists.txt:462 (check_type_size)"
+    checks:
+      - "Looking for stddef.h"
+    directories:
+      source: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-UyKDHo"
+      binary: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-UyKDHo"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emscan-deps"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules"
+    buildResult:
+      variable: "HAVE_STDDEF_H"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-UyKDHo'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_a4d82/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_a4d82.dir/build.make CMakeFiles/cmTC_a4d82.dir/build
+        Building C object CMakeFiles/cmTC_a4d82.dir/CheckIncludeFile.c.o
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc    -MD -MT CMakeFiles/cmTC_a4d82.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_a4d82.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_a4d82.dir/CheckIncludeFile.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-UyKDHo/CheckIncludeFile.c
+        Linking C executable cmTC_a4d82.js
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a4d82.dir/link.txt --verbose=1
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc @CMakeFiles/cmTC_a4d82.dir/objects1.rsp -o cmTC_a4d82.js
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules/CheckTypeSize.cmake:114 (try_compile)"
+      - "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules/CheckTypeSize.cmake:239 (__check_type_size_impl)"
+      - "CMakeLists.txt:462 (check_type_size)"
+    directories:
+      source: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeTmp"
+      binary: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emscan-deps"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules"
+    buildResult:
+      variable: "HAVE_SIZE_T"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_baa19/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_baa19.dir/build.make CMakeFiles/cmTC_baa19.dir/build
+        Building C object CMakeFiles/cmTC_baa19.dir/SIZE_T.c.o
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc    -MD -MT CMakeFiles/cmTC_baa19.dir/SIZE_T.c.o -MF CMakeFiles/cmTC_baa19.dir/SIZE_T.c.o.d -o CMakeFiles/cmTC_baa19.dir/SIZE_T.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CheckTypeSize/SIZE_T.c
+        Linking C executable cmTC_baa19.js
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_baa19.dir/link.txt --verbose=1
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc @CMakeFiles/cmTC_baa19.dir/objects1.rsp -o cmTC_baa19.js @CMakeFiles/cmTC_baa19.dir/linkLibs.rsp
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules/CheckTypeSize.cmake:114 (try_compile)"
+      - "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules/CheckTypeSize.cmake:239 (__check_type_size_impl)"
+      - "CMakeLists.txt:463 (check_type_size)"
+    directories:
+      source: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeTmp"
+      binary: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emscan-deps"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules"
+    buildResult:
+      variable: "HAVE_UNSIGNED_LONG"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_700d0/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_700d0.dir/build.make CMakeFiles/cmTC_700d0.dir/build
+        Building C object CMakeFiles/cmTC_700d0.dir/UNSIGNED_LONG.c.o
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc    -MD -MT CMakeFiles/cmTC_700d0.dir/UNSIGNED_LONG.c.o -MF CMakeFiles/cmTC_700d0.dir/UNSIGNED_LONG.c.o.d -o CMakeFiles/cmTC_700d0.dir/UNSIGNED_LONG.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CheckTypeSize/UNSIGNED_LONG.c
+        Linking C executable cmTC_700d0.js
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_700d0.dir/link.txt --verbose=1
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc @CMakeFiles/cmTC_700d0.dir/objects1.rsp -o cmTC_700d0.js @CMakeFiles/cmTC_700d0.dir/linkLibs.rsp
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckCSourceCompiles.cmake:58 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:466 (check_c_source_compiles)"
+    checks:
+      - "Performing Test HAVE_BUILTIN_CTZL"
+    directories:
+      source: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-6hnvXb"
+      binary: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-6hnvXb"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emscan-deps"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules"
+    buildResult:
+      variable: "HAVE_BUILTIN_CTZL"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-6hnvXb'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_c4324/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_c4324.dir/build.make CMakeFiles/cmTC_c4324.dir/build
+        Building C object CMakeFiles/cmTC_c4324.dir/src.c.o
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc -DHAVE_BUILTIN_CTZL   -MD -MT CMakeFiles/cmTC_c4324.dir/src.c.o -MF CMakeFiles/cmTC_c4324.dir/src.c.o.d -o CMakeFiles/cmTC_c4324.dir/src.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-6hnvXb/src.c
+        Linking C executable cmTC_c4324.js
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c4324.dir/link.txt --verbose=1
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc @CMakeFiles/cmTC_c4324.dir/objects1.rsp -o cmTC_c4324.js
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckCSourceCompiles.cmake:58 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:501 (check_c_source_compiles)"
+    checks:
+      - "Performing Test HIDDEN_WORKS"
+    directories:
+      source: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-q3Co5i"
+      binary: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-q3Co5i"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emscan-deps"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules"
+    buildResult:
+      variable: "HIDDEN_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-q3Co5i'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_6fa4f/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_6fa4f.dir/build.make CMakeFiles/cmTC_6fa4f.dir/build
+        Building C object CMakeFiles/cmTC_6fa4f.dir/src.c.o
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc -DHIDDEN_WORKS   -MD -MT CMakeFiles/cmTC_6fa4f.dir/src.c.o -MF CMakeFiles/cmTC_6fa4f.dir/src.c.o.d -o CMakeFiles/cmTC_6fa4f.dir/src.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-q3Co5i/src.c
+        Linking C executable cmTC_6fa4f.js
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6fa4f.dir/link.txt --verbose=1
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc @CMakeFiles/cmTC_6fa4f.dir/objects1.rsp -o cmTC_6fa4f.js
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckCSourceCompiles.cmake:58 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:525 (check_c_source_compiles)"
+    checks:
+      - "Performing Test INLINE_WORKS"
+    directories:
+      source: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-ADQUV9"
+      binary: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-ADQUV9"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emscan-deps"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules"
+    buildResult:
+      variable: "INLINE_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-ADQUV9'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_2f860/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_2f860.dir/build.make CMakeFiles/cmTC_2f860.dir/build
+        Building C object CMakeFiles/cmTC_2f860.dir/src.c.o
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc -DINLINE_WORKS   -MD -MT CMakeFiles/cmTC_2f860.dir/src.c.o -MF CMakeFiles/cmTC_2f860.dir/src.c.o.d -o CMakeFiles/cmTC_2f860.dir/src.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-ADQUV9/src.c
+        Linking C executable cmTC_2f860.js
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2f860.dir/link.txt --verbose=1
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc @CMakeFiles/cmTC_2f860.dir/objects1.rsp -o cmTC_2f860.js
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckCSourceCompiles.cmake:58 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:542 (check_c_source_compiles)"
+    checks:
+      - "Performing Test HAVE_THREAD_LOCAL"
+    directories:
+      source: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-zFujQd"
+      binary: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-zFujQd"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emscan-deps"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules"
+    buildResult:
+      variable: "HAVE_THREAD_LOCAL"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-zFujQd'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_00132/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_00132.dir/build.make CMakeFiles/cmTC_00132.dir/build
+        Building C object CMakeFiles/cmTC_00132.dir/src.c.o
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc -DHAVE_THREAD_LOCAL   -MD -MT CMakeFiles/cmTC_00132.dir/src.c.o -MF CMakeFiles/cmTC_00132.dir/src.c.o.d -o CMakeFiles/cmTC_00132.dir/src.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-zFujQd/src.c
+        Linking C executable cmTC_00132.js
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_00132.dir/link.txt --verbose=1
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc @CMakeFiles/cmTC_00132.dir/objects1.rsp -o cmTC_00132.js
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckCSourceCompiles.cmake:58 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:555 (check_c_source_compiles)"
+    checks:
+      - "Performing Test HAVE_VERSION_SCRIPT"
+    directories:
+      source: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-GFFx1q"
+      binary: "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-GFFx1q"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emscan-deps"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules;/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cmake/Modules"
+    buildResult:
+      variable: "HAVE_VERSION_SCRIPT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-GFFx1q'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_45d33/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_45d33.dir/build.make CMakeFiles/cmTC_45d33.dir/build
+        Building C object CMakeFiles/cmTC_45d33.dir/src.c.o
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc -DHAVE_VERSION_SCRIPT  -Wl,--version-script,/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/conftest.map -MD -MT CMakeFiles/cmTC_45d33.dir/src.c.o -MF CMakeFiles/cmTC_45d33.dir/src.c.o.d -o CMakeFiles/cmTC_45d33.dir/src.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/CMakeFiles/CMakeScratch/TryCompile-GFFx1q/src.c
+        clang: warning: -Wl,--version-script,/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/conftest.map: 'linker' input unused [-Wunused-command-line-argument]
+        Linking C executable cmTC_45d33.js
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_45d33.dir/link.txt --verbose=1
+        emcc: warning: ignoring unsupported linker flag: `--version-script` [-Wlinkflags]
+        /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc  -Wl,--version-script,/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/conftest.map @CMakeFiles/cmTC_45d33.dir/objects1.rsp -o cmTC_45d33.js
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CheckLanguage.cmake:140 (message)"
+      - "simd/CMakeLists.txt:46 (check_language)"
+    checks:
+      - "Looking for a ASM_NASM compiler"
+    message: |
+      Looking for a ASM_NASM compiler failed with the following output:
+      -- The ASM_NASM compiler identification is unknown
+      -- Didn't find assembler
+      CMake Error at CMakeLists.txt:3 (project):
+        No CMAKE_ASM_NASM_COMPILER could be found.
+      
+        Tell CMake where to find the compiler by setting either the environment
+        variable "ASM_NASM" or the CMake cache entry CMAKE_ASM_NASM_COMPILER to the
+        full path to the compiler, or to the compiler name if it is in the PATH.
+      
+      
+      -- Configuring incomplete, errors occurred!
+      
+...

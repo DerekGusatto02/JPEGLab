@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo
+CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo/build
+CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/cjpeg12-static.dir/depend.make
@@ -74,18 +74,18 @@ CMakeFiles/cjpeg12-static.dir/codegen:
 
 CMakeFiles/cjpeg12-static.dir/src/rdppm.c.o: CMakeFiles/cjpeg12-static.dir/flags.make
 CMakeFiles/cjpeg12-static.dir/src/rdppm.c.o: CMakeFiles/cjpeg12-static.dir/includes_C.rsp
-CMakeFiles/cjpeg12-static.dir/src/rdppm.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/rdppm.c
+CMakeFiles/cjpeg12-static.dir/src/rdppm.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/rdppm.c
 CMakeFiles/cjpeg12-static.dir/src/rdppm.c.o: CMakeFiles/cjpeg12-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/cjpeg12-static.dir/src/rdppm.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/cjpeg12-static.dir/src/rdppm.c.o -MF CMakeFiles/cjpeg12-static.dir/src/rdppm.c.o.d -o CMakeFiles/cjpeg12-static.dir/src/rdppm.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/rdppm.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/cjpeg12-static.dir/src/rdppm.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/cjpeg12-static.dir/src/rdppm.c.o -MF CMakeFiles/cjpeg12-static.dir/src/rdppm.c.o.d -o CMakeFiles/cjpeg12-static.dir/src/rdppm.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/rdppm.c
 
 CMakeFiles/cjpeg12-static.dir/src/rdppm.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/cjpeg12-static.dir/src/rdppm.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/rdppm.c > CMakeFiles/cjpeg12-static.dir/src/rdppm.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/rdppm.c > CMakeFiles/cjpeg12-static.dir/src/rdppm.c.i
 
 CMakeFiles/cjpeg12-static.dir/src/rdppm.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/cjpeg12-static.dir/src/rdppm.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/rdppm.c -o CMakeFiles/cjpeg12-static.dir/src/rdppm.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/rdppm.c -o CMakeFiles/cjpeg12-static.dir/src/rdppm.c.s
 
 cjpeg12-static: CMakeFiles/cjpeg12-static.dir/src/rdppm.c.o
 cjpeg12-static: CMakeFiles/cjpeg12-static.dir/build.make
@@ -100,6 +100,6 @@ CMakeFiles/cjpeg12-static.dir/clean:
 .PHONY : CMakeFiles/cjpeg12-static.dir/clean
 
 CMakeFiles/cjpeg12-static.dir/depend:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles/cjpeg12-static.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles/cjpeg12-static.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/cjpeg12-static.dir/depend
 

@@ -1,10 +1,10 @@
 # This code is from the CMake FAQ
 
-if (NOT EXISTS "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/install_manifest.txt")
-  message(FATAL_ERROR "Cannot find install manifest: \"/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/install_manifest.txt\"")
-endif(NOT EXISTS "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/install_manifest.txt")
+if (NOT EXISTS "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/install_manifest.txt")
+  message(FATAL_ERROR "Cannot find install manifest: \"/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/install_manifest.txt\"")
+endif(NOT EXISTS "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/install_manifest.txt")
 
-file(READ "/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/install_manifest.txt" files)
+file(READ "/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/install_manifest.txt" files)
 string(REGEX REPLACE "\n" ";" files "${files}")
 list(REVERSE files)
 foreach (file ${files})

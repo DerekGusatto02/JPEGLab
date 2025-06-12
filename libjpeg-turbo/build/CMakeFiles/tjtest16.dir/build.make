@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo
+CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo/build
+CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build
 
 # Utility rule file for tjtest16.
 
@@ -66,21 +66,21 @@ include CMakeFiles/tjtest16.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/tjtest16.dir/progress.make
 
-CMakeFiles/tjtest16: /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+CMakeFiles/tjtest16: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
 CMakeFiles/tjtest16: test/tjbenchtest
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=2 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=3 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=4 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=5 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=6 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=7 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=9 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=10 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=11 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=13 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=14 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=15 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=16 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=2 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=3 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=4 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=5 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=6 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=7 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=9 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=10 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=11 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=13 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=14 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=15 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=16 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
 
 CMakeFiles/tjtest16.dir/codegen:
 .PHONY : CMakeFiles/tjtest16.dir/codegen
@@ -98,6 +98,6 @@ CMakeFiles/tjtest16.dir/clean:
 .PHONY : CMakeFiles/tjtest16.dir/clean
 
 CMakeFiles/tjtest16.dir/depend:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles/tjtest16.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles/tjtest16.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/tjtest16.dir/depend
 

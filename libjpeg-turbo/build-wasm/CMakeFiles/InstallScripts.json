@@ -1,0 +1,10 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/cmake_install.cmake",
+		"/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/simd/cmake_install.cmake",
+		"/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/sharedlib/cmake_install.cmake",
+		"/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build-wasm/src/md5/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

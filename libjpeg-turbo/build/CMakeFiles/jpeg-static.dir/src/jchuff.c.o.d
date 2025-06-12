@@ -1,8 +1,8 @@
 CMakeFiles/jpeg-static.dir/src/jchuff.c.o: \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jchuff.c \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jinclude.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/jconfig.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/jconfigint.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jchuff.c \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jinclude.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/jconfig.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/jconfigint.h \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21/include/stddef.h \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/stddef.h \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21/include/__stddef_header_macro.h \
@@ -27,12 +27,12 @@ CMakeFiles/jpeg-static.dir/src/jchuff.c.o: \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/strings.h \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/errno.h \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/bits/errno.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jpeglib.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jmorecfg.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jpegint.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jerror.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jchuff.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jpeglib.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jmorecfg.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jpegint.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jerror.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jchuff.h \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21/include/limits.h \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/limits.h \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/bits/limits.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jpeg_nbits.h
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jpeg_nbits.h

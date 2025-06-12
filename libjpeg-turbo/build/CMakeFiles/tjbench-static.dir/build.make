@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo
+CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo/build
+CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/tjbench-static.dir/depend.make
@@ -74,33 +74,33 @@ CMakeFiles/tjbench-static.dir/codegen:
 
 CMakeFiles/tjbench-static.dir/src/tjbench.c.o: CMakeFiles/tjbench-static.dir/flags.make
 CMakeFiles/tjbench-static.dir/src/tjbench.c.o: CMakeFiles/tjbench-static.dir/includes_C.rsp
-CMakeFiles/tjbench-static.dir/src/tjbench.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjbench.c
+CMakeFiles/tjbench-static.dir/src/tjbench.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjbench.c
 CMakeFiles/tjbench-static.dir/src/tjbench.c.o: CMakeFiles/tjbench-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/tjbench-static.dir/src/tjbench.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tjbench-static.dir/src/tjbench.c.o -MF CMakeFiles/tjbench-static.dir/src/tjbench.c.o.d -o CMakeFiles/tjbench-static.dir/src/tjbench.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjbench.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/tjbench-static.dir/src/tjbench.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tjbench-static.dir/src/tjbench.c.o -MF CMakeFiles/tjbench-static.dir/src/tjbench.c.o.d -o CMakeFiles/tjbench-static.dir/src/tjbench.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjbench.c
 
 CMakeFiles/tjbench-static.dir/src/tjbench.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tjbench-static.dir/src/tjbench.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjbench.c > CMakeFiles/tjbench-static.dir/src/tjbench.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjbench.c > CMakeFiles/tjbench-static.dir/src/tjbench.c.i
 
 CMakeFiles/tjbench-static.dir/src/tjbench.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tjbench-static.dir/src/tjbench.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjbench.c -o CMakeFiles/tjbench-static.dir/src/tjbench.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjbench.c -o CMakeFiles/tjbench-static.dir/src/tjbench.c.s
 
 CMakeFiles/tjbench-static.dir/src/tjutil.c.o: CMakeFiles/tjbench-static.dir/flags.make
 CMakeFiles/tjbench-static.dir/src/tjutil.c.o: CMakeFiles/tjbench-static.dir/includes_C.rsp
-CMakeFiles/tjbench-static.dir/src/tjutil.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjutil.c
+CMakeFiles/tjbench-static.dir/src/tjutil.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjutil.c
 CMakeFiles/tjbench-static.dir/src/tjutil.c.o: CMakeFiles/tjbench-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/tjbench-static.dir/src/tjutil.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tjbench-static.dir/src/tjutil.c.o -MF CMakeFiles/tjbench-static.dir/src/tjutil.c.o.d -o CMakeFiles/tjbench-static.dir/src/tjutil.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjutil.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/tjbench-static.dir/src/tjutil.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tjbench-static.dir/src/tjutil.c.o -MF CMakeFiles/tjbench-static.dir/src/tjutil.c.o.d -o CMakeFiles/tjbench-static.dir/src/tjutil.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjutil.c
 
 CMakeFiles/tjbench-static.dir/src/tjutil.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tjbench-static.dir/src/tjutil.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjutil.c > CMakeFiles/tjbench-static.dir/src/tjutil.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjutil.c > CMakeFiles/tjbench-static.dir/src/tjutil.c.i
 
 CMakeFiles/tjbench-static.dir/src/tjutil.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tjbench-static.dir/src/tjutil.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjutil.c -o CMakeFiles/tjbench-static.dir/src/tjutil.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjutil.c -o CMakeFiles/tjbench-static.dir/src/tjutil.c.s
 
 # Object files for target tjbench-static
 tjbench__static_OBJECTS = \
@@ -117,7 +117,7 @@ tjbench-static.js: libturbojpeg.a
 tjbench-static.js: CMakeFiles/tjbench-static.dir/linkLibs.rsp
 tjbench-static.js: CMakeFiles/tjbench-static.dir/objects1.rsp
 tjbench-static.js: CMakeFiles/tjbench-static.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable tjbench-static.js"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable tjbench-static.js"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tjbench-static.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -129,6 +129,6 @@ CMakeFiles/tjbench-static.dir/clean:
 .PHONY : CMakeFiles/tjbench-static.dir/clean
 
 CMakeFiles/tjbench-static.dir/depend:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles/tjbench-static.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles/tjbench-static.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/tjbench-static.dir/depend
 

@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo
+CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo/build
+CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/jpeg16-static.dir/depend.make
@@ -74,228 +74,228 @@ CMakeFiles/jpeg16-static.dir/codegen:
 
 CMakeFiles/jpeg16-static.dir/src/jcapistd.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jcapistd.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jcapistd.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcapistd.c
+CMakeFiles/jpeg16-static.dir/src/jcapistd.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcapistd.c
 CMakeFiles/jpeg16-static.dir/src/jcapistd.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/jpeg16-static.dir/src/jcapistd.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jcapistd.c.o -MF CMakeFiles/jpeg16-static.dir/src/jcapistd.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jcapistd.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcapistd.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/jpeg16-static.dir/src/jcapistd.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jcapistd.c.o -MF CMakeFiles/jpeg16-static.dir/src/jcapistd.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jcapistd.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcapistd.c
 
 CMakeFiles/jpeg16-static.dir/src/jcapistd.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jcapistd.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcapistd.c > CMakeFiles/jpeg16-static.dir/src/jcapistd.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcapistd.c > CMakeFiles/jpeg16-static.dir/src/jcapistd.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jcapistd.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jcapistd.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcapistd.c -o CMakeFiles/jpeg16-static.dir/src/jcapistd.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcapistd.c -o CMakeFiles/jpeg16-static.dir/src/jcapistd.c.s
 
 CMakeFiles/jpeg16-static.dir/src/jccolor.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jccolor.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jccolor.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jccolor.c
+CMakeFiles/jpeg16-static.dir/src/jccolor.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jccolor.c
 CMakeFiles/jpeg16-static.dir/src/jccolor.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/jpeg16-static.dir/src/jccolor.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jccolor.c.o -MF CMakeFiles/jpeg16-static.dir/src/jccolor.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jccolor.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jccolor.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/jpeg16-static.dir/src/jccolor.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jccolor.c.o -MF CMakeFiles/jpeg16-static.dir/src/jccolor.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jccolor.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jccolor.c
 
 CMakeFiles/jpeg16-static.dir/src/jccolor.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jccolor.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jccolor.c > CMakeFiles/jpeg16-static.dir/src/jccolor.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jccolor.c > CMakeFiles/jpeg16-static.dir/src/jccolor.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jccolor.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jccolor.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jccolor.c -o CMakeFiles/jpeg16-static.dir/src/jccolor.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jccolor.c -o CMakeFiles/jpeg16-static.dir/src/jccolor.c.s
 
 CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcdiffct.c
+CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcdiffct.c
 CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.o -MF CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcdiffct.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.o -MF CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcdiffct.c
 
 CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcdiffct.c > CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcdiffct.c > CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcdiffct.c -o CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcdiffct.c -o CMakeFiles/jpeg16-static.dir/src/jcdiffct.c.s
 
 CMakeFiles/jpeg16-static.dir/src/jclossls.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jclossls.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jclossls.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jclossls.c
+CMakeFiles/jpeg16-static.dir/src/jclossls.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jclossls.c
 CMakeFiles/jpeg16-static.dir/src/jclossls.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/jpeg16-static.dir/src/jclossls.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jclossls.c.o -MF CMakeFiles/jpeg16-static.dir/src/jclossls.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jclossls.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jclossls.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/jpeg16-static.dir/src/jclossls.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jclossls.c.o -MF CMakeFiles/jpeg16-static.dir/src/jclossls.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jclossls.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jclossls.c
 
 CMakeFiles/jpeg16-static.dir/src/jclossls.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jclossls.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jclossls.c > CMakeFiles/jpeg16-static.dir/src/jclossls.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jclossls.c > CMakeFiles/jpeg16-static.dir/src/jclossls.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jclossls.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jclossls.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jclossls.c -o CMakeFiles/jpeg16-static.dir/src/jclossls.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jclossls.c -o CMakeFiles/jpeg16-static.dir/src/jclossls.c.s
 
 CMakeFiles/jpeg16-static.dir/src/jcmainct.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jcmainct.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jcmainct.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcmainct.c
+CMakeFiles/jpeg16-static.dir/src/jcmainct.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcmainct.c
 CMakeFiles/jpeg16-static.dir/src/jcmainct.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/jpeg16-static.dir/src/jcmainct.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jcmainct.c.o -MF CMakeFiles/jpeg16-static.dir/src/jcmainct.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jcmainct.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcmainct.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/jpeg16-static.dir/src/jcmainct.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jcmainct.c.o -MF CMakeFiles/jpeg16-static.dir/src/jcmainct.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jcmainct.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcmainct.c
 
 CMakeFiles/jpeg16-static.dir/src/jcmainct.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jcmainct.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcmainct.c > CMakeFiles/jpeg16-static.dir/src/jcmainct.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcmainct.c > CMakeFiles/jpeg16-static.dir/src/jcmainct.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jcmainct.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jcmainct.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcmainct.c -o CMakeFiles/jpeg16-static.dir/src/jcmainct.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcmainct.c -o CMakeFiles/jpeg16-static.dir/src/jcmainct.c.s
 
 CMakeFiles/jpeg16-static.dir/src/jcprepct.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jcprepct.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jcprepct.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcprepct.c
+CMakeFiles/jpeg16-static.dir/src/jcprepct.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcprepct.c
 CMakeFiles/jpeg16-static.dir/src/jcprepct.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/jpeg16-static.dir/src/jcprepct.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jcprepct.c.o -MF CMakeFiles/jpeg16-static.dir/src/jcprepct.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jcprepct.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcprepct.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/jpeg16-static.dir/src/jcprepct.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jcprepct.c.o -MF CMakeFiles/jpeg16-static.dir/src/jcprepct.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jcprepct.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcprepct.c
 
 CMakeFiles/jpeg16-static.dir/src/jcprepct.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jcprepct.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcprepct.c > CMakeFiles/jpeg16-static.dir/src/jcprepct.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcprepct.c > CMakeFiles/jpeg16-static.dir/src/jcprepct.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jcprepct.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jcprepct.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcprepct.c -o CMakeFiles/jpeg16-static.dir/src/jcprepct.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcprepct.c -o CMakeFiles/jpeg16-static.dir/src/jcprepct.c.s
 
 CMakeFiles/jpeg16-static.dir/src/jcsample.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jcsample.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jcsample.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcsample.c
+CMakeFiles/jpeg16-static.dir/src/jcsample.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcsample.c
 CMakeFiles/jpeg16-static.dir/src/jcsample.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/jpeg16-static.dir/src/jcsample.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jcsample.c.o -MF CMakeFiles/jpeg16-static.dir/src/jcsample.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jcsample.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcsample.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/jpeg16-static.dir/src/jcsample.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jcsample.c.o -MF CMakeFiles/jpeg16-static.dir/src/jcsample.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jcsample.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcsample.c
 
 CMakeFiles/jpeg16-static.dir/src/jcsample.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jcsample.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcsample.c > CMakeFiles/jpeg16-static.dir/src/jcsample.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcsample.c > CMakeFiles/jpeg16-static.dir/src/jcsample.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jcsample.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jcsample.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jcsample.c -o CMakeFiles/jpeg16-static.dir/src/jcsample.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jcsample.c -o CMakeFiles/jpeg16-static.dir/src/jcsample.c.s
 
 CMakeFiles/jpeg16-static.dir/src/jdapistd.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jdapistd.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jdapistd.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdapistd.c
+CMakeFiles/jpeg16-static.dir/src/jdapistd.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdapistd.c
 CMakeFiles/jpeg16-static.dir/src/jdapistd.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/jpeg16-static.dir/src/jdapistd.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jdapistd.c.o -MF CMakeFiles/jpeg16-static.dir/src/jdapistd.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jdapistd.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdapistd.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/jpeg16-static.dir/src/jdapistd.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jdapistd.c.o -MF CMakeFiles/jpeg16-static.dir/src/jdapistd.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jdapistd.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdapistd.c
 
 CMakeFiles/jpeg16-static.dir/src/jdapistd.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jdapistd.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdapistd.c > CMakeFiles/jpeg16-static.dir/src/jdapistd.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdapistd.c > CMakeFiles/jpeg16-static.dir/src/jdapistd.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jdapistd.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jdapistd.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdapistd.c -o CMakeFiles/jpeg16-static.dir/src/jdapistd.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdapistd.c -o CMakeFiles/jpeg16-static.dir/src/jdapistd.c.s
 
 CMakeFiles/jpeg16-static.dir/src/jdcolor.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jdcolor.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jdcolor.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdcolor.c
+CMakeFiles/jpeg16-static.dir/src/jdcolor.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdcolor.c
 CMakeFiles/jpeg16-static.dir/src/jdcolor.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/jpeg16-static.dir/src/jdcolor.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jdcolor.c.o -MF CMakeFiles/jpeg16-static.dir/src/jdcolor.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jdcolor.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdcolor.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/jpeg16-static.dir/src/jdcolor.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jdcolor.c.o -MF CMakeFiles/jpeg16-static.dir/src/jdcolor.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jdcolor.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdcolor.c
 
 CMakeFiles/jpeg16-static.dir/src/jdcolor.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jdcolor.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdcolor.c > CMakeFiles/jpeg16-static.dir/src/jdcolor.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdcolor.c > CMakeFiles/jpeg16-static.dir/src/jdcolor.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jdcolor.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jdcolor.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdcolor.c -o CMakeFiles/jpeg16-static.dir/src/jdcolor.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdcolor.c -o CMakeFiles/jpeg16-static.dir/src/jdcolor.c.s
 
 CMakeFiles/jpeg16-static.dir/src/jddiffct.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jddiffct.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jddiffct.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jddiffct.c
+CMakeFiles/jpeg16-static.dir/src/jddiffct.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jddiffct.c
 CMakeFiles/jpeg16-static.dir/src/jddiffct.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/jpeg16-static.dir/src/jddiffct.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jddiffct.c.o -MF CMakeFiles/jpeg16-static.dir/src/jddiffct.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jddiffct.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jddiffct.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/jpeg16-static.dir/src/jddiffct.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jddiffct.c.o -MF CMakeFiles/jpeg16-static.dir/src/jddiffct.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jddiffct.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jddiffct.c
 
 CMakeFiles/jpeg16-static.dir/src/jddiffct.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jddiffct.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jddiffct.c > CMakeFiles/jpeg16-static.dir/src/jddiffct.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jddiffct.c > CMakeFiles/jpeg16-static.dir/src/jddiffct.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jddiffct.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jddiffct.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jddiffct.c -o CMakeFiles/jpeg16-static.dir/src/jddiffct.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jddiffct.c -o CMakeFiles/jpeg16-static.dir/src/jddiffct.c.s
 
 CMakeFiles/jpeg16-static.dir/src/jdlossls.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jdlossls.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jdlossls.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdlossls.c
+CMakeFiles/jpeg16-static.dir/src/jdlossls.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdlossls.c
 CMakeFiles/jpeg16-static.dir/src/jdlossls.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/jpeg16-static.dir/src/jdlossls.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jdlossls.c.o -MF CMakeFiles/jpeg16-static.dir/src/jdlossls.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jdlossls.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdlossls.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/jpeg16-static.dir/src/jdlossls.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jdlossls.c.o -MF CMakeFiles/jpeg16-static.dir/src/jdlossls.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jdlossls.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdlossls.c
 
 CMakeFiles/jpeg16-static.dir/src/jdlossls.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jdlossls.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdlossls.c > CMakeFiles/jpeg16-static.dir/src/jdlossls.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdlossls.c > CMakeFiles/jpeg16-static.dir/src/jdlossls.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jdlossls.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jdlossls.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdlossls.c -o CMakeFiles/jpeg16-static.dir/src/jdlossls.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdlossls.c -o CMakeFiles/jpeg16-static.dir/src/jdlossls.c.s
 
 CMakeFiles/jpeg16-static.dir/src/jdmainct.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jdmainct.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jdmainct.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdmainct.c
+CMakeFiles/jpeg16-static.dir/src/jdmainct.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdmainct.c
 CMakeFiles/jpeg16-static.dir/src/jdmainct.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/jpeg16-static.dir/src/jdmainct.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jdmainct.c.o -MF CMakeFiles/jpeg16-static.dir/src/jdmainct.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jdmainct.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdmainct.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/jpeg16-static.dir/src/jdmainct.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jdmainct.c.o -MF CMakeFiles/jpeg16-static.dir/src/jdmainct.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jdmainct.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdmainct.c
 
 CMakeFiles/jpeg16-static.dir/src/jdmainct.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jdmainct.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdmainct.c > CMakeFiles/jpeg16-static.dir/src/jdmainct.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdmainct.c > CMakeFiles/jpeg16-static.dir/src/jdmainct.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jdmainct.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jdmainct.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdmainct.c -o CMakeFiles/jpeg16-static.dir/src/jdmainct.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdmainct.c -o CMakeFiles/jpeg16-static.dir/src/jdmainct.c.s
 
 CMakeFiles/jpeg16-static.dir/src/jdpostct.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jdpostct.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jdpostct.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdpostct.c
+CMakeFiles/jpeg16-static.dir/src/jdpostct.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdpostct.c
 CMakeFiles/jpeg16-static.dir/src/jdpostct.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/jpeg16-static.dir/src/jdpostct.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jdpostct.c.o -MF CMakeFiles/jpeg16-static.dir/src/jdpostct.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jdpostct.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdpostct.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/jpeg16-static.dir/src/jdpostct.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jdpostct.c.o -MF CMakeFiles/jpeg16-static.dir/src/jdpostct.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jdpostct.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdpostct.c
 
 CMakeFiles/jpeg16-static.dir/src/jdpostct.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jdpostct.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdpostct.c > CMakeFiles/jpeg16-static.dir/src/jdpostct.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdpostct.c > CMakeFiles/jpeg16-static.dir/src/jdpostct.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jdpostct.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jdpostct.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdpostct.c -o CMakeFiles/jpeg16-static.dir/src/jdpostct.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdpostct.c -o CMakeFiles/jpeg16-static.dir/src/jdpostct.c.s
 
 CMakeFiles/jpeg16-static.dir/src/jdsample.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jdsample.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jdsample.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdsample.c
+CMakeFiles/jpeg16-static.dir/src/jdsample.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdsample.c
 CMakeFiles/jpeg16-static.dir/src/jdsample.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/jpeg16-static.dir/src/jdsample.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jdsample.c.o -MF CMakeFiles/jpeg16-static.dir/src/jdsample.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jdsample.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdsample.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/jpeg16-static.dir/src/jdsample.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jdsample.c.o -MF CMakeFiles/jpeg16-static.dir/src/jdsample.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jdsample.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdsample.c
 
 CMakeFiles/jpeg16-static.dir/src/jdsample.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jdsample.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdsample.c > CMakeFiles/jpeg16-static.dir/src/jdsample.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdsample.c > CMakeFiles/jpeg16-static.dir/src/jdsample.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jdsample.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jdsample.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdsample.c -o CMakeFiles/jpeg16-static.dir/src/jdsample.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdsample.c -o CMakeFiles/jpeg16-static.dir/src/jdsample.c.s
 
 CMakeFiles/jpeg16-static.dir/src/jutils.c.o: CMakeFiles/jpeg16-static.dir/flags.make
 CMakeFiles/jpeg16-static.dir/src/jutils.c.o: CMakeFiles/jpeg16-static.dir/includes_C.rsp
-CMakeFiles/jpeg16-static.dir/src/jutils.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jutils.c
+CMakeFiles/jpeg16-static.dir/src/jutils.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jutils.c
 CMakeFiles/jpeg16-static.dir/src/jutils.c.o: CMakeFiles/jpeg16-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/jpeg16-static.dir/src/jutils.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jutils.c.o -MF CMakeFiles/jpeg16-static.dir/src/jutils.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jutils.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jutils.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/jpeg16-static.dir/src/jutils.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/jpeg16-static.dir/src/jutils.c.o -MF CMakeFiles/jpeg16-static.dir/src/jutils.c.o.d -o CMakeFiles/jpeg16-static.dir/src/jutils.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jutils.c
 
 CMakeFiles/jpeg16-static.dir/src/jutils.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/jpeg16-static.dir/src/jutils.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jutils.c > CMakeFiles/jpeg16-static.dir/src/jutils.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jutils.c > CMakeFiles/jpeg16-static.dir/src/jutils.c.i
 
 CMakeFiles/jpeg16-static.dir/src/jutils.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/jpeg16-static.dir/src/jutils.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jutils.c -o CMakeFiles/jpeg16-static.dir/src/jutils.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jutils.c -o CMakeFiles/jpeg16-static.dir/src/jutils.c.s
 
 jpeg16-static: CMakeFiles/jpeg16-static.dir/src/jcapistd.c.o
 jpeg16-static: CMakeFiles/jpeg16-static.dir/src/jccolor.c.o
@@ -324,6 +324,6 @@ CMakeFiles/jpeg16-static.dir/clean:
 .PHONY : CMakeFiles/jpeg16-static.dir/clean
 
 CMakeFiles/jpeg16-static.dir/depend:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles/jpeg16-static.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles/jpeg16-static.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/jpeg16-static.dir/depend
 

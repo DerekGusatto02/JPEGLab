@@ -20,9 +20,9 @@ runme()
 	"$@"
 }
 
-IMGDIR=/Users/derekgusatto/Documents/Git/libjpeg-turbo/testimages
+IMGDIR=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/testimages
 OUTDIR=`mktemp -d /tmp/__tjdecomptest_output.XXXXXX`
-EXEDIR=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build
+EXEDIR=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build
 JAVA=""
 JAVAARGS="-cp $EXEDIR/java/turbojpeg.jar -Djava.library.path=$EXEDIR"
 TJDECOMP=$EXEDIR/tjdecomp

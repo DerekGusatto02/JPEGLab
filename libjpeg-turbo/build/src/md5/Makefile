@@ -57,10 +57,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo
+CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo/build
+CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,14 +142,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5//CMakeFiles/progress.marks
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/md5/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles 0
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5//CMakeFiles/progress.marks
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/md5/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/md5/clean
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/md5/clean
 .PHONY : clean
 
 # The main clean target
@@ -158,22 +158,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/md5/preinstall
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/md5/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/md5/preinstall
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/md5/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/md5/CMakeFiles/md5cmp.dir/rule:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/md5/CMakeFiles/md5cmp.dir/rule
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/md5/CMakeFiles/md5cmp.dir/rule
 .PHONY : src/md5/CMakeFiles/md5cmp.dir/rule
 
 # Convenience name for target.
@@ -182,12 +182,12 @@ md5cmp: src/md5/CMakeFiles/md5cmp.dir/rule
 
 # fast build rule for target.
 md5cmp/fast:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/build
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/build
 .PHONY : md5cmp/fast
 
 # Convenience name for target.
 src/md5/CMakeFiles/md5sum.dir/rule:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/md5/CMakeFiles/md5sum.dir/rule
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/md5/CMakeFiles/md5sum.dir/rule
 .PHONY : src/md5/CMakeFiles/md5sum.dir/rule
 
 # Convenience name for target.
@@ -196,7 +196,7 @@ md5sum: src/md5/CMakeFiles/md5sum.dir/rule
 
 # fast build rule for target.
 md5sum/fast:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/build
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/build
 .PHONY : md5sum/fast
 
 md5.o: md5.c.o
@@ -204,8 +204,8 @@ md5.o: md5.c.o
 
 # target to build an object file
 md5.c.o:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5.c.o
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5.c.o
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5.c.o
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5.c.o
 .PHONY : md5.c.o
 
 md5.i: md5.c.i
@@ -213,8 +213,8 @@ md5.i: md5.c.i
 
 # target to preprocess a source file
 md5.c.i:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5.c.i
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5.c.i
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5.c.i
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5.c.i
 .PHONY : md5.c.i
 
 md5.s: md5.c.s
@@ -222,8 +222,8 @@ md5.s: md5.c.s
 
 # target to generate assembly for a file
 md5.c.s:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5.c.s
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5.c.s
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5.c.s
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5.c.s
 .PHONY : md5.c.s
 
 md5cmp.o: md5cmp.c.o
@@ -231,7 +231,7 @@ md5cmp.o: md5cmp.c.o
 
 # target to build an object file
 md5cmp.c.o:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.o
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.o
 .PHONY : md5cmp.c.o
 
 md5cmp.i: md5cmp.c.i
@@ -239,7 +239,7 @@ md5cmp.i: md5cmp.c.i
 
 # target to preprocess a source file
 md5cmp.c.i:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.i
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.i
 .PHONY : md5cmp.c.i
 
 md5cmp.s: md5cmp.c.s
@@ -247,7 +247,7 @@ md5cmp.s: md5cmp.c.s
 
 # target to generate assembly for a file
 md5cmp.c.s:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.s
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.s
 .PHONY : md5cmp.c.s
 
 md5hl.o: md5hl.c.o
@@ -255,8 +255,8 @@ md5hl.o: md5hl.c.o
 
 # target to build an object file
 md5hl.c.o:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5hl.c.o
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5hl.c.o
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5hl.c.o
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5hl.c.o
 .PHONY : md5hl.c.o
 
 md5hl.i: md5hl.c.i
@@ -264,8 +264,8 @@ md5hl.i: md5hl.c.i
 
 # target to preprocess a source file
 md5hl.c.i:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5hl.c.i
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5hl.c.i
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5hl.c.i
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5hl.c.i
 .PHONY : md5hl.c.i
 
 md5hl.s: md5hl.c.s
@@ -273,8 +273,8 @@ md5hl.s: md5hl.c.s
 
 # target to generate assembly for a file
 md5hl.c.s:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5hl.c.s
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5hl.c.s
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5cmp.dir/build.make src/md5/CMakeFiles/md5cmp.dir/md5hl.c.s
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5hl.c.s
 .PHONY : md5hl.c.s
 
 md5sum.o: md5sum.c.o
@@ -282,7 +282,7 @@ md5sum.o: md5sum.c.o
 
 # target to build an object file
 md5sum.c.o:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5sum.c.o
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5sum.c.o
 .PHONY : md5sum.c.o
 
 md5sum.i: md5sum.c.i
@@ -290,7 +290,7 @@ md5sum.i: md5sum.c.i
 
 # target to preprocess a source file
 md5sum.c.i:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5sum.c.i
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5sum.c.i
 .PHONY : md5sum.c.i
 
 md5sum.s: md5sum.c.s
@@ -298,7 +298,7 @@ md5sum.s: md5sum.c.s
 
 # target to generate assembly for a file
 md5sum.c.s:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5sum.c.s
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(MAKE) $(MAKESILENT) -f src/md5/CMakeFiles/md5sum.dir/build.make src/md5/CMakeFiles/md5sum.dir/md5sum.c.s
 .PHONY : md5sum.c.s
 
 # Help Target
@@ -339,6 +339,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

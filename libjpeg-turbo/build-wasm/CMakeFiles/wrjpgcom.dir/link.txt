@@ -1,0 +1,1 @@
+/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc -O3 -DNDEBUG @CMakeFiles/wrjpgcom.dir/objects1.rsp -o wrjpgcom.js

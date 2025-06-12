@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo
+CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo/build
+CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build
 
 # Utility rule file for tjexampletest.
 
@@ -66,11 +66,11 @@ include CMakeFiles/tjexampletest.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/tjexampletest.dir/progress.make
 
-CMakeFiles/tjexampletest: /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjexampletest.cmake
+CMakeFiles/tjexampletest: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjexampletest.cmake
 CMakeFiles/tjexampletest: test/tjcomptest
 CMakeFiles/tjexampletest: test/tjdecomptest
 CMakeFiles/tjexampletest: test/tjtrantest
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjexampletest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjexampletest.cmake
 
 CMakeFiles/tjexampletest.dir/codegen:
 .PHONY : CMakeFiles/tjexampletest.dir/codegen
@@ -88,6 +88,6 @@ CMakeFiles/tjexampletest.dir/clean:
 .PHONY : CMakeFiles/tjexampletest.dir/clean
 
 CMakeFiles/tjexampletest.dir/depend:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles/tjexampletest.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles/tjexampletest.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/tjexampletest.dir/depend
 

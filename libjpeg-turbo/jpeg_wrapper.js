@@ -205,10 +205,10 @@ function writeStackCookie() {
   // The stack grow downwards towards _emscripten_stack_get_end.
   // We write cookies to the final two words in the stack and detect if they are
   // ever overwritten.
-  HEAPU32[((max)>>2)] = 0x02135467;
-  HEAPU32[(((max)+(4))>>2)] = 0x89BACDFE;
+  HEAPU32[((max)>>2)] = 0x02135467;checkInt32(0x02135467);
+  HEAPU32[(((max)+(4))>>2)] = 0x89BACDFE;checkInt32(0x89BACDFE);
   // Also test the global address 0 for integrity.
-  HEAPU32[((0)>>2)] = 1668509029;
+  HEAPU32[((0)>>2)] = 1668509029;checkInt32(1668509029);
 }
 
 function checkStackCookie() {
@@ -346,6 +346,31 @@ function unexportedRuntimeSymbol(sym) {
   }
 }
 
+var MAX_UINT8  = (2 **  8) - 1;
+var MAX_UINT16 = (2 ** 16) - 1;
+var MAX_UINT32 = (2 ** 32) - 1;
+var MAX_UINT53 = (2 ** 53) - 1;
+var MAX_UINT64 = (2 ** 64) - 1;
+
+var MIN_INT8  = - (2 ** ( 8 - 1));
+var MIN_INT16 = - (2 ** (16 - 1));
+var MIN_INT32 = - (2 ** (32 - 1));
+var MIN_INT53 = - (2 ** (53 - 1));
+var MIN_INT64 = - (2 ** (64 - 1));
+
+function checkInt(value, bits, min, max) {
+  assert(Number.isInteger(Number(value)), `attempt to write non-integer (${value}) into integer heap`);
+  assert(value <= max, `value (${value}) too large to write as ${bits}-bit value`);
+  assert(value >= min, `value (${value}) too small to write as ${bits}-bit value`);
+}
+
+var checkInt1 = (value) => checkInt(value, 1, 1);
+var checkInt8 = (value) => checkInt(value, 8, MIN_INT8, MAX_UINT8);
+var checkInt16 = (value) => checkInt(value, 16, MIN_INT16, MAX_UINT16);
+var checkInt32 = (value) => checkInt(value, 32, MIN_INT32, MAX_UINT32);
+var checkInt53 = (value) => checkInt(value, 53, MIN_INT53, MAX_UINT53);
+var checkInt64 = (value) => checkInt(value, 64, MIN_INT64, MAX_UINT64);
+
 // end include: runtime_debug.js
 // include: memoryprofiler.js
 // end include: memoryprofiler.js
@@ -356,8 +381,8 @@ function updateMemoryViews() {
   HEAP8 = new Int8Array(b);
   Module['HEAP16'] = HEAP16 = new Int16Array(b);
   Module['HEAPU8'] = HEAPU8 = new Uint8Array(b);
-  HEAPU16 = new Uint16Array(b);
-  HEAP32 = new Int32Array(b);
+  Module['HEAPU16'] = HEAPU16 = new Uint16Array(b);
+  Module['HEAP32'] = HEAP32 = new Int32Array(b);
   HEAPU32 = new Uint32Array(b);
   HEAPF32 = new Float32Array(b);
   HEAPF64 = new Float64Array(b);
@@ -387,6 +412,8 @@ function initRuntime() {
   runtimeInitialized = true;
 
   checkStackCookie();
+
+  setStackLimits();
 
   // No ATINITS hooks
 
@@ -750,6 +777,12 @@ async function createWasm() {
       return '0x' + ptr.toString(16).padStart(8, '0');
     };
 
+  var setStackLimits = () => {
+      var stackLow = _emscripten_stack_get_base();
+      var stackHigh = _emscripten_stack_get_end();
+      ___set_stack_limits(stackLow, stackHigh);
+    };
+
   
     /**
      * @param {number} ptr
@@ -759,11 +792,11 @@ async function createWasm() {
   function setValue(ptr, value, type = 'i8') {
     if (type.endsWith('*')) type = '*';
     switch (type) {
-      case 'i1': HEAP8[ptr] = value; break;
-      case 'i8': HEAP8[ptr] = value; break;
-      case 'i16': HEAP16[((ptr)>>1)] = value; break;
-      case 'i32': HEAP32[((ptr)>>2)] = value; break;
-      case 'i64': HEAP64[((ptr)>>3)] = BigInt(value); break;
+      case 'i1': HEAP8[ptr] = value;checkInt8(value); break;
+      case 'i8': HEAP8[ptr] = value;checkInt8(value); break;
+      case 'i16': HEAP16[((ptr)>>1)] = value;checkInt16(value); break;
+      case 'i32': HEAP32[((ptr)>>2)] = value;checkInt32(value); break;
+      case 'i64': HEAP64[((ptr)>>3)] = BigInt(value);checkInt64(value); break;
       case 'float': HEAPF32[((ptr)>>2)] = value; break;
       case 'double': HEAPF64[((ptr)>>3)] = value; break;
       case '*': HEAPU32[((ptr)>>2)] = value; break;
@@ -783,6 +816,16 @@ async function createWasm() {
       }
     };
 
+  
+  
+  var ___handle_stack_overflow = (requested) => {
+      var base = _emscripten_stack_get_base();
+      var end = _emscripten_stack_get_end();
+      abort(`stack overflow (Attempt to set SP to ${ptrToString(requested)}` +
+            `, with stack limits [${ptrToString(end)} - ${ptrToString(base)}` +
+            ']). If you require more stack space build with -sSTACK_SIZE=<bytes>');
+    };
+
   var __abort_js = () =>
       abort('native code called abort()');
 
@@ -790,6 +833,8 @@ async function createWasm() {
       throw Infinity;
     };
 
+  var _emscripten_get_now = () => performance.now();
+  
   var getHeapMax = () =>
       // Stay one Wasm page short of 4GB: while e.g. Chrome is able to allocate
       // full 4GB Wasm memories, the size will wrap back to 0 bytes in Wasm side
@@ -859,7 +904,10 @@ async function createWasm() {
   
         var newSize = Math.min(maxHeapSize, alignMemory(Math.max(requestedSize, overGrownHeapSize), 65536));
   
+        var t0 = _emscripten_get_now();
         var replacement = growMemory(newSize);
+        var t1 = _emscripten_get_now();
+        dbg(`Heap resize call from ${oldSize} to ${newSize} took ${(t1 - t0)} msecs. Success: ${!!replacement}`);
         if (replacement) {
   
           return true;
@@ -960,7 +1008,7 @@ async function createWasm() {
       var envp = 0;
       for (var string of getEnvStrings()) {
         var ptr = environ_buf + bufSize;
-        HEAPU32[(((__environ)+(envp))>>2)] = ptr;
+        HEAPU32[(((__environ)+(envp))>>2)] = ptr;checkInt32(ptr);
         bufSize += stringToUTF8(string, ptr, Infinity) + 1;
         envp += 4;
       }
@@ -990,12 +1038,12 @@ async function createWasm() {
     };
   var _environ_sizes_get = (penviron_count, penviron_buf_size) => {
       var strings = getEnvStrings();
-      HEAPU32[((penviron_count)>>2)] = strings.length;
+      HEAPU32[((penviron_count)>>2)] = strings.length;checkInt32(strings.length);
       var bufSize = 0;
       for (var string of strings) {
         bufSize += lengthBytesUTF8(string) + 1;
       }
-      HEAPU32[((penviron_buf_size)>>2)] = bufSize;
+      HEAPU32[((penviron_buf_size)>>2)] = bufSize;checkInt32(bufSize);
       return 0;
     };
 
@@ -1158,7 +1206,7 @@ async function createWasm() {
         }
         num += len;
       }
-      HEAPU32[((pnum)>>2)] = num;
+      HEAPU32[((pnum)>>2)] = num;checkInt32(num);
       return 0;
     };
 
@@ -1267,6 +1315,7 @@ async function createWasm() {
   var cwrap = (ident, returnType, argTypes, opts) => {
       return (...args) => ccall(ident, returnType, argTypes, args, opts);
     };
+
 // End JS library code
 
 // include: postlibrary.js
@@ -1312,6 +1361,7 @@ Module['FS_createPreloadedFile'] = FS.createPreloadedFile;
 // Begin runtime exports
   Module['ccall'] = ccall;
   Module['cwrap'] = cwrap;
+  Module['UTF8ToString'] = UTF8ToString;
   var missingLibrarySymbols = [
   'writeI53ToI64',
   'writeI53ToI64Clamped',
@@ -1502,8 +1552,6 @@ missingLibrarySymbols.forEach(missingLibrarySymbol)
   'HEAPF32',
   'HEAPF64',
   'HEAP8',
-  'HEAPU16',
-  'HEAP32',
   'HEAPU32',
   'HEAP64',
   'HEAPU64',
@@ -1520,6 +1568,7 @@ missingLibrarySymbols.forEach(missingLibrarySymbol)
   'getHeapMax',
   'growMemory',
   'ENV',
+  'setStackLimits',
   'ERRNO_CODES',
   'DNS',
   'Protocols',
@@ -1543,7 +1592,6 @@ missingLibrarySymbols.forEach(missingLibrarySymbol)
   'PATH_FS',
   'UTF8Decoder',
   'UTF8ArrayToString',
-  'UTF8ToString',
   'stringToUTF8Array',
   'stringToUTF8',
   'lengthBytesUTF8',
@@ -1727,6 +1775,8 @@ function checkIncomingModuleAPI() {
 }
 var wasmImports = {
   /** @export */
+  __handle_stack_overflow: ___handle_stack_overflow,
+  /** @export */
   _abort_js: __abort_js,
   /** @export */
   _emscripten_throw_longjmp: __emscripten_throw_longjmp,
@@ -1751,15 +1801,20 @@ var wasmImports = {
   /** @export */
   invoke_vi,
   /** @export */
+  invoke_vii,
+  /** @export */
   invoke_viii
 };
 var wasmExports;
 createWasm();
 var ___wasm_call_ctors = createExportWrapper('__wasm_call_ctors', 0);
+var _my_error_exit = Module['_my_error_exit'] = createExportWrapper('my_error_exit', 1);
 var _init_decoder = Module['_init_decoder'] = createExportWrapper('init_decoder', 2);
+var _jpeg_std_error = Module['_jpeg_std_error'] = createExportWrapper('jpeg_std_error', 1);
 var _get_width = Module['_get_width'] = createExportWrapper('get_width', 0);
 var _get_height = Module['_get_height'] = createExportWrapper('get_height', 0);
 var _get_color_space = Module['_get_color_space'] = createExportWrapper('get_color_space', 0);
+var _get_quant_table_size = Module['_get_quant_table_size'] = createExportWrapper('get_quant_table_size', 0);
 var _get_quant_table = Module['_get_quant_table'] = createExportWrapper('get_quant_table', 1);
 var _get_dct_coefficients = Module['_get_dct_coefficients'] = createExportWrapper('get_dct_coefficients', 3);
 var _get_blocks_width = Module['_get_blocks_width'] = createExportWrapper('get_blocks_width', 1);
@@ -1767,11 +1822,22 @@ var _get_blocks_height = Module['_get_blocks_height'] = createExportWrapper('get
 var _extract_component_pixels = Module['_extract_component_pixels'] = createExportWrapper('extract_component_pixels', 1);
 var _free = Module['_free'] = createExportWrapper('free', 1);
 var _malloc = Module['_malloc'] = createExportWrapper('malloc', 1);
-var _free_component_buffers = Module['_free_component_buffers'] = createExportWrapper('free_component_buffers', 0);
 var _get_component_width = Module['_get_component_width'] = createExportWrapper('get_component_width', 1);
 var _get_component_height = Module['_get_component_height'] = createExportWrapper('get_component_height', 1);
+var _my_output_message = Module['_my_output_message'] = createExportWrapper('my_output_message', 1);
 var _get_last_error_message = Module['_get_last_error_message'] = createExportWrapper('get_last_error_message', 0);
 var _destroy_decoder = Module['_destroy_decoder'] = createExportWrapper('destroy_decoder', 0);
+var _jpeg_mem_dest_wrapper = Module['_jpeg_mem_dest_wrapper'] = createExportWrapper('jpeg_mem_dest_wrapper', 3);
+var _jpeg_mem_dest = Module['_jpeg_mem_dest'] = createExportWrapper('jpeg_mem_dest', 3);
+var _set_quant_table = Module['_set_quant_table'] = createExportWrapper('set_quant_table', 2);
+var _recompress_jpeg_with_new_quant = Module['_recompress_jpeg_with_new_quant'] = createExportWrapper('recompress_jpeg_with_new_quant', 1);
+var _jpeg_destroy_compress = Module['_jpeg_destroy_compress'] = createExportWrapper('jpeg_destroy_compress', 1);
+var _jpeg_CreateCompress = Module['_jpeg_CreateCompress'] = createExportWrapper('jpeg_CreateCompress', 3);
+var _jpeg_set_defaults = Module['_jpeg_set_defaults'] = createExportWrapper('jpeg_set_defaults', 1);
+var _jpeg_finish_compress = Module['_jpeg_finish_compress'] = createExportWrapper('jpeg_finish_compress', 1);
+var _free_exported_jpeg_buffer = Module['_free_exported_jpeg_buffer'] = createExportWrapper('free_exported_jpeg_buffer', 1);
+var _jpeg_start_compress = Module['_jpeg_start_compress'] = createExportWrapper('jpeg_start_compress', 2);
+var _jpeg_write_scanlines = Module['_jpeg_write_scanlines'] = createExportWrapper('jpeg_write_scanlines', 3);
 var _fflush = createExportWrapper('fflush', 1);
 var _strerror = createExportWrapper('strerror', 1);
 var _emscripten_stack_get_end = () => (_emscripten_stack_get_end = wasmExports['emscripten_stack_get_end'])();
@@ -1782,7 +1848,8 @@ var _emscripten_stack_get_free = () => (_emscripten_stack_get_free = wasmExports
 var __emscripten_stack_restore = (a0) => (__emscripten_stack_restore = wasmExports['_emscripten_stack_restore'])(a0);
 var __emscripten_stack_alloc = (a0) => (__emscripten_stack_alloc = wasmExports['_emscripten_stack_alloc'])(a0);
 var _emscripten_stack_get_current = () => (_emscripten_stack_get_current = wasmExports['emscripten_stack_get_current'])();
-
+var ___set_stack_limits = Module['___set_stack_limits'] = createExportWrapper('__set_stack_limits', 2);
+var _last_error_message = Module['_last_error_message'] = 144128;
 function invoke_ii(index,a1) {
   var sp = stackSave();
   try {
@@ -1820,6 +1887,17 @@ function invoke_iii(index,a1,a2) {
   var sp = stackSave();
   try {
     return getWasmTableEntry(index)(a1,a2);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_vii(index,a1,a2) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;

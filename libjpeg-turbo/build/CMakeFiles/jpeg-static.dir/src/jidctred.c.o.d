@@ -1,8 +1,8 @@
 CMakeFiles/jpeg-static.dir/src/jidctred.c.o: \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jidctred.c \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jinclude.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/jconfig.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/jconfigint.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jidctred.c \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jinclude.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/jconfig.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/jconfigint.h \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21/include/stddef.h \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/stddef.h \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/lib/clang/21/include/__stddef_header_macro.h \
@@ -27,9 +27,9 @@ CMakeFiles/jpeg-static.dir/src/jidctred.c.o: \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/strings.h \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/errno.h \
   /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/cache/sysroot/include/bits/errno.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jpeglib.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jmorecfg.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jpegint.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jerror.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jdct.h \
-  /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/jsamplecomp.h
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jpeglib.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jmorecfg.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jpegint.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jerror.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jdct.h \
+  /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/jsamplecomp.h

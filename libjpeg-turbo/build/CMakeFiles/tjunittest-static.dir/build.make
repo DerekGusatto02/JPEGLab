@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo
+CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo/build
+CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/tjunittest-static.dir/depend.make
@@ -74,63 +74,63 @@ CMakeFiles/tjunittest-static.dir/codegen:
 
 CMakeFiles/tjunittest-static.dir/src/tjunittest.c.o: CMakeFiles/tjunittest-static.dir/flags.make
 CMakeFiles/tjunittest-static.dir/src/tjunittest.c.o: CMakeFiles/tjunittest-static.dir/includes_C.rsp
-CMakeFiles/tjunittest-static.dir/src/tjunittest.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjunittest.c
+CMakeFiles/tjunittest-static.dir/src/tjunittest.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjunittest.c
 CMakeFiles/tjunittest-static.dir/src/tjunittest.c.o: CMakeFiles/tjunittest-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/tjunittest-static.dir/src/tjunittest.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tjunittest-static.dir/src/tjunittest.c.o -MF CMakeFiles/tjunittest-static.dir/src/tjunittest.c.o.d -o CMakeFiles/tjunittest-static.dir/src/tjunittest.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjunittest.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/tjunittest-static.dir/src/tjunittest.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tjunittest-static.dir/src/tjunittest.c.o -MF CMakeFiles/tjunittest-static.dir/src/tjunittest.c.o.d -o CMakeFiles/tjunittest-static.dir/src/tjunittest.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjunittest.c
 
 CMakeFiles/tjunittest-static.dir/src/tjunittest.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tjunittest-static.dir/src/tjunittest.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjunittest.c > CMakeFiles/tjunittest-static.dir/src/tjunittest.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjunittest.c > CMakeFiles/tjunittest-static.dir/src/tjunittest.c.i
 
 CMakeFiles/tjunittest-static.dir/src/tjunittest.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tjunittest-static.dir/src/tjunittest.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjunittest.c -o CMakeFiles/tjunittest-static.dir/src/tjunittest.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjunittest.c -o CMakeFiles/tjunittest-static.dir/src/tjunittest.c.s
 
 CMakeFiles/tjunittest-static.dir/src/tjutil.c.o: CMakeFiles/tjunittest-static.dir/flags.make
 CMakeFiles/tjunittest-static.dir/src/tjutil.c.o: CMakeFiles/tjunittest-static.dir/includes_C.rsp
-CMakeFiles/tjunittest-static.dir/src/tjutil.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjutil.c
+CMakeFiles/tjunittest-static.dir/src/tjutil.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjutil.c
 CMakeFiles/tjunittest-static.dir/src/tjutil.c.o: CMakeFiles/tjunittest-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/tjunittest-static.dir/src/tjutil.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tjunittest-static.dir/src/tjutil.c.o -MF CMakeFiles/tjunittest-static.dir/src/tjutil.c.o.d -o CMakeFiles/tjunittest-static.dir/src/tjutil.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjutil.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/tjunittest-static.dir/src/tjutil.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tjunittest-static.dir/src/tjutil.c.o -MF CMakeFiles/tjunittest-static.dir/src/tjutil.c.o.d -o CMakeFiles/tjunittest-static.dir/src/tjutil.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjutil.c
 
 CMakeFiles/tjunittest-static.dir/src/tjutil.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tjunittest-static.dir/src/tjutil.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjutil.c > CMakeFiles/tjunittest-static.dir/src/tjutil.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjutil.c > CMakeFiles/tjunittest-static.dir/src/tjutil.c.i
 
 CMakeFiles/tjunittest-static.dir/src/tjutil.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tjunittest-static.dir/src/tjutil.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/tjutil.c -o CMakeFiles/tjunittest-static.dir/src/tjutil.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/tjutil.c -o CMakeFiles/tjunittest-static.dir/src/tjutil.c.s
 
 CMakeFiles/tjunittest-static.dir/src/md5/md5.c.o: CMakeFiles/tjunittest-static.dir/flags.make
 CMakeFiles/tjunittest-static.dir/src/md5/md5.c.o: CMakeFiles/tjunittest-static.dir/includes_C.rsp
-CMakeFiles/tjunittest-static.dir/src/md5/md5.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5.c
+CMakeFiles/tjunittest-static.dir/src/md5/md5.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5.c
 CMakeFiles/tjunittest-static.dir/src/md5/md5.c.o: CMakeFiles/tjunittest-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/tjunittest-static.dir/src/md5/md5.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tjunittest-static.dir/src/md5/md5.c.o -MF CMakeFiles/tjunittest-static.dir/src/md5/md5.c.o.d -o CMakeFiles/tjunittest-static.dir/src/md5/md5.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/tjunittest-static.dir/src/md5/md5.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tjunittest-static.dir/src/md5/md5.c.o -MF CMakeFiles/tjunittest-static.dir/src/md5/md5.c.o.d -o CMakeFiles/tjunittest-static.dir/src/md5/md5.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5.c
 
 CMakeFiles/tjunittest-static.dir/src/md5/md5.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tjunittest-static.dir/src/md5/md5.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5.c > CMakeFiles/tjunittest-static.dir/src/md5/md5.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5.c > CMakeFiles/tjunittest-static.dir/src/md5/md5.c.i
 
 CMakeFiles/tjunittest-static.dir/src/md5/md5.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tjunittest-static.dir/src/md5/md5.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5.c -o CMakeFiles/tjunittest-static.dir/src/md5/md5.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5.c -o CMakeFiles/tjunittest-static.dir/src/md5/md5.c.s
 
 CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.o: CMakeFiles/tjunittest-static.dir/flags.make
 CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.o: CMakeFiles/tjunittest-static.dir/includes_C.rsp
-CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5hl.c
+CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5hl.c
 CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.o: CMakeFiles/tjunittest-static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.o"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.o -MF CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.o.d -o CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5hl.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.o"
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.o -MF CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.o.d -o CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5hl.c
 
 CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.i"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5hl.c > CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.i
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5hl.c > CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.i
 
 CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.s"
-	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5hl.c -o CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.s
+	/Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5hl.c -o CMakeFiles/tjunittest-static.dir/src/md5/md5hl.c.s
 
 # Object files for target tjunittest-static
 tjunittest__static_OBJECTS = \
@@ -151,7 +151,7 @@ tjunittest-static.js: libturbojpeg.a
 tjunittest-static.js: CMakeFiles/tjunittest-static.dir/linkLibs.rsp
 tjunittest-static.js: CMakeFiles/tjunittest-static.dir/objects1.rsp
 tjunittest-static.js: CMakeFiles/tjunittest-static.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable tjunittest-static.js"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable tjunittest-static.js"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tjunittest-static.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -163,6 +163,6 @@ CMakeFiles/tjunittest-static.dir/clean:
 .PHONY : CMakeFiles/tjunittest-static.dir/clean
 
 CMakeFiles/tjunittest-static.dir/depend:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles/tjunittest-static.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles/tjunittest-static.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/tjunittest-static.dir/depend
 

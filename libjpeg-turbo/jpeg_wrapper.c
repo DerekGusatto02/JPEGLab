@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "src/jpeglib.h" // Include la libreria libjpeg-turbo
+#include "jpeglib.h"
 #include <setjmp.h>      // Necessario per la gestione degli errori
+#include <string.h>
+#include <emscripten/emscripten.h>
+
+
 
 // Strutture globali per la decompressione JPEG
 struct jpeg_decompress_struct cinfo; // Struttura principale per la decompressione
@@ -17,6 +22,7 @@ struct my_error_mgr {
 typedef struct my_error_mgr* my_error_ptr;
 
 // Funzione personalizzata per la gestione degli errori
+EMSCRIPTEN_KEEPALIVE
 void my_error_exit(j_common_ptr cinfo) {
     my_error_ptr myerr = (my_error_ptr)cinfo->err;
     (*cinfo->err->output_message)(cinfo);  // Stampa il messaggio di errore
@@ -24,6 +30,7 @@ void my_error_exit(j_common_ptr cinfo) {
 }
 
 // Inizializza il decoder JPEG con i dati in memoria
+EMSCRIPTEN_KEEPALIVE
 int init_decoder(unsigned char *jpegData, int size) {
     struct my_error_mgr myerr;
 
@@ -45,16 +52,20 @@ int init_decoder(unsigned char *jpegData, int size) {
 }
 
 // Restituisce la larghezza dell'immagine
+EMSCRIPTEN_KEEPALIVE
 unsigned int get_width() {
     return cinfo.image_width;
 }
 
 // Restituisce l'altezza dell'immagine
+EMSCRIPTEN_KEEPALIVE
 unsigned int get_height() {
     return cinfo.image_height;
 }
 
+
 // Restituisce lo spazio colore dell'immagine come stringa
+EMSCRIPTEN_KEEPALIVE
 const char* get_color_space() {
     switch (cinfo.jpeg_color_space) {
         case JCS_GRAYSCALE: return "Grayscale";
@@ -67,18 +78,28 @@ const char* get_color_space() {
 }
 
 // Restituisce la dimensione della tabella di quantizzazione (di solito 64)
+EMSCRIPTEN_KEEPALIVE
 int get_quant_table_size() {
     return DCTSIZE2;
 }
 
 // Restituisce un puntatore alla tabella di quantizzazione per un indice specifico
+EMSCRIPTEN_KEEPALIVE
 unsigned short* get_quant_table(int index) {
-    if (index < 0 || index > 3 || cinfo.quant_tbl_ptrs[index] == NULL)
+    if (index < 0 || index >= NUM_QUANT_TBLS) {
         return NULL;
-    return cinfo.quant_tbl_ptrs[index]->quantval;
+    }
+    
+    if (cinfo.quant_tbl_ptrs[index] == NULL) {
+        return NULL;
+    }
+    
+    // Restituisce direttamente il puntatore ai valori della tabella
+    return (unsigned short*)cinfo.quant_tbl_ptrs[index]->quantval;
 }
 
 // Restituisce i coefficienti DCT per un blocco specifico e un componente
+EMSCRIPTEN_KEEPALIVE
 short* get_dct_coefficients(int componentIndex, int block_x, int block_y) {
     if (componentIndex < 0 || componentIndex >= cinfo.num_components) return NULL;
 
@@ -96,6 +117,7 @@ short* get_dct_coefficients(int componentIndex, int block_x, int block_y) {
 }
 
 // Restituisce il numero di blocchi in larghezza per un componente
+EMSCRIPTEN_KEEPALIVE
 int get_blocks_width(int componentIndex) {
     if (componentIndex < 0 || componentIndex >= cinfo.num_components) {
         return -1; // Errore: indice non valido
@@ -106,6 +128,7 @@ int get_blocks_width(int componentIndex) {
 }
 
 // Restituisce il numero di blocchi in altezza per un componente
+EMSCRIPTEN_KEEPALIVE
 int get_blocks_height(int componentIndex) {
     if (componentIndex < 0 || componentIndex >= cinfo.num_components) {
         return -1; // Errore: indice non valido
@@ -162,16 +185,10 @@ unsigned char* extract_component_pixels(int componentIndex) {
     return component_pixels[componentIndex];
 }
 
-// Funzione per liberare tutti i buffer dei componenti
-void free_component_buffers() {
-    for (int i = 0; i < MAX_COMPONENTS; i++) {
-        free(component_pixels[i]);
-        component_pixels[i] = NULL;
-        component_pixels_size[i] = 0;
-    }
-}
+
 
 // Restituisce la larghezza del componente corrente
+EMSCRIPTEN_KEEPALIVE
 int get_component_width(int componentIndex) {
     if (componentIndex < 0 || componentIndex >= cinfo.num_components) {
         return -1; // Errore: indice non valido
@@ -182,6 +199,7 @@ int get_component_width(int componentIndex) {
 }
 
 // Restituisce l'altezza del componente corrente
+EMSCRIPTEN_KEEPALIVE
 int get_component_height(int componentIndex) {
     if (componentIndex < 0 || componentIndex >= cinfo.num_components) {
         return -1; // Errore: indice non valido
@@ -192,31 +210,129 @@ int get_component_height(int componentIndex) {
 }
 
 // Variabile globale per memorizzare l'ultimo messaggio di errore
+EMSCRIPTEN_KEEPALIVE
 char last_error_message[JMSG_LENGTH_MAX];
 
 // Funzione per formattare e memorizzare l'ultimo messaggio di errore
+EMSCRIPTEN_KEEPALIVE
 void my_output_message(j_common_ptr cinfo) {
     (*cinfo->err->format_message)(cinfo, last_error_message);
 }
 
 // Restituisce l'ultimo messaggio di errore
+EMSCRIPTEN_KEEPALIVE
 const char* get_last_error_message() {
     return last_error_message;
 }
 
 // Distrugge il decoder e libera le risorse
+EMSCRIPTEN_KEEPALIVE
 void destroy_decoder() {
     jpeg_finish_decompress(&cinfo);
     jpeg_destroy_decompress(&cinfo);
 }
 
-/*
-Comando per compilare in WebAssembly con Emscripten:
-emcc jpeg_wrapper.c -o jpeg_wrapper.js \
-    -I/Users/derekgusatto/Documents/Git/libjpeg-turbo/include \
-    -I/Users/derekgusatto/Documents/Git/libjpeg-turbo/build \
-    /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/libjpeg.a \
-    -s EXPORTED_FUNCTIONS="['_malloc', '_free', '_init_decoder', '_get_width', '_get_height', '_get_color_space', '_get_quant_table', '_get_dct_coefficients', '_get_blocks_height', '_get_blocks_width', '_get_last_error_message', '_destroy_decoder', '_extract_component_pixels', '_get_component_width', '_get_component_height']" \
-    -s EXPORTED_RUNTIME_METHODS="['HEAPU8', 'HEAP16', 'ccall', 'cwrap']" \
-    -s ENVIRONMENT='web'
-*/
+// Wrapper per jpeg_mem_dest
+EMSCRIPTEN_KEEPALIVE
+void jpeg_mem_dest_wrapper(j_compress_ptr cinfo, unsigned char **outbuffer, unsigned long *outsize) {
+    jpeg_mem_dest(cinfo, outbuffer, outsize); // chiama la funzione originale della libreria
+}
+
+// Imposta una nuova tabella di quantizzazione per un componente
+EMSCRIPTEN_KEEPALIVE
+void set_quant_table(int componentIndex, unsigned short* newTable) {
+    if (componentIndex < 0 || componentIndex >= cinfo.num_components) {
+        return;
+    }
+    
+    // Trova quale tabella di quantizzazione usa questo componente
+    jpeg_component_info *compptr = &cinfo.comp_info[componentIndex];
+    int tbl_no = compptr->quant_tbl_no;
+    
+    if (tbl_no < 0 || tbl_no > 3) {
+        return;
+    }
+    
+    // Se la tabella non esiste, creala
+    if (cinfo.quant_tbl_ptrs[tbl_no] == NULL) {
+        cinfo.quant_tbl_ptrs[tbl_no] = jpeg_alloc_quant_table((j_common_ptr)&cinfo);
+    }
+    
+    // Copia i nuovi valori nella tabella
+    for (int i = 0; i < DCTSIZE2; i++) {
+        cinfo.quant_tbl_ptrs[tbl_no]->quantval[i] = newTable[i];
+    }
+}
+
+// Ricomprime l'immagine decompressa con le nuove tabelle di quantizzazione
+EMSCRIPTEN_KEEPALIVE
+unsigned char* recompress_jpeg_with_new_quant(int* out_size) {
+    struct jpeg_compress_struct cinfo_compress;
+    struct my_error_mgr myerr;
+    unsigned char *outbuffer = NULL;
+    unsigned long outsize = 0;
+    
+    // Inizializza la struttura di compressione
+    cinfo_compress.err = jpeg_std_error(&myerr.pub);
+    myerr.pub.error_exit = my_error_exit;
+    
+    if (setjmp(myerr.setjmp_buffer)) {
+        jpeg_destroy_compress(&cinfo_compress);
+        if (outbuffer) free(outbuffer);
+        *out_size = 0;
+        return NULL;
+    }
+    
+    jpeg_create_compress(&cinfo_compress);
+    
+    // Configura la destinazione in memoria
+    jpeg_mem_dest(&cinfo_compress, &outbuffer, &outsize);
+    
+    // Copia i parametri dal decompressore al compressore
+    cinfo_compress.image_width = cinfo.image_width;
+    cinfo_compress.image_height = cinfo.image_height;
+    cinfo_compress.input_components = cinfo.num_components;
+    cinfo_compress.in_color_space = cinfo.jpeg_color_space;
+    
+    // Imposta i parametri di default
+    jpeg_set_defaults(&cinfo_compress);
+    
+    // Copia le informazioni dei componenti
+    cinfo_compress.num_components = cinfo.num_components;
+    for (int i = 0; i < cinfo.num_components; i++) {
+        cinfo_compress.comp_info[i].component_id = cinfo.comp_info[i].component_id;
+        cinfo_compress.comp_info[i].h_samp_factor = cinfo.comp_info[i].h_samp_factor;
+        cinfo_compress.comp_info[i].v_samp_factor = cinfo.comp_info[i].v_samp_factor;
+        cinfo_compress.comp_info[i].quant_tbl_no = cinfo.comp_info[i].quant_tbl_no;
+    }
+    
+    // Copia le tabelle di quantizzazione
+    for (int i = 0; i < NUM_QUANT_TBLS; i++) {
+        if (cinfo.quant_tbl_ptrs[i] != NULL) {
+            if (cinfo_compress.quant_tbl_ptrs[i] == NULL) {
+                cinfo_compress.quant_tbl_ptrs[i] = jpeg_alloc_quant_table((j_common_ptr)&cinfo_compress);
+            }
+            memcpy(cinfo_compress.quant_tbl_ptrs[i]->quantval, 
+                   cinfo.quant_tbl_ptrs[i]->quantval, 
+                   DCTSIZE2 * sizeof(UINT16));
+        }
+    }
+    
+    // Avvia la compressione con i coefficienti DCT
+    jpeg_write_coefficients(&cinfo_compress, coef_arrays);
+    
+    // Finalizza la compressione
+    jpeg_finish_compress(&cinfo_compress);
+    jpeg_destroy_compress(&cinfo_compress);
+    
+    *out_size = (int)outsize;
+    return outbuffer;
+}
+
+// Libera il buffer JPEG allocato da recompress_jpeg_with_new_quant
+EMSCRIPTEN_KEEPALIVE
+void free_exported_jpeg_buffer(unsigned char* bufPtr) {
+    if (bufPtr) {
+        free(bufPtr);
+    }
+}

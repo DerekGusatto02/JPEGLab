@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo
+CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo/build
+CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build
 
 # Utility rule file for tjtest12.
 
@@ -66,9 +66,9 @@ include CMakeFiles/tjtest12.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/tjtest12.dir/progress.make
 
-CMakeFiles/tjtest12: /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+CMakeFiles/tjtest12: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
 CMakeFiles/tjtest12: test/tjbenchtest
-	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=12 -P /Users/derekgusatto/Documents/Git/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
+	/opt/homebrew/bin/cmake -DWITH_JAVA=0 -DPRECISION=12 -P /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/cmakescripts/tjbenchtest.cmake
 
 CMakeFiles/tjtest12.dir/codegen:
 .PHONY : CMakeFiles/tjtest12.dir/codegen
@@ -86,6 +86,6 @@ CMakeFiles/tjtest12.dir/clean:
 .PHONY : CMakeFiles/tjtest12.dir/clean
 
 CMakeFiles/tjtest12.dir/depend:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles/tjtest12.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles/tjtest12.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/tjtest12.dir/depend
 

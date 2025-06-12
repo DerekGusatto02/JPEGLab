@@ -1,10 +1,9 @@
 {
 	"InstallScripts" : 
 	[
-		"/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/cmake_install.cmake",
-		"/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/simd/cmake_install.cmake",
-		"/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/sharedlib/cmake_install.cmake",
-		"/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5/cmake_install.cmake"
+		"/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/cmake_install.cmake",
+		"/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/simd/cmake_install.cmake",
+		"/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

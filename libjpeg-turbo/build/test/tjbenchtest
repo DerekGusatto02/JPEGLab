@@ -21,9 +21,9 @@ runme()
 
 EXT=bmp
 IMAGES="vgl_5674_0098.${EXT} vgl_6434_0018a.${EXT} vgl_6548_0026a.${EXT} shira_bird8.${EXT}"
-IMGDIR=/Users/derekgusatto/Documents/Git/libjpeg-turbo/testimages
+IMGDIR=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/testimages
 OUTDIR=`mktemp -d /tmp/__tjbenchtest_output.XXXXXX`
-EXEDIR=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build
+EXEDIR=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build
 JAVA=""
 JAVAARGS="-cp $EXEDIR/java/turbojpeg.jar -Djava.library.path=$EXEDIR"
 TJBENCH=$EXEDIR/tjbench

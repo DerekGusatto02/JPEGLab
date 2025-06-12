@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo
+CMAKE_SOURCE_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/libjpeg-turbo/build
+CMAKE_BINARY_DIR = /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build
 
 # Include any dependencies generated for this target.
 include src/md5/CMakeFiles/md5cmp.dir/depend.make
@@ -74,48 +74,48 @@ src/md5/CMakeFiles/md5cmp.dir/codegen:
 
 src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.o: src/md5/CMakeFiles/md5cmp.dir/flags.make
 src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.o: src/md5/CMakeFiles/md5cmp.dir/includes_C.rsp
-src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5cmp.c
+src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5cmp.c
 src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.o: src/md5/CMakeFiles/md5cmp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.o"
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.o -MF CMakeFiles/md5cmp.dir/md5cmp.c.o.d -o CMakeFiles/md5cmp.dir/md5cmp.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5cmp.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.o"
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.o -MF CMakeFiles/md5cmp.dir/md5cmp.c.o.d -o CMakeFiles/md5cmp.dir/md5cmp.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5cmp.c
 
 src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/md5cmp.dir/md5cmp.c.i"
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5cmp.c > CMakeFiles/md5cmp.dir/md5cmp.c.i
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5cmp.c > CMakeFiles/md5cmp.dir/md5cmp.c.i
 
 src/md5/CMakeFiles/md5cmp.dir/md5cmp.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/md5cmp.dir/md5cmp.c.s"
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5cmp.c -o CMakeFiles/md5cmp.dir/md5cmp.c.s
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5cmp.c -o CMakeFiles/md5cmp.dir/md5cmp.c.s
 
 src/md5/CMakeFiles/md5cmp.dir/md5.c.o: src/md5/CMakeFiles/md5cmp.dir/flags.make
 src/md5/CMakeFiles/md5cmp.dir/md5.c.o: src/md5/CMakeFiles/md5cmp.dir/includes_C.rsp
-src/md5/CMakeFiles/md5cmp.dir/md5.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5.c
+src/md5/CMakeFiles/md5cmp.dir/md5.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5.c
 src/md5/CMakeFiles/md5cmp.dir/md5.c.o: src/md5/CMakeFiles/md5cmp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object src/md5/CMakeFiles/md5cmp.dir/md5.c.o"
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/md5/CMakeFiles/md5cmp.dir/md5.c.o -MF CMakeFiles/md5cmp.dir/md5.c.o.d -o CMakeFiles/md5cmp.dir/md5.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object src/md5/CMakeFiles/md5cmp.dir/md5.c.o"
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/md5/CMakeFiles/md5cmp.dir/md5.c.o -MF CMakeFiles/md5cmp.dir/md5.c.o.d -o CMakeFiles/md5cmp.dir/md5.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5.c
 
 src/md5/CMakeFiles/md5cmp.dir/md5.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/md5cmp.dir/md5.c.i"
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5.c > CMakeFiles/md5cmp.dir/md5.c.i
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5.c > CMakeFiles/md5cmp.dir/md5.c.i
 
 src/md5/CMakeFiles/md5cmp.dir/md5.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/md5cmp.dir/md5.c.s"
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5.c -o CMakeFiles/md5cmp.dir/md5.c.s
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5.c -o CMakeFiles/md5cmp.dir/md5.c.s
 
 src/md5/CMakeFiles/md5cmp.dir/md5hl.c.o: src/md5/CMakeFiles/md5cmp.dir/flags.make
 src/md5/CMakeFiles/md5cmp.dir/md5hl.c.o: src/md5/CMakeFiles/md5cmp.dir/includes_C.rsp
-src/md5/CMakeFiles/md5cmp.dir/md5hl.c.o: /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5hl.c
+src/md5/CMakeFiles/md5cmp.dir/md5hl.c.o: /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5hl.c
 src/md5/CMakeFiles/md5cmp.dir/md5hl.c.o: src/md5/CMakeFiles/md5cmp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object src/md5/CMakeFiles/md5cmp.dir/md5hl.c.o"
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/md5/CMakeFiles/md5cmp.dir/md5hl.c.o -MF CMakeFiles/md5cmp.dir/md5hl.c.o.d -o CMakeFiles/md5cmp.dir/md5hl.c.o -c /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5hl.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object src/md5/CMakeFiles/md5cmp.dir/md5hl.c.o"
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/md5/CMakeFiles/md5cmp.dir/md5hl.c.o -MF CMakeFiles/md5cmp.dir/md5hl.c.o.d -o CMakeFiles/md5cmp.dir/md5hl.c.o -c /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5hl.c
 
 src/md5/CMakeFiles/md5cmp.dir/md5hl.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/md5cmp.dir/md5hl.c.i"
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5hl.c > CMakeFiles/md5cmp.dir/md5hl.c.i
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5hl.c > CMakeFiles/md5cmp.dir/md5hl.c.i
 
 src/md5/CMakeFiles/md5cmp.dir/md5hl.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/md5cmp.dir/md5hl.c.s"
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5/md5hl.c -o CMakeFiles/md5cmp.dir/md5hl.c.s
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5 && /Users/derekgusatto/Documents/Git/emsdk/upstream/emscripten/emcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5/md5hl.c -o CMakeFiles/md5cmp.dir/md5hl.c.s
 
 # Object files for target md5cmp
 md5cmp_OBJECTS = \
@@ -132,18 +132,18 @@ test/md5cmp.js: src/md5/CMakeFiles/md5cmp.dir/md5hl.c.o
 test/md5cmp.js: src/md5/CMakeFiles/md5cmp.dir/build.make
 test/md5cmp.js: src/md5/CMakeFiles/md5cmp.dir/objects1.rsp
 test/md5cmp.js: src/md5/CMakeFiles/md5cmp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/derekgusatto/Documents/Git/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable ../../test/md5cmp.js"
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5 && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/md5cmp.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable ../../test/md5cmp.js"
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5 && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/md5cmp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/md5/CMakeFiles/md5cmp.dir/build: test/md5cmp.js
 .PHONY : src/md5/CMakeFiles/md5cmp.dir/build
 
 src/md5/CMakeFiles/md5cmp.dir/clean:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5 && $(CMAKE_COMMAND) -P CMakeFiles/md5cmp.dir/cmake_clean.cmake
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5 && $(CMAKE_COMMAND) -P CMakeFiles/md5cmp.dir/cmake_clean.cmake
 .PHONY : src/md5/CMakeFiles/md5cmp.dir/clean
 
 src/md5/CMakeFiles/md5cmp.dir/depend:
-	cd /Users/derekgusatto/Documents/Git/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/libjpeg-turbo /Users/derekgusatto/Documents/Git/libjpeg-turbo/src/md5 /Users/derekgusatto/Documents/Git/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5 /Users/derekgusatto/Documents/Git/libjpeg-turbo/build/src/md5/CMakeFiles/md5cmp.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/src/md5 /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5 /Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/src/md5/CMakeFiles/md5cmp.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : src/md5/CMakeFiles/md5cmp.dir/depend
 
