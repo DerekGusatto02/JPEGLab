@@ -10,28 +10,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // 1. Event listener per GridCanvas e selezione blocchi
     const canvasGrid = document.getElementById('GridCanvas');
     const componentSelect = document.getElementById('componentInput');
-
+    
     if (canvasGrid && componentSelect) {
         canvasGrid.addEventListener('click', function (event) {
             const rect = canvasGrid.getBoundingClientRect();
             const x = event.clientX - rect.left;
             const y = event.clientY - rect.top;
-
+            
             const blocksWidth = Module._get_blocks_width();
             const blocksHeight = Module._get_blocks_height();
-
+            
             const blockWidth = canvasGrid.width / blocksWidth;
             const blockHeight = canvasGrid.height / blocksHeight;
-
+            
             const blockX = Math.floor(x / blockWidth);
             const blockY = Math.floor(y / blockHeight);
-
+            
             selectedBlockX = blockX;
             selectedBlockY = blockY;
-
+            
             const componentIndex = componentSelect.value;
             const dctCoefficients = getDCTCoefficients(componentIndex, blockX, blockY);
-
+            
             if (dctCoefficients) {
                 displayDCTCoefficients(dctCoefficients);
                 displayBlockZoomOriginal(blockX, blockY, image);
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
+    
     // 2. Event listener per cambio componente
     if (componentSelect) {
         componentSelect.addEventListener('change', function () {
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const quantTablePtr = Module._get_quant_table(selectedComponent === 0 ? 0 : 1);
             const quantTable = readArrayFromMemory(quantTablePtr, 64);
             displayQuantizationTable(quantTable);
-
+            
             if (selectedBlockX !== -1 && selectedBlockY !== -1) {
                 const dctCoefficients = getDCTCoefficients(selectedComponent, selectedBlockX, selectedBlockY);
                 if (dctCoefficients) {
@@ -58,12 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
+    
     // 3. Gestione input immagine e reset
     const testSelect = document.getElementById('testImageSelect');
     const imageInput = document.getElementById('imageInput');
     const resetButton = document.getElementById('resetButton');
-
+    
     if (imageInput && testSelect) {
         imageInput.addEventListener('change', function () {
             if (imageInput.files && imageInput.files.length > 0) {
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
+    
     if (testSelect) {
         testSelect.addEventListener('change', function () {
             resetZoomBlock();
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
             imageArrayBuffer = null;
         });
     }
-
+    
     if (resetButton && testSelect && imageInput) {
         resetButton.addEventListener('click', function () {
             imageInput.value = '';
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
             resetZoomBlock();
         });
     }
-
+    
     // 4. Event listener per i bottoni di modifica quantizzazione
     const modQuantButton = document.getElementById('ModQuantizTable');
     const applyQuantButton = document.getElementById('ApplyQuantizTable');
@@ -118,10 +118,10 @@ document.addEventListener('DOMContentLoaded', function() {
         applyQuantElement.onclick = async function() {
             // Tabella identità: tutti 1 (per esempio, per Y)
             const identityTable = Array(64).fill(1);
-
+            
             // Imposta la tabella per il componente Y (0)
             setQuantizationTable(0, identityTable);
-
+            
             // Ricomprimi e visualizza
             await showRecompressedJpegInImg('jpegResult');
         };
@@ -171,7 +171,7 @@ function displayImageWithGrid(img) {
     const ctx = canvas.getContext('2d');
     const dctContainerDiv = document.getElementById('DCTCanvasContainer');
     if (!dctContainerDiv) return;
-
+    
     const block_per_row = Module._get_blocks_width();
     const block_per_col = Module._get_blocks_height();
     const minBlockSize = 15;
@@ -182,10 +182,10 @@ function displayImageWithGrid(img) {
     canvas.height = img.height * scale;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(img, 0, 0, img.width * scale, img.height * scale);
-
+    
     const blockWidth = (img.width * scale) / block_per_row;
     const blockHeight = (img.height * scale) / block_per_col;
-
+    
     ctx.strokeStyle = 'red';
     ctx.lineWidth = 1.5;
     for (let x = 0; x <= canvas.width; x += blockWidth) {
@@ -209,7 +209,7 @@ function displayDCTCoefficients(coefficients) {
     const table = document.createElement('table');
     table.style.borderCollapse = 'collapse';
     table.style.textAlign = 'center';
-
+    
     for (let i = 0; i < 8; i++) {
         const row = document.createElement('tr');
         for (let j = 0; j < 8; j++) {
@@ -221,7 +221,7 @@ function displayDCTCoefficients(coefficients) {
         }
         table.appendChild(row);
     }
-
+    
     const resultDiv = document.getElementById('DCTCoefficients');
     if (resultDiv) {
         resultDiv.innerHTML = `<h3>${LANG[currentLang].dctTitle}</h3>`;
@@ -234,7 +234,7 @@ function displayQuantizationTable(quantTable) {
     const table = document.createElement('table');
     table.style.borderCollapse = 'collapse';
     table.style.textAlign = 'center';
-
+    
     for (let i = 0; i < 8; i++) {
         const row = document.createElement('tr');
         for (let j = 0; j < 8; j++) {
@@ -246,7 +246,7 @@ function displayQuantizationTable(quantTable) {
         }
         table.appendChild(row);
     }
-
+    
     const resultDiv = document.getElementById('quantizationTable');
     if (resultDiv) {
         resultDiv.innerHTML = `<h3>${LANG[currentLang].quantTitle}</h3>`;
@@ -291,16 +291,16 @@ async function loadImageAndBuffer(retries = 3, forceReload = false) {
                 const testImageSelect = document.getElementById('testImageSelect');
                 if (!fileInput || !testImageSelect) return reject('Missing input elements');
                 const selectedTestImage = testImageSelect.value;
-
+                
                 let img = new Image();
                 let arrayBuffer;
                 let timeoutId;
-
+                
                 img.onerror = function () {
                     clearTimeout(timeoutId);
                     reject(LANG[currentLang].errorLoad);
                 };
-
+                
                 if (fileInput.files && fileInput.files.length > 0) {
                     const file = fileInput.files[0];
                     if (file.type !== 'image/jpeg') {
@@ -325,14 +325,14 @@ async function loadImageAndBuffer(retries = 3, forceReload = false) {
                     reject(LANG[currentLang].errorNoImage);
                     return;
                 }
-
+                
                 img.onload = function () {
                     clearTimeout(timeoutId);
                     image = img; // aggiorna la variabile globale
                     imageArrayBuffer = arrayBuffer; // aggiorna la variabile globale
                     resolve({ img, arrayBuffer });
                 };
-
+                
                 // Timeout di 5 secondi
                 timeoutId = setTimeout(() => {
                     reject(LANG[currentLang].errorLoadTimeout);
@@ -355,10 +355,10 @@ async function analyzeImage() {
     }
     isAnalyzing = true;
     setAnalysisButtonsEnabled(false);
-
+    
     try {
         Module._free();
-
+        
         let img, arrayBuffer;
         try {
             ({ img, arrayBuffer } = await loadImageAndBuffer());
@@ -366,7 +366,7 @@ async function analyzeImage() {
             alert(error);
             throw error; // Così il finally viene sempre eseguito
         }
-
+        
         if (img.complete) {
             showAllSections();
             const boxList = document.querySelectorAll('.canvas-title.title-hidden');
@@ -403,42 +403,42 @@ async function analyzeImage() {
                 alert(LANG[currentLang].errorLoad);
             };
         }
-
+        
         const input = new Uint8Array(arrayBuffer);
         if (input[0] !== 0xFF || input[1] !== 0xD8) {
             alert(LANG[currentLang].errorNotJPEG);
             throw new Error('Not a JPEG');
         }
-
+        
         if (typeof Module === 'undefined' || !Module._init_decoder) {
             alert(LANG[currentLang].errorWasm);
             throw new Error('WASM not loaded');
         }
-
+        
         const inputPtr = Module._malloc(input.length);
         Module['HEAPU8'].set(input, inputPtr);
         const decoderPtr = Module._init_decoder(inputPtr, input.length);
         if (!decoderPtr) throw new Error(LANG[currentLang].errorDecoder);
-
+        
         const width = Module._get_width();
         const height = Module._get_height();
         const colorSpacePtr = Module._get_color_space();
         const colorSpace = readStringFromMemory(colorSpacePtr);
-
+        
         const componentSelect = document.getElementById('componentInput');
         let quantTable = [];
         if (componentSelect) {
             const quantTablePtr1 = Module._get_quant_table(0);
             const quantTablePtr2 = Module._get_quant_table(1);
             quantTable = componentSelect.value == 0
-                ? readArrayFromMemory(quantTablePtr1, 64)
-                : readArrayFromMemory(quantTablePtr2, 64);
+            ? readArrayFromMemory(quantTablePtr1, 64)
+            : readArrayFromMemory(quantTablePtr2, 64);
         }
-
+        
         writeHTMLresult(height, width, colorSpace, quantTable);
         const componentForm = document.getElementById('componentForm');
         if (componentForm) componentForm.style.display = 'block';
-
+        
         Module._free(inputPtr);
     } catch (error) {
         console.error('DEBUG: Errore durante l\'analisi:', error);
@@ -459,10 +459,10 @@ async function analyzeImageDCT(event) {
     }
     isAnalyzing = true;
     setAnalysisButtonsEnabled(false);
-
+    
     try {
         if (event) event.preventDefault();
-
+        
         let img, arrayBuffer;
         try {
             ({ img, arrayBuffer } = await loadImageAndBuffer());
@@ -470,7 +470,7 @@ async function analyzeImageDCT(event) {
             alert(error);
             throw error;
         }
-
+        
         if (img.complete) {
             requestAnimationFrame(() => {
                 displayImageWithGrid(img);
@@ -487,39 +487,39 @@ async function analyzeImageDCT(event) {
                 alert(LANG[currentLang].errorLoad);
             };
         }
-
+        
         const input = new Uint8Array(arrayBuffer);
         if (input[0] !== 0xFF || input[1] !== 0xD8) {
             alert(LANG[currentLang].errorNotJPEG);
             throw new Error('Not a JPEG');
         }
-
+        
         if (typeof Module === 'undefined' || !Module._init_decoder) {
             alert(LANG[currentLang].errorWasm);
             throw new Error('WASM not loaded');
         }
-
+        
         const inputPtr = Module._malloc(input.length);
         Module['HEAPU8'].set(input, inputPtr);
         const decoderPtr = Module._init_decoder(inputPtr, input.length);
         if (!decoderPtr) throw new Error(LANG[currentLang].errorDecoder);
-
+        
         const width = Module._get_width();
         const height = Module._get_height();
         const colorSpacePtr = Module._get_color_space();
         const colorSpace = readStringFromMemory(colorSpacePtr);
-
+        
         const componentSelect = document.getElementById('componentInput');
         let quantTable = [];
         if (componentSelect) {
             const quantTablePtr = Module._get_quant_table(componentSelect.value == 0 ? 0 : 1);
             quantTable = readArrayFromMemory(quantTablePtr, 64);
         }
-
+        
         writeHTMLresult(height, width, colorSpace, quantTable);
         const componentForm = document.getElementById('componentForm');
         if (componentForm) componentForm.style.display = 'block';
-
+        
         Module._free(inputPtr);
     } catch (error) {
         console.error('DEBUG: Errore durante l\'analisi DCT:', error);
@@ -540,10 +540,10 @@ async function analyzeImageComponent(event) {
     }
     isAnalyzing = true;
     setAnalysisButtonsEnabled(false);
-
+    
     try {
         if (event) event.preventDefault();
-
+        
         let img, arrayBuffer;
         try {
             ({ img, arrayBuffer } = await loadImageAndBuffer());
@@ -551,7 +551,7 @@ async function analyzeImageComponent(event) {
             alert(error);
             throw error;
         }
-
+        
         if (img.complete) {
             showComponents();
             const boxList = document.querySelectorAll('.canvas-title.title-hidden');
@@ -586,23 +586,23 @@ async function analyzeImageComponent(event) {
                 alert(LANG[currentLang].errorLoad);
             };
         }
-
+        
         const input = new Uint8Array(arrayBuffer);
         if (input[0] !== 0xFF || input[1] !== 0xD8) {
             alert(LANG[currentLang].errorNotJPEG);
             throw new Error('Not a JPEG');
         }
-
+        
         if (typeof Module === 'undefined' || !Module._init_decoder) {
             alert(LANG[currentLang].errorWasm);
             throw new Error('WASM not loaded');
         }
-
+        
         const inputPtr = Module._malloc(input.length);
         Module['HEAPU8'].set(input, inputPtr);
         const decoderPtr = Module._init_decoder(inputPtr, input.length);
         if (!decoderPtr) throw new Error('Impossibile inizializzare il decoder.');
-
+        
         Module._free(inputPtr);
     } catch (error) {
         console.error('DEBUG: Errore durante l\'analisi componenti:', error);
@@ -624,20 +624,20 @@ async function drawComponentOnCanvas(componentIndex, canvasId) {
     const width = Module._get_component_width(componentIndex);
     const height = Module._get_component_height(componentIndex);
     const pixelsPtr = Module._extract_component_pixels(componentIndex);
-
+    
     if (pixelsPtr === 0 || width <= 0 || height <= 0) {
         return;
     }
-
+    
     const pixels = new Uint8Array(Module.HEAPU8.buffer, pixelsPtr, width * height);
-
+    
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
     canvas.width = width;
     canvas.height = height;
     const ctx = canvas.getContext("2d");
     const imageData = ctx.createImageData(width, height);
-
+    
     for (let i = 0; i < pixels.length; i++) {
         const value = pixels[i];
         imageData.data[i * 4] = value;
@@ -645,7 +645,7 @@ async function drawComponentOnCanvas(componentIndex, canvasId) {
         imageData.data[i * 4 + 2] = value;
         imageData.data[i * 4 + 3] = 255;
     }
-
+    
     ctx.putImageData(imageData, 0, 0);
 }
 
@@ -659,23 +659,23 @@ function displayBlockZoomOriginal(blockX, blockY, img) {
     });
     const blocktitle = document.getElementById('BlockTitle');
     if (blocktitle) blocktitle.innerHTML = `${LANG[currentLang].blockSelected}: (${blockX}, ${blockY})`;
-
+    
     const blockSize = 8;
     const zoomSize = 20;
     const canvasSize = blockSize * zoomSize;
-
+    
     const zoomCanvas = document.getElementById('blockZoomCanvasOriginale');
     if (!img || !zoomCanvas) return;
-
+    
     zoomCanvas.width = canvasSize;
     zoomCanvas.height = canvasSize;
-
+    
     const ctxDst = zoomCanvas.getContext('2d');
     const srcX = blockX * blockSize;
     const srcY = blockY * blockSize;
     const srcW = Math.min(blockSize, img.naturalWidth - srcX);
     const srcH = Math.min(blockSize, img.naturalHeight - srcY);
-
+    
     const tempCanvas = document.createElement('canvas');
     tempCanvas.width = srcW;
     tempCanvas.height = srcH;
@@ -685,7 +685,7 @@ function displayBlockZoomOriginal(blockX, blockY, img) {
         srcX, srcY, srcW, srcH,
         0, 0, srcW, srcH
     );
-
+    
     ctxDst.clearRect(0, 0, zoomCanvas.width, zoomCanvas.height);
     ctxDst.imageSmoothingEnabled = false;
     ctxDst.drawImage(tempCanvas, 0, 0, blockSize * zoomSize, blockSize * zoomSize);
@@ -718,7 +718,7 @@ function setQuantizationTable(componentIndex, quantTable) {
         console.error('DEBUG: Quantization table must be an array of 64 elements.');
         return;
     }
-
+    
     const ptr = Module._malloc(quantTable.length * 2); // 2 bytes per elemento (HEAPU16)
     Module['HEAPU16'].set(quantTable, ptr >> 1);
     Module._set_quant_table(componentIndex, ptr);
@@ -735,7 +735,7 @@ async function recompressAndGetJpegBlob() {
         const outSizePtr = Module._malloc(4);
         const jpegPtr = Module._recompress_jpeg_with_new_quant(outSizePtr);
         const jpegSize = Module['HEAP32'][outSizePtr >> 2];
-
+        
         if (!jpegPtr || jpegSize <= 0) {
             Module._free(outSizePtr);
             // Get the last error message from the WASM module
@@ -743,15 +743,15 @@ async function recompressAndGetJpegBlob() {
             const errorMsg = errorMsgPtr ? Module.UTF8ToString(errorMsgPtr) : "Unknown error";
             throw new Error(`Errore nella ricompressione JPEG: ${errorMsg}`);
         }
-
+        
         // Copia il buffer JPEG dalla memoria WASM
         const jpegData = new Uint8Array(Module['HEAPU8'].buffer, jpegPtr, jpegSize);
         const blob = new Blob([jpegData], { type: 'image/jpeg' });
-
+        
         // Libera la memoria allocata in C
         Module._free_exported_jpeg_buffer(jpegPtr);
         Module._free(outSizePtr);
-
+        
         return blob;
     } catch (error) {
         console.error('Recompression error:', error);
@@ -764,9 +764,9 @@ function makeQuantizationTableEditable() {
     const quantTableDiv = document.getElementById('quantizationTable');
     const editableDiv = document.getElementById('ModQuantizTableEditable');
     if (!quantTableDiv || !editableDiv) return;
-
+    
     let quantValues = [];
-
+    
     // Se la tabella modificata non esiste ancora, copia i valori dalla tabella originale
     if (editableDiv.innerHTML.trim() === "") {
         const table = quantTableDiv.querySelector('table');
@@ -789,12 +789,12 @@ function makeQuantizationTableEditable() {
             }
         }
     }
-
+    
     // Ricrea la tabella editabile con gli input
     const editableTable = document.createElement('table');
     editableTable.style.borderCollapse = 'collapse';
     editableTable.style.textAlign = 'center';
-
+    
     for (let i = 0; i < 8; i++) {
         const row = document.createElement('tr');
         for (let j = 0; j < 8; j++) {
@@ -808,11 +808,11 @@ function makeQuantizationTableEditable() {
         }
         editableTable.appendChild(row);
     }
-
+    
     editableDiv.innerHTML = `<h3>${LANG[currentLang].quantTitle} (modificata)</h3>`;
     editableDiv.appendChild(editableTable);
     editableDiv.style.display = 'block';
-
+    
     // Mostra/nascondi bottoni
     const modButton = document.getElementById('ModQuantizTable');
     const applyButton = document.getElementById('ApplyQuantizTable');
@@ -825,10 +825,10 @@ function makeQuantizationTableEditable() {
 async function applyQuantizationTableChanges() {
     const editableDiv = document.getElementById('ModQuantizTableEditable');
     if (!editableDiv) return;
-
+    
     const table = editableDiv.querySelector('table');
     if (!table) return;
-
+    
     // Raccoglie i valori dagli input
     const inputs = table.querySelectorAll('input.quant-input');
     const newQuantTable = [];
@@ -842,18 +842,18 @@ async function applyQuantizationTableChanges() {
         }
         newQuantTable.push(value);
     });
-
+    
     if (hasError) return;
     if (newQuantTable.length !== 64) return;
-
+    
     try {
         setQuantizationTable(selectedComponent, newQuantTable);
         await showRecompressedImageInModifiedCanvas();
-
-
+        
+        
         // Mostra la tabella modificata in modalità readonly
         showReadonlyModifiedQuantTable(newQuantTable);
-
+        
         // Mostra/nascondi bottoni
         const modButton = document.getElementById('ModQuantizTable');
         const applyButton = document.getElementById('ApplyQuantizTable');
@@ -990,7 +990,7 @@ function showDCTSection() {
     }
     if (analysisResults) analysisResults.style.display = 'grid';
     if (clickCanvasTitle) clickCanvasTitle.style.display = 'block';
-
+    
     // Reset della tabella di quantizzazione e canvas modificato quando si cambia analisi
     resetQuantizationTableAndCanvas();
 }
@@ -1014,14 +1014,14 @@ function showAllSections() {
     const canvasContainer = document.getElementById('canvasContainer');
     const analysisResults = document.getElementById('AnalysisResults');
     const clickCanvasTitle = document.getElementById('clickCanvasTitle');
-
+    
     if (canvasContainer) {
         canvasContainer.style.display = 'flex';
         canvasContainer.classList.remove('canvasContainer-2x2');
     }
     if (analysisResults) analysisResults.style.display = 'grid';
     if (clickCanvasTitle) clickCanvasTitle.style.display = 'block';
-
+    
     // Reset della tabella di quantizzazione e canvas modificato quando si cambia analisi
     resetQuantizationTableAndCanvas();
 }
@@ -1030,7 +1030,7 @@ function showAllSections() {
 // Funzione per mostrare/nascondere il canvas dell'immagine modificata
 function toggleModifiedCanvasVisibility(show) {
     const ModQuantContainer = document.getElementById('ModQuantContainer');
-     const ModQuantTitle = document.getElementById('ModQuantTitle');
+    const ModQuantTitle = document.getElementById('ModQuantTitle');
     if (!ModQuantContainer) return;
     
     if (ModQuantContainer) {
@@ -1043,11 +1043,11 @@ function toggleModifiedCanvasVisibility(show) {
 function showReadonlyModifiedQuantTable(quantTable) {
     const editableDiv = document.getElementById('ModQuantizTableEditable');
     if (!editableDiv) return;
-
+    
     const table = document.createElement('table');
     table.style.borderCollapse = 'collapse';
     table.style.textAlign = 'center';
-
+    
     for (let i = 0; i < 8; i++) {
         const row = document.createElement('tr');
         for (let j = 0; j < 8; j++) {
@@ -1059,7 +1059,7 @@ function showReadonlyModifiedQuantTable(quantTable) {
         }
         table.appendChild(row);
     }
-
+    
     editableDiv.innerHTML = `<h3>${LANG[currentLang].quantTitle} (modificata)</h3>`;
     editableDiv.appendChild(table);
     editableDiv.style.display = 'block';

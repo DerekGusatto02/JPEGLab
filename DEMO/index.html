@@ -9,9 +9,9 @@
     <meta name="description" content="Questa applicazione ti aiuterà a decodificare e studiare la codifica e la compressione JPE">
     <!-- <link rel="icon" type="image/png" href="img/logo.png"> -->
     <!-- CSS -->
-	<link rel="stylesheet" media="screen" href="styles/style.css" type="text/css">
-	<link rel="stylesheet" media="screen and (max-width:900px)" href="styles/mini.css" type="text/css">
-	<!--<link rel="stylesheet" media="print" href="/orientamento-1.0/print.css" type="text/css"> -->
+    <link rel="stylesheet" media="screen" href="styles/style.css" type="text/css">
+    <link rel="stylesheet" media="screen and (max-width:900px)" href="styles/mini.css" type="text/css">
+    <!--<link rel="stylesheet" media="print" href="/orientamento-1.0/print.css" type="text/css"> -->
     <!-- JS -->  
     <script src="scripts/jpeg_wrapper.js"></script>
     <script src="scripts/lang_strings.js"></script>
@@ -20,129 +20,129 @@
 </head>
 <body>
     <header>    
-		
+        
         <!-- Banner loghi-->
-		<div class="logo-banner">
-			<div class="logo-banner-container">
-				<a class="logo-container-unipd" href="https://www.unipd.it/">Università degli Studi di Padova</a>
-				<a class="logo-container-informatica" href="https://informatica.math.unipd.it/">Informatica</a>
-				<a class="logo-container-dm" href="https://www.math.unipd.it/">Dipartimento di Matematica “Tullio Levi-Civita”</a>
-			</div>
+        <div class="logo-banner">
+            <div class="logo-banner-container">
+                <a class="logo-container-unipd" href="https://www.unipd.it/">Università degli Studi di Padova</a>
+                <a class="logo-container-informatica" href="https://informatica.math.unipd.it/">Informatica</a>
+                <a class="logo-container-dm" href="https://www.math.unipd.it/">Dipartimento di Matematica “Tullio Levi-Civita”</a>
+            </div>
             
-		</div>
+        </div>
         <div class="language-switch">
-  <label class="lang-toggle">
-    <input type="checkbox" id="lang-toggle" aria-label="Switch language">
-    <span class="slider">
-      <span class="lang-label lang-it">IT</span>
-      <span class="lang-label lang-en">EN</span>
-    </span>
-  </label>
-</div>
+            <label class="lang-toggle">
+                <input type="checkbox" id="lang-toggle" aria-label="Switch language">
+                <span class="slider">
+                    <span class="lang-label lang-it">IT</span>
+                    <span class="lang-label lang-en">EN</span>
+                </span>
+            </label>
+        </div>
     </header>
     <main id="home">
-    <h1>JPEGLab</h1>
-    <p>Questa applicazione ti aiuterà a comprendere e studiare la codifica e la compressione JPEG.</p> 
-
-    <form id="imageForm" >
-        <div>
-            <label for="testImageSelect">Seleziona un'immagine di test:</label>
-            <select id="testImageSelect" name="testImageSelect">
-                <option value="Test12.jpg" selected>Test12 - vecchio SW</option>
-                <option value="Test00.jpg">Test00 - vecchio SW</option>
-                <option value="pontile.jpg">Pontile</option>
-                <option value="gardena.jpg">Montagne</option>
-                <option value="tiger.jpg">Tigre</option>
-                <option value="montagna.jpg">Montagna GreyScale</option>
-            </select>
-        </div>
-        <div>
-            <label for="imageInput">Carica un'immagine JPEG:</label>
-            <input type="file" class="btn" id="imageInput" name="imageInput" accept="image/jpeg" aria-required="true">
-        </div>
-        <button type="button" class="btn btn-analyze" name="view" value="all" onclick="analyzeImage()">Analisi completa</button>
-        <button type="button" class="btn btn-analyze" name="view" value="dct" onclick="analyzeImageDCT()">DCT &amp; Quantizzazione</button>
-        <button type="button" class="btn btn-analyze" name="view" value="canvas" onclick="analyzeImageComponent()">Componenti</button>
-        <button type="button" class="btn btn-reset" id="resetButton">Reset</button>
-
-        <!--<button type="button" class="btn btn-analyze" id="analyzeButton"  onclick="analyzeImage()">Analisi</button>
-        <button type="button" class="btn btn-reset" id="resetButton">Reset</button>-->
-    </form>
-
-    <div id="canvasContainer" >
-        <div class="canvas-column">
-        <h2 class="canvas-title title-hidden">Originale</h2>
-        <canvas id="imageCanvas"></canvas>
-    </div>
-    <div class="canvas-column">
-        <h2 class="canvas-title title-hidden">Componente Y</h2>
-        <canvas id="YCompCanvas"></canvas>
-    </div>
-    <div class="canvas-column">
-        <h2 class="canvas-title title-hidden">Componente Cb</h2>
-        <canvas id="CbCompCanvas"></canvas>
-    </div>
-    <div class="canvas-column">
-        <h2 class="canvas-title title-hidden">Componente Cr</h2>
-        <canvas id="CrCompCanvas"></canvas>
-    </div>
-</div>
-
-<div id="AnalysisResults">
-    <div id="CanvasContainer">
-    <h2 id="clickCanvasTitle"> Clicca su un blocco per visualizzare i coefficienti DCT </h2>
-    <div id="DCTCanvasContainer">
-      <canvas id="GridCanvas"></canvas>
-    </div>
-    </div>
-   
-    <div id="ModQuantContainer" >
-         <h2 id="ModQuantTitle">Immagine con la tabella di quantizzazione modificata:</h2>
-      <canvas id="ModifiedCanvas"></canvas>
-    </div>
-
-  <div id="TextResults" aria-live="polite">
-            
-            <h2 id="BlockTitle" class="block-title title-hidden"></h2>
-            <div id="ZoomBlock">
-                <canvas id="blockZoomCanvasOriginale"></canvas>
-            </div>
-            <div id="generalInfo"></div>
-            <form id="componentForm" >
-                <label for="componentInput">Seleziona una componente:</label>
-                <select id="componentInput" name="componentInput" aria-required="true">
-                    <option value="0" selected>Y</option> 
-                    <option value="1">Cb</option>
-                    <option value="2">Cr</option>
-                </select>
-            </form>
-            
-            <div id="DCTCoefficients" aria-label="DCT Results"></div>
-            <div id="quantizationTable" ></div>
-            <div id="ModQuantizTableEditable"></div>
-            <div> 
-                <button id="ModQuantizTable" type="button" class="btn btn-analyze" name="view" onclick="makeQuantizationTableEditable()">Modifica tabella di quantizzazione</button>
-                <button id="ApplyQuantizTable" type="button" class="btn btn-analyze" name="view" onclick="applyQuantizationTableChanges()">Applica tabella di quantizzazione</button>
-            </div>
+        <h1>JPEGLab</h1>
+        <p>Questa applicazione ti aiuterà a comprendere e studiare la codifica e la compressione JPEG.</p> 
         
+        <form id="imageForm" >
+            <div>
+                <label for="testImageSelect">Seleziona un'immagine di test:</label>
+                <select id="testImageSelect" name="testImageSelect">
+                    <option value="Test12.jpg" selected>Test12 - vecchio SW</option>
+                    <option value="Test00.jpg">Test00 - vecchio SW</option>
+                    <option value="pontile.jpg">Pontile</option>
+                    <option value="gardena.jpg">Montagne</option>
+                    <option value="tiger.jpg">Tigre</option>
+                    <option value="montagna.jpg">Montagna GreyScale</option>
+                </select>
+            </div>
+            <div>
+                <label for="imageInput">Carica un'immagine JPEG:</label>
+                <input type="file" class="btn" id="imageInput" name="imageInput" accept="image/jpeg" aria-required="true">
+            </div>
+            <button type="button" class="btn btn-analyze" name="view" value="all" onclick="analyzeImage()">Analisi completa</button>
+            <button type="button" class="btn btn-analyze" name="view" value="dct" onclick="analyzeImageDCT()">DCT &amp; Quantizzazione</button>
+            <button type="button" class="btn btn-analyze" name="view" value="canvas" onclick="analyzeImageComponent()">Componenti</button>
+            <button type="button" class="btn btn-reset" id="resetButton">Reset</button>
+            
+            <!--<button type="button" class="btn btn-analyze" id="analyzeButton"  onclick="analyzeImage()">Analisi</button>
+            <button type="button" class="btn btn-reset" id="resetButton">Reset</button>-->
+        </form>
+        
+        <div id="canvasContainer" >
+            <div class="canvas-column">
+                <h2 class="canvas-title title-hidden">Originale</h2>
+                <canvas id="imageCanvas"></canvas>
+            </div>
+            <div class="canvas-column">
+                <h2 class="canvas-title title-hidden">Componente Y</h2>
+                <canvas id="YCompCanvas"></canvas>
+            </div>
+            <div class="canvas-column">
+                <h2 class="canvas-title title-hidden">Componente Cb</h2>
+                <canvas id="CbCompCanvas"></canvas>
+            </div>
+            <div class="canvas-column">
+                <h2 class="canvas-title title-hidden">Componente Cr</h2>
+                <canvas id="CrCompCanvas"></canvas>
+            </div>
         </div>
-</div>
-   
+        
+        <div id="AnalysisResults">
+            <div id="CanvasContainer">
+                <h2 id="clickCanvasTitle"> Clicca su un blocco per visualizzare i coefficienti DCT </h2>
+                <div id="DCTCanvasContainer">
+                    <canvas id="GridCanvas"></canvas>
+                </div>
+            </div>
+            
+            <div id="ModQuantContainer" >
+                <h2 id="ModQuantTitle">Immagine con la tabella di quantizzazione modificata:</h2>
+                <canvas id="ModifiedCanvas"></canvas>
+            </div>
+            
+            <div id="TextResults" aria-live="polite">
+                
+                <h2 id="BlockTitle" class="block-title title-hidden"></h2>
+                <div id="ZoomBlock">
+                    <canvas id="blockZoomCanvasOriginale"></canvas>
+                </div>
+                <div id="generalInfo"></div>
+                <form id="componentForm" >
+                    <label for="componentInput">Seleziona una componente:</label>
+                    <select id="componentInput" name="componentInput" aria-required="true">
+                        <option value="0" selected>Y</option> 
+                        <option value="1">Cb</option>
+                        <option value="2">Cr</option>
+                    </select>
+                </form>
+                
+                <div id="DCTCoefficients" aria-label="DCT Results"></div>
+                <div id="quantizationTable" ></div>
+                <div id="ModQuantizTableEditable"></div>
+                <div> 
+                    <button id="ModQuantizTable" type="button" class="btn btn-analyze" name="view" onclick="makeQuantizationTableEditable()">Modifica tabella di quantizzazione</button>
+                    <button id="ApplyQuantizTable" type="button" class="btn btn-analyze" name="view" onclick="applyQuantizationTableChanges()">Applica tabella di quantizzazione</button>
+                </div>
+                
+            </div>
+        </div>
+        
     </main>
     <a class="btn btn-go-up" href="#home" role="button">Torna su</a>
     <div class="container">
-    <footer class="footer-flex">
-				<a href="https://www.unipd.it/" class="footer-link link-dark logo-container-footer-unipd">Università degli Studi di Padova</a>
-				
-				<ul class="col-md-4 mb-0 text-muted footer-contacts">
-					<li>Università di Padova - Dipartimento di Matematica</li>
-					<li><address>Via Trieste, 63 - 35121 Padova (Italia)</address></li>
-					<li>Telefono: +39 049 8271200</li>
-					<li>Fax: +39 049 8271499</li>
-				</ul>
-				
-				<a href="https://www.math.unipd.it/" class="footer-link link-dark logo-container-footer-dm">Dipartimento di Matematica “Tullio Levi-Civita”</a>
-			</footer>
+        <footer class="footer-flex">
+            <a href="https://www.unipd.it/" class="footer-link link-dark logo-container-footer-unipd">Università degli Studi di Padova</a>
+            
+            <ul class="col-md-4 mb-0 text-muted footer-contacts">
+                <li>Università di Padova - Dipartimento di Matematica</li>
+                <li><address>Via Trieste, 63 - 35121 Padova (Italia)</address></li>
+                <li>Telefono: +39 049 8271200</li>
+                <li>Fax: +39 049 8271499</li>
+            </ul>
+            
+            <a href="https://www.math.unipd.it/" class="footer-link link-dark logo-container-footer-dm">Dipartimento di Matematica “Tullio Levi-Civita”</a>
+        </footer>
     </div>
 </body>
 </html>
