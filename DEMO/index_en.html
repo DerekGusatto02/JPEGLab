@@ -87,13 +87,20 @@
         <canvas id="CrCompCanvas"></canvas>
     </div>
 </div>
+<div id="AnalysisResults">
+    <div id="CanvasContainer">
+    <h2 id="clickCanvasTitle"> Click on a block to view the DCT coefficients</h2>
+    <div id="DCTCanvasContainer">
+      <canvas id="GridCanvas"></canvas>
+    </div>
+    </div>
+   
+    <div id="ModQuantContainer" >
+         <h2 id="ModQuantTitle">Image with modified quantization table:</h2>
+      <canvas id="ModifiedCanvas"></canvas>
+    </div>
 
-    <div id="AnalysisResults">
-        <h2> Click on a block to view the DCT coefficients </h2>
-        <div id="DCTCanvasContainer">
-            <canvas id="GridCanvas" aria-label="Image Canvas"></canvas>
-        </div>
-        <div id="results" aria-live="polite">
+  <div id="TextResults" aria-live="polite">
             
             <h2 id="BlockTitle" class="block-title title-hidden"></h2>
             <div id="ZoomBlock">
@@ -111,10 +118,15 @@
             
             <div id="DCTCoefficients" aria-label="DCT Results"></div>
             <div id="quantizationTable" ></div>
-            
+             <div id="ModQuantizTableEditable"></div>
+            <div> 
+                 <button id="ModQuantizTable" type="button" class="btn btn-analyze" name="view" onclick="makeQuantizationTableEditable()">Modifica tabella di quantizzazione</button>
+                <button id="ApplyQuantizTable" type="button" class="btn btn-analyze" name="view" onclick="applyQuantizationTableChanges()">Applica tabella di quantizzazione</button>
+            </div>
         
         </div>
-    </div>
+</div>
+
    
     </main>
     <a class="btn btn-go-up" href="#home" role="button">Back to top</a>

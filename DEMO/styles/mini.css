@@ -1,14 +1,28 @@
 html, body {
   overflow-x: hidden;
 }
-
 #AnalysisResults {
-  grid-template-rows: 1fr auto auto;
-  grid-template-columns: auto;
-  grid-template-areas: 
-    "title"
-    "grid"
-    "results";
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1em;
+  width: 100%;
+}
+#CanvasResults, #TextResults, #ModQuantContainer, #ModQuantTitle {
+  max-width: 100%;
+  width: 100%;
+}
+#CanvasResults {
+  order: 1;
+}
+#TextResults {
+  order: 2;
+}
+#ModQuantTitle {
+  order: 3;
+}
+
+#ModQuantContainer {
+  order: 4;
 }
 
 #canvasContainer {
@@ -68,11 +82,11 @@ html, body {
 }
 
 #DCTCanvasContainer {
-    grid-area: grid;
-    max-width: 100vw;
-    max-height: 60vh;
-    overflow: auto;
-    box-sizing: border-box;
+  grid-area: grid;
+  max-width: 100vw;
+  max-height: 60vh;
+  overflow: auto;
+  box-sizing: border-box;
 }
 
 .language-switch {
@@ -95,3 +109,4 @@ html, body {
   padding: 0 8px !important;
   gap: 6px
 }
+

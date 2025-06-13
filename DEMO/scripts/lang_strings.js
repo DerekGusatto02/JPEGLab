@@ -28,6 +28,7 @@ const LANG = {
     reset: "Reset",
     backToTop: "Torna su",
     errorAlreadyAnalyzing: "Errore: Analisi già in corso. Attendi il completamento prima di avviarne una nuova.",
+    ModQuantTitle: "Tabella di Quantizzazione Modificata",
   },
   en: {
     infoTitle: "Other information",
@@ -58,5 +59,6 @@ const LANG = {
     reset: "Reset",
     backToTop: "Back to top",
     errorAlreadyAnalyzing: "Error: Analysis already in progress. Please wait for it to complete before starting a new one.",
+    ModQuantTitle: "Modified Quantization Table",
   }
 };

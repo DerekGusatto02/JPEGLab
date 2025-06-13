@@ -422,14 +422,16 @@ select {
 }
 
 #quantizationTable table,
-#DCTCoefficients table {
+#DCTCoefficients table,
+#ModQuantizTableEditable table {
     border-collapse: collapse;
     margin: 1em 1em;
     text-align: center;
 }
 
 #quantizationTable td,
-#DCTCoefficients td {
+#DCTCoefficients td,
+#ModQuantizTableEditable td{
     width: 1.5em;
     height: 1.5em;
     border: 1px solid black;
@@ -439,7 +441,8 @@ select {
 }
 
 #quantizationTable th,
-#DCTCoefficients th {
+#DCTCoefficients th,
+#ModQuantizTableEditable th {
     width: 1.5em;
     height: 1.5em;
     border: 1px solid black;
@@ -448,12 +451,20 @@ select {
 }
 
 #AnalysisResults {
-    display: none;
-    grid-template-columns: 60vh 40vh;
-    grid-template-rows: auto;
-    grid-template-areas:
-        "canvas text";
-    gap: 1em;
+  display: grid;
+  grid-template-columns: 60% 1fr;
+  grid-template-areas:
+    "CanvasContainer text"
+    "ModQuantContainer text";
+  gap: 1em;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: start;
+}
+
+#CanvasContainer{
+    grid-area: CanvasContainer;
+    max-width: 100%;
 }
 
 #AnalysisResults h2 {
@@ -462,7 +473,6 @@ select {
 }
 
 #DCTCanvasContainer {
-    grid-area: grid;
     max-width: 60vw;
     max-height: 80vh;
     overflow: auto;
@@ -485,20 +495,16 @@ select {
 
 #TextResults {
     grid-area: text;
-    display: block;
-    width: 100%;
-    margin: 0 1em;
-    padding-left: 1em;
-    box-sizing: border-box;
 }
-#CanvasResults{
+#CanvasResults {
     grid-area: canvas;
-    display: block;
-    width: 100%;
-    margin: 0 1em;
-    padding-left: 1em;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 100%;
+    overflow-x: auto;
 }
+
 #generalInfo h2 {
     margin-top: 0;
 }
@@ -514,12 +520,33 @@ select {
     display: none;
 }
 
-#ModQuantTitle{
-    grid-area: modtitle;
+#ModQuantTitle {
+    display: none;
+    margin-top: 2em;
+}
+#ModQuantContainer {
+    grid-area: ModQuantContainer;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
 
-#ModQuantContainer{
-    grid-area: modcanvas;
-    align-items: center;
-    justify-content: center;
+#ModQuantContainer canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+#clickCanvasTitle{
+    display: none;
+}
+
+#ModQuantizTable{
+    display: none;
+}
+
+#ModQuantizTableEditable{
+    display: none;
 }

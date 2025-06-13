@@ -762,98 +762,104 @@ async function recompressAndGetJpegBlob() {
 // Funzione per rendere modificabile la tabella di quantizzazione
 function makeQuantizationTableEditable() {
     const quantTableDiv = document.getElementById('quantizationTable');
-    if (!quantTableDiv) return;
-    
-    const table = quantTableDiv.querySelector('table');
-    if (!table) return;
-    
-    // Ottieni tutte le celle della tabella (escludendo eventuali header)
-    const cells = table.querySelectorAll('td');
-    console.log('DEBUG: Numero di celle td trovate:', cells.length);
-    
-    cells.forEach((cell, index) => {
-        const currentValue = cell.textContent.trim();
-        console.log(`DEBUG: Cella ${index}: valore="${currentValue}"`);
-        
-        // Sostituisci il contenuto della cella con un input solo se ha un valore numerico
-        if (currentValue && !isNaN(parseInt(currentValue))) {
-            cell.innerHTML = `<input type="number" value="${currentValue}" min="1" max="255" class="quant-input">`;
+    const editableDiv = document.getElementById('ModQuantizTableEditable');
+    if (!quantTableDiv || !editableDiv) return;
+
+    let quantValues = [];
+
+    // Se la tabella modificata non esiste ancora, copia i valori dalla tabella originale
+    if (editableDiv.innerHTML.trim() === "") {
+        const table = quantTableDiv.querySelector('table');
+        if (!table) return;
+        const cells = table.querySelectorAll('td');
+        for (let i = 0; i < 64; i++) {
+            quantValues.push(cells[i] ? cells[i].textContent.trim() : '');
         }
-    });
-    
-    // Verifica quanti input sono stati creati
-    const inputs = table.querySelectorAll('input.quant-input');
-    console.log('DEBUG: Numero di input creati:', inputs.length);
-    
-    // Nascondi il bottone "Modifica" e mostra il bottone "Applica"
+    } else {
+        // Se esiste già (readonly o editabile), copia i valori dagli input o dai td
+        const table = editableDiv.querySelector('table');
+        if (!table) return;
+        const cells = table.querySelectorAll('td');
+        for (let i = 0; i < 64; i++) {
+            const input = cells[i].querySelector('input');
+            if (input) {
+                quantValues.push(input.value);
+            } else {
+                quantValues.push(cells[i] ? cells[i].textContent.trim() : '');
+            }
+        }
+    }
+
+    // Ricrea la tabella editabile con gli input
+    const editableTable = document.createElement('table');
+    editableTable.style.borderCollapse = 'collapse';
+    editableTable.style.textAlign = 'center';
+
+    for (let i = 0; i < 8; i++) {
+        const row = document.createElement('tr');
+        for (let j = 0; j < 8; j++) {
+            const idx = i * 8 + j;
+            const cell = document.createElement('td');
+            const value = quantValues[idx];
+            cell.innerHTML = `<input type="number" value="${value}" min="1" max="255" class="quant-input">`;
+            cell.style.border = '1px solid black';
+            cell.style.padding = '5px';
+            row.appendChild(cell);
+        }
+        editableTable.appendChild(row);
+    }
+
+    editableDiv.innerHTML = `<h3>${LANG[currentLang].quantTitle} (modificata)</h3>`;
+    editableDiv.appendChild(editableTable);
+    editableDiv.style.display = 'block';
+
+    // Mostra/nascondi bottoni
     const modButton = document.getElementById('ModQuantizTable');
     const applyButton = document.getElementById('ApplyQuantizTable');
-    
     if (modButton) modButton.style.display = 'none';
     if (applyButton) applyButton.style.display = 'inline-block';
 }
 
+
 // Funzione per applicare le modifiche alla tabella di quantizzazione
 async function applyQuantizationTableChanges() {
-    const quantTableDiv = document.getElementById('quantizationTable');
-    if (!quantTableDiv) return;
-    
-    const table = quantTableDiv.querySelector('table');
+    const editableDiv = document.getElementById('ModQuantizTableEditable');
+    if (!editableDiv) return;
+
+    const table = editableDiv.querySelector('table');
     if (!table) return;
-    
+
     // Raccoglie i valori dagli input
     const inputs = table.querySelectorAll('input.quant-input');
-    console.log('DEBUG: Numero di input trovati:', inputs.length);
-    
     const newQuantTable = [];
-    
     let hasError = false;
-    inputs.forEach((input, index) => {
+    inputs.forEach((input) => {
         const value = parseInt(input.value);
-        console.log(`DEBUG: Input ${index}: valore="${input.value}", parsed=${value}`);
-        
         if (isNaN(value) || value < 1 || value > 255) {
-            console.log(`DEBUG: Errore nel valore ${index}: ${input.value}`);
             alert('Errore: tutti i valori devono essere numeri interi tra 1 e 255');
             hasError = true;
             return;
         }
         newQuantTable.push(value);
     });
-    
-    console.log('DEBUG: Lunghezza array finale:', newQuantTable.length);
-    console.log('DEBUG: Array finale:', newQuantTable);
-    
+
     if (hasError) return;
-    
-    // Verifica che abbiamo 64 valori
-    if (newQuantTable.length !== 64) {
-        console.error(`DEBUG: Errore - trovati ${newQuantTable.length} valori invece di 64`);
-        alert(`Errore: la tabella deve contenere esattamente 64 valori (trovati: ${newQuantTable.length})`);
-        return;
-    }
-    
+    if (newQuantTable.length !== 64) return;
+
     try {
-        // Applica la nuova tabella di quantizzazione
         setQuantizationTable(selectedComponent, newQuantTable);
-        
-        // Ricomprimi l'immagine e visualizzala nel ModifiedCanvas
         await showRecompressedImageInModifiedCanvas();
-        
-        // Ricrea la tabella normale con i nuovi valori
-        displayQuantizationTable(newQuantTable);
-        
-        // Mostra il bottone "Modifica" e nascondi il bottone "Applica"
+
+
+        // Mostra la tabella modificata in modalità readonly
+        showReadonlyModifiedQuantTable(newQuantTable);
+
+        // Mostra/nascondi bottoni
         const modButton = document.getElementById('ModQuantizTable');
         const applyButton = document.getElementById('ApplyQuantizTable');
-        
         if (modButton) modButton.style.display = 'inline-block';
         if (applyButton) applyButton.style.display = 'none';
-        
-        console.log('Tabella di quantizzazione aggiornata con successo e immagine ricompressa');
-        
     } catch (error) {
-        console.error('Errore nell\'applicazione della tabella di quantizzazione:', error);
         alert('Errore nell\'applicazione della tabella di quantizzazione: ' + error.message);
     }
 }
@@ -977,12 +983,14 @@ function hideAllSections() {
 function showDCTSection() {
     const canvasContainer = document.getElementById('canvasContainer');
     const analysisResults = document.getElementById('AnalysisResults');
+    const clickCanvasTitle = document.getElementById('clickCanvasTitle');
     if (canvasContainer) {
         canvasContainer.style.display = 'none';
         canvasContainer.classList.remove('canvasContainer-2x2');
     }
     if (analysisResults) analysisResults.style.display = 'grid';
-    
+    if (clickCanvasTitle) clickCanvasTitle.style.display = 'block';
+
     // Reset della tabella di quantizzazione e canvas modificato quando si cambia analisi
     resetQuantizationTableAndCanvas();
 }
@@ -1005,12 +1013,15 @@ function showComponents() {
 function showAllSections() {
     const canvasContainer = document.getElementById('canvasContainer');
     const analysisResults = document.getElementById('AnalysisResults');
+    const clickCanvasTitle = document.getElementById('clickCanvasTitle');
+
     if (canvasContainer) {
         canvasContainer.style.display = 'flex';
         canvasContainer.classList.remove('canvasContainer-2x2');
     }
     if (analysisResults) analysisResults.style.display = 'grid';
-    
+    if (clickCanvasTitle) clickCanvasTitle.style.display = 'block';
+
     // Reset della tabella di quantizzazione e canvas modificato quando si cambia analisi
     resetQuantizationTableAndCanvas();
 }
@@ -1018,11 +1029,38 @@ function showAllSections() {
 
 // Funzione per mostrare/nascondere il canvas dell'immagine modificata
 function toggleModifiedCanvasVisibility(show) {
-    const modifiedCanvasColumn = document.querySelector('.comparison-canvas-column:nth-child(2)');
+    const ModQuantContainer = document.getElementById('ModQuantContainer');
+     const ModQuantTitle = document.getElementById('ModQuantTitle');
+    if (!ModQuantContainer) return;
     
-    if (modifiedCanvasColumn) {
-        modifiedCanvasColumn.style.display = show ? 'flex' : 'none';
+    if (ModQuantContainer) {
+        ModQuantContainer.style.display = show ? 'block' : 'none';
+    }
+    if (ModQuantTitle) {
+        ModQuantTitle.style.display = show ? 'block' : 'none';
     }
 }
+function showReadonlyModifiedQuantTable(quantTable) {
+    const editableDiv = document.getElementById('ModQuantizTableEditable');
+    if (!editableDiv) return;
 
+    const table = document.createElement('table');
+    table.style.borderCollapse = 'collapse';
+    table.style.textAlign = 'center';
 
+    for (let i = 0; i < 8; i++) {
+        const row = document.createElement('tr');
+        for (let j = 0; j < 8; j++) {
+            const cell = document.createElement('td');
+            cell.textContent = quantTable[i * 8 + j];
+            cell.style.border = '1px solid black';
+            cell.style.padding = '5px';
+            row.appendChild(cell);
+        }
+        table.appendChild(row);
+    }
+
+    editableDiv.innerHTML = `<h3>${LANG[currentLang].quantTitle} (modificata)</h3>`;
+    editableDiv.appendChild(table);
+    editableDiv.style.display = 'block';
+}
