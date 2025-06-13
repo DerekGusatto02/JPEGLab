@@ -809,7 +809,7 @@ function makeQuantizationTableEditable() {
         editableTable.appendChild(row);
     }
     
-    editableDiv.innerHTML = `<h3>${LANG[currentLang].quantTitle} (modificata)</h3>`;
+    editableDiv.innerHTML = `<h3>${LANG[currentLang].ModQuantTitle}</h3>`;
     editableDiv.appendChild(editableTable);
     editableDiv.style.display = 'block';
     
