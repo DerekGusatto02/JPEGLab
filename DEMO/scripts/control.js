@@ -1,5 +1,5 @@
-import { JpegModel } from './Model.js';
-import { JpegView } from './View.js';
+import { JpegModel } from './model.js';
+import { JpegView } from './view.js';
 
 // Determina la lingua corrente in base all'URL o al localStorage
 let currentLang = 'it';
