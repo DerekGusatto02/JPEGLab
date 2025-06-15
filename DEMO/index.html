@@ -15,8 +15,9 @@
     <!-- JS -->  
     <script src="scripts/jpeg_wrapper.js"></script>
     <script src="scripts/lang_strings.js"></script>
-    <script src="scripts/lang_switch.js"></script>
-    <script src="scripts/app.js"></script>  
+    <!-- <script src="scripts/lang_switch.js"></script> -->
+    <!-- <script src="scripts/app.js"></script>  -->
+    <script type="module" src="scripts/control.js"></script>
 </head>
 <body>
     <header>    
@@ -60,9 +61,9 @@
                 <label for="imageInput">Carica un'immagine JPEG:</label>
                 <input type="file" class="btn" id="imageInput" name="imageInput" accept="image/jpeg" aria-required="true">
             </div>
-            <button type="button" class="btn btn-analyze" name="view" value="all" onclick="analyzeImage()">Analisi completa</button>
-            <button type="button" class="btn btn-analyze" name="view" value="dct" onclick="analyzeImageDCT()">DCT &amp; Quantizzazione</button>
-            <button type="button" class="btn btn-analyze" name="view" value="canvas" onclick="analyzeImageComponent()">Componenti</button>
+            <button type="button" class="btn btn-analyze analysis-btn" id="analyzeBtn">Analisi completa</button>
+            <button type="button" class="btn btn-analyze analysis-btn" id="analyzeDCTBtn">DCT &amp; Quantizzazione</button>
+            <button type="button" class="btn btn-analyze analysis-btn" id="analyzeComponentBtn">Componenti</button>
             <button type="button" class="btn btn-reset" id="resetButton">Reset</button>
             
             <!--<button type="button" class="btn btn-analyze" id="analyzeButton"  onclick="analyzeImage()">Analisi</button>
@@ -101,28 +102,28 @@
                 <canvas id="ModifiedCanvas"></canvas>
             </div>
             
-            <div id="TextResults" aria-live="polite">
+            <div id="TextResults">
                 
                 <h2 id="BlockTitle" class="block-title title-hidden"></h2>
                 <div id="ZoomBlock">
-                    <canvas id="blockZoomCanvasOriginale"></canvas>
+                    <canvas id="zoomBlockCanvas"></canvas>
                 </div>
                 <div id="generalInfo"></div>
                 <form id="componentForm" >
                     <label for="componentInput">Seleziona una componente:</label>
-                    <select id="componentInput" name="componentInput" aria-required="true">
+                    <select id="componentInput" name="componentInput">
                         <option value="0" selected>Y</option> 
                         <option value="1">Cb</option>
                         <option value="2">Cr</option>
                     </select>
                 </form>
                 
-                <div id="DCTCoefficients" aria-label="DCT Results"></div>
+                <div id="DCTCoefficients"></div>
                 <div id="quantizationTable" ></div>
                 <div id="ModQuantizTableEditable"></div>
                 <div> 
-                    <button id="ModQuantizTable" type="button" class="btn btn-analyze" name="view" onclick="makeQuantizationTableEditable()">Modifica tabella di quantizzazione</button>
-                    <button id="ApplyQuantizTable" type="button" class="btn btn-analyze" name="view" onclick="applyQuantizationTableChanges()">Applica tabella di quantizzazione</button>
+                    <button id="ModQuantizTable" type="button" class="btn btn-analyze">Modifica tabella di quantizzazione</button>
+                    <button id="ApplyQuantizTable" type="button" class="btn btn-analyze">Applica tabella di quantizzazione</button>
                 </div>
                 
             </div>

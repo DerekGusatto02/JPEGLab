@@ -15,8 +15,9 @@
     <!-- JS -->  
     <script src="scripts/jpeg_wrapper.js"></script>
     <script src="scripts/lang_strings.js"></script>
-    <script src="scripts/lang_switch.js"></script>
-    <script src="scripts/app.js"></script>  
+    <!-- <script src="scripts/lang_switch.js"></script> -->
+    <!-- <script src="scripts/app.js"></script>  -->
+    <script type="module" src="scripts/control.js"></script>
 </head>
 <body>
     <header>     
@@ -59,9 +60,9 @@
                 <label for="imageInput">Upload a JPEG image:</label>
                 <input type="file" class="btn" id="imageInput" name="imageInput" accept="image/jpeg" aria-required="true">
             </div>
-            <button type="button" class="btn btn-analyze" name="view" value="all" onclick="analyzeImage()">Complete Analysis</button>
-            <button type="button" class="btn btn-analyze" name="view" value="dct" onclick="analyzeImageDCT()">DCT &amp; Quantization</button>
-            <button type="button" class="btn btn-analyze" name="view" value="canvas" onclick="analyzeImageComponent()">Components</button>
+            <button type="button" class="btn btn-analyze analysis-btn" id="analyzeBtn">Complete Analysis</button>
+            <button type="button" class="btn btn-analyze analysis-btn" id="analyzeDCTBtn">DCT &amp; Quantization</button>
+            <button type="button" class="btn btn-analyze analysis-btn" id="analyzeComponentBtn">Components</button>
             
             <button type="button" class="btn btn-reset" id="resetButton">Reset</button>
             
@@ -104,7 +105,7 @@
                 
                 <h2 id="BlockTitle" class="block-title title-hidden"></h2>
                 <div id="ZoomBlock">
-                    <canvas id="blockZoomCanvasOriginale"></canvas>
+                    <canvas id="zoomBlockCanvas"></canvas>
                 </div>
                 <div id="generalInfo"></div>
                 <form id="componentForm" >
@@ -120,8 +121,8 @@
                 <div id="quantizationTable" ></div>
                 <div id="ModQuantizTableEditable"></div>
                 <div> 
-                    <button id="ModQuantizTable" type="button" class="btn btn-analyze" name="view" onclick="makeQuantizationTableEditable()">Modifica tabella di quantizzazione</button>
-                    <button id="ApplyQuantizTable" type="button" class="btn btn-analyze" name="view" onclick="applyQuantizationTableChanges()">Applica tabella di quantizzazione</button>
+                    <button id="ModQuantizTable" type="button" class="btn btn-analyze" >Modifica tabella di quantizzazione</button>
+                    <button id="ApplyQuantizTable" type="button" class="btn btn-analyze">Applica tabella di quantizzazione</button>
                 </div>
                 
             </div>
