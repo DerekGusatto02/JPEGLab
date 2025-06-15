@@ -36,6 +36,7 @@ async function analyzeImage() {
     }
     model.isAnalyzing = true;
     view.setAnalysisButtonsEnabled(false);
+    view.showLoadingMessage();
     
     try {
         model.destroy(); // Libera risorse precedenti
@@ -91,7 +92,8 @@ async function analyzeImage() {
     } finally {
         view.setAnalysisButtonsEnabled(true);
         model.isAnalyzing = false;
-        view.showModQuantButton(); // Mostra il bottone solo a fine analisi
+        view.showModQuantButton(); 
+        view.hideLoadingMessage();
     }
 }
 
@@ -105,6 +107,7 @@ async function analyzeImageDCT(event) {
     }
     model.isAnalyzing = true;
     view.setAnalysisButtonsEnabled(false);
+    view.showLoadingMessage();
     
     try {
         if (event) event.preventDefault();
@@ -155,6 +158,7 @@ async function analyzeImageDCT(event) {
         view.setAnalysisButtonsEnabled(true);
         model.isAnalyzing = false;
         view.showModQuantButton();
+        view.hideLoadingMessage();
     }
 }
 
@@ -168,7 +172,8 @@ async function analyzeImageComponent(event) {
     }
     model.isAnalyzing = true;
     view.setAnalysisButtonsEnabled(false);
-    
+    view.showLoadingMessage();
+
     try {
         if (event) event.preventDefault();
         
@@ -207,6 +212,7 @@ async function analyzeImageComponent(event) {
     } finally {
         view.setAnalysisButtonsEnabled(true);
         model.isAnalyzing = false;
+        view.hideLoadingMessage();
     }
 }
 
@@ -225,6 +231,8 @@ function updateDCTCoefficientsInView() {
         }
     }
 }
+
+
 
 // --- Gestione eventi DOMContentLoaded ---
 document.addEventListener('DOMContentLoaded', function() {

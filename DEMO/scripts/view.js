@@ -563,4 +563,15 @@ export class JpegView {
         ctx.drawImage(img, 0, 0);
         canvas.style.display = 'block';
     }
+    
+    showLoadingMessage() {
+        document.getElementById('loadingMessage').style.display = 'block';
+        document.getElementById('canvasContainer').style.display = 'none';
+        document.getElementById('AnalysisResults').style.display = 'none';
+    }
+    
+    hideLoadingMessage() {
+        document.getElementById('loadingMessage').style.display = 'none';
+        // Le sezioni verranno mostrate dalle funzioni view.showAllSections(), showDCTSection(), showComponents()
+    }
 }
