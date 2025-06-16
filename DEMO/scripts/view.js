@@ -495,12 +495,18 @@ export class JpegView {
     drawComponentOnCanvas({ width, height, pixels }, canvasId) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext('2d');
-        const imageData = ctx.createImageData(width, height);
-        
-        // Per ogni pixel, imposta il valore nei canali RGB e alpha
+    
+        // Imposta una dimensione fissa, ad esempio come imageCanvas
+        const refCanvas = document.getElementById('imageCanvas');
+        const targetWidth = refCanvas ? refCanvas.width : width;
+        const targetHeight = refCanvas ? refCanvas.height : height;
+    
+        // Crea l'immagine della componente
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = width;
+        tempCanvas.height = height;
+        const tempCtx = tempCanvas.getContext('2d');
+        const imageData = tempCtx.createImageData(width, height);
         for (let i = 0; i < width * height; i++) {
             const value = pixels[i];
             imageData.data[i * 4 + 0] = value;
@@ -508,7 +514,14 @@ export class JpegView {
             imageData.data[i * 4 + 2] = value;
             imageData.data[i * 4 + 3] = 255;
         }
-        ctx.putImageData(imageData, 0, 0);
+        tempCtx.putImageData(imageData, 0, 0);
+    
+        // Ridimensiona il canvas di destinazione
+        canvas.width = targetWidth;
+        canvas.height = targetHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, targetWidth, targetHeight);
+        ctx.drawImage(tempCanvas, 0, 0, targetWidth, targetHeight);
     }
     
     /**
