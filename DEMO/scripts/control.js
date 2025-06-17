@@ -284,21 +284,30 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Cambio componente: aggiorna la visualizzazione dei coefficienti DCT
     if (componentSelect) {
-        componentSelect.addEventListener('change', function () {
-            const selectedComponent = this.value;
-            model.setSelectedComponent(selectedComponent);
-            
-            const blockX = model.getSelectedBlockX();
-            const blockY = model.getSelectedBlockY();
-            if (blockX !== -1 && blockY !== -1) {
-                const dctCoefficients = model.getDCTCoefficients(selectedComponent, blockX, blockY);
-                if (dctCoefficients) {
-                    view.displayDCTCoefficients(dctCoefficients, LANG, currentLang);
-                    view.displayBlockZoomOriginal(blockX, blockY, model.image);
-                }
-            }
-        });
-    }
+    componentSelect.addEventListener('change', function () {
+        const selectedComponent = parseInt(this.value, 10);
+        model.setSelectedComponent(selectedComponent);
+
+        // Ottieni il blocco selezionato in coordinate Y
+        let blockX = model.getSelectedBlockX();
+        let blockY = model.getSelectedBlockY();
+
+        // Adatta le coordinate se la componente è Cb/Cr e c'è sotto-campionatura
+        if (selectedComponent !== 0) {
+            // Esempio: se 4:2:0, dimezza le coordinate
+            blockX = Math.floor(blockX / 2);
+            blockY = Math.floor(blockY / 2);
+        }
+
+        const dctCoefficients = model.getDCTCoefficients(selectedComponent, blockX, blockY);
+        if (dctCoefficients) {
+            view.displayDCTCoefficients(dctCoefficients);
+            view.displayBlockZoomOriginal(blockX, blockY, model.image);
+        } else {
+            view.displayDCTCoefficients(null); // o mostra un messaggio
+        }
+    });
+}
     
     // Gestione input immagine e reset
     const testSelect = document.getElementById('testImageSelect');
