@@ -306,13 +306,10 @@ document.addEventListener('DOMContentLoaded', function() {
             let blockX = model.getSelectedBlockX();
             let blockY = model.getSelectedBlockY();
             
-            console.log(`Selected component: ${selectedComponent}, Block: (${blockX}, ${blockY})`);
             // Adatta le coordinate se la componente è Cb/Cr e c'è sotto-campionatura
             if (selectedComponent !== 0) {
                 const { bx, by } = model.mapBlockToComponent(selectedComponent, blockX, blockY);
-                console.log(`Adjusted for sub-sampling: (${bx}, ${by})`);
                 const dctCoefficients = model.getDCTCoefficients(selectedComponent, bx, by);
-                console.log(`DCT Coefficients for component ${selectedComponent} at block (${bx}, ${by}):`, dctCoefficients);
                 if (dctCoefficients) {
                     view.displayDCTCoefficients(dctCoefficients);
                 } else {
