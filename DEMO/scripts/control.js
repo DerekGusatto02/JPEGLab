@@ -10,8 +10,8 @@ const model = new JpegModel(Module); // Istanzia il modello JPEG
 const view = new JpegView(LANG, currentLang); // Istanzia la view
 
 /**
- * Disegna tutte le componenti (Y, Cb, Cr) nei rispettivi canvas.
- */
+* Disegna tutte le componenti (Y, Cb, Cr) nei rispettivi canvas.
+*/
 function drawAllComponents() {
     const comps = [
         { idx: 0, canvasId: 'YCompCanvas' },
@@ -26,9 +26,11 @@ function drawAllComponents() {
     });
 }
 
+
+
 /**
- * Analizza l'immagine selezionata, decodifica e aggiorna la UI con tutte le informazioni.
- */
+* Analizza l'immagine selezionata, decodifica e aggiorna la UI con tutte le informazioni.
+*/
 async function analyzeImage() {
     if (model.isAnalyzing) {
         view.showMessage(LANG[currentLang].errorAlreadyAnalyzing);
@@ -98,8 +100,8 @@ async function analyzeImage() {
 }
 
 /**
- * Analizza solo la parte DCT dell'immagine e aggiorna la UI di conseguenza.
- */
+* Analizza solo la parte DCT dell'immagine e aggiorna la UI di conseguenza.
+*/
 async function analyzeImageDCT(event) {
     if (model.isAnalyzing) {
         view.showMessage(LANG[currentLang].errorAlreadyAnalyzing);
@@ -150,7 +152,12 @@ async function analyzeImageDCT(event) {
         if (componentSelect) {
             quantTable = model.getQuantizationTable(componentSelect.value == 0 ? 0 : 1);
         }
-        view.writeHTMLresult({ height, width, colorSpace, quantTable });
+        view.writeHTMLresult({ height, width, colorSpace, quantTable, langObj: LANG, currentLang });
+        
+        // Mostra il form per la selezione componente
+        const componentForm = document.getElementById('componentForm');
+        if (componentForm) componentForm.style.display = 'block';
+        
         
     } catch (error) {
         console.error('Errore durante l\'analisi DCT:', error);
@@ -163,8 +170,8 @@ async function analyzeImageDCT(event) {
 }
 
 /**
- * Analizza e mostra solo le componenti dell'immagine (Y, Cb, Cr).
- */
+* Analizza e mostra solo le componenti dell'immagine (Y, Cb, Cr).
+*/
 async function analyzeImageComponent(event) {
     if (model.isAnalyzing) {
         view.showMessage(LANG[currentLang].errorAlreadyAnalyzing);
@@ -173,7 +180,7 @@ async function analyzeImageComponent(event) {
     model.isAnalyzing = true;
     view.setAnalysisButtonsEnabled(false);
     view.showLoadingMessage();
-
+    
     try {
         if (event) event.preventDefault();
         
@@ -217,8 +224,8 @@ async function analyzeImageComponent(event) {
 }
 
 /**
- * Aggiorna la visualizzazione dei coefficienti DCT e dello zoom blocco selezionato.
- */
+* Aggiorna la visualizzazione dei coefficienti DCT e dello zoom blocco selezionato.
+*/
 function updateDCTCoefficientsInView() {
     const blockX = model.getSelectedBlockX();
     const blockY = model.getSelectedBlockY();
@@ -265,17 +272,24 @@ document.addEventListener('DOMContentLoaded', function() {
             const blocksHeight = Module._get_blocks_height();
             const blockWidth = canvasGrid.width / blocksWidth;
             const blockHeight = canvasGrid.height / blocksHeight;
-            const blockX = Math.floor(x / blockWidth);
-            const blockY = Math.floor(y / blockHeight);
+            let blockX = Math.floor(x / blockWidth);
+            let blockY = Math.floor(y / blockHeight);
             
             model.setSelectedBlock(blockX, blockY);
+            view.displayBlockZoomOriginal(blockX, blockY, model.image);
+            
             const componentIndex = parseInt(componentSelect.value, 10);
             model.setSelectedComponent(componentIndex);
+            if (componentIndex !== 0) {
+                // Applica mapping per Cb/Cr
+                const {bx, by} = model.mapBlockToComponent(componentIndex, blockX, blockY);
+                blockX = bx;
+                blockY = by;
+            }
             
             const dctCoefficients = model.getDCTCoefficients(componentIndex, blockX, blockY);
             if (dctCoefficients) {
                 view.displayDCTCoefficients(dctCoefficients, LANG, currentLang);
-                view.displayBlockZoomOriginal(blockX, blockY, model.image);
             } else {
                 view.showMessage(LANG[currentLang].errorDCT);
             }
@@ -284,30 +298,40 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Cambio componente: aggiorna la visualizzazione dei coefficienti DCT
     if (componentSelect) {
-    componentSelect.addEventListener('change', function () {
-        const selectedComponent = parseInt(this.value, 10);
-        model.setSelectedComponent(selectedComponent);
-
-        // Ottieni il blocco selezionato in coordinate Y
-        let blockX = model.getSelectedBlockX();
-        let blockY = model.getSelectedBlockY();
-
-        // Adatta le coordinate se la componente è Cb/Cr e c'è sotto-campionatura
-        if (selectedComponent !== 0) {
-            // Esempio: se 4:2:0, dimezza le coordinate
-            blockX = Math.floor(blockX / 2);
-            blockY = Math.floor(blockY / 2);
-        }
-
-        const dctCoefficients = model.getDCTCoefficients(selectedComponent, blockX, blockY);
-        if (dctCoefficients) {
-            view.displayDCTCoefficients(dctCoefficients);
-            view.displayBlockZoomOriginal(blockX, blockY, model.image);
-        } else {
-            view.displayDCTCoefficients(null); // o mostra un messaggio
-        }
-    });
-}
+        componentSelect.addEventListener('change', function () {
+            const selectedComponent = parseInt(this.value, 10);
+            model.setSelectedComponent(selectedComponent);
+            
+            // Ottieni il blocco selezionato in coordinate Y
+            let blockX = model.getSelectedBlockX();
+            let blockY = model.getSelectedBlockY();
+            
+            console.log(`Selected component: ${selectedComponent}, Block: (${blockX}, ${blockY})`);
+            // Adatta le coordinate se la componente è Cb/Cr e c'è sotto-campionatura
+            if (selectedComponent !== 0) {
+                const { bx, by } = model.mapBlockToComponent(selectedComponent, blockX, blockY);
+                console.log(`Adjusted for sub-sampling: (${bx}, ${by})`);
+                const dctCoefficients = model.getDCTCoefficients(selectedComponent, bx, by);
+                console.log(`DCT Coefficients for component ${selectedComponent} at block (${bx}, ${by}):`, dctCoefficients);
+                if (dctCoefficients) {
+                    view.displayDCTCoefficients(dctCoefficients);
+                } else {
+                    view.displayDCTCoefficients(null); // o mostra un messaggio
+                }
+            }else{
+                const dctCoefficients = model.getDCTCoefficients(selectedComponent, blockX, blockY);
+                if (dctCoefficients) {
+                    view.displayDCTCoefficients(dctCoefficients);
+                } else {
+                    view.displayDCTCoefficients(null); // o mostra un messaggio
+                }
+                
+            }
+            
+            
+        });
+    }
+    
     
     // Gestione input immagine e reset
     const testSelect = document.getElementById('testImageSelect');

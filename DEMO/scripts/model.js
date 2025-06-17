@@ -118,7 +118,7 @@ export class JpegModel {
             this.decoderPtr = null;
         }
     }
-
+    
     /**
     * Decodifica l'immagine JPEG, gestendo la memoria e il ciclo di vita del decoder.
     * Lancia errori se il formato non è JPEG o se il WASM non è pronto.
@@ -166,7 +166,7 @@ export class JpegModel {
         const ptr = Module._get_quant_table(idx);
         return this.readArrayFromMemory(ptr, 64);
     }
-
+    
     /**
     * Estrae i pixel di una componente (Y, Cb, Cr) dalla memoria WASM.
     * Restituisce un oggetto con larghezza, altezza e array di pixel.
@@ -328,5 +328,28 @@ export class JpegModel {
     */
     getSelectedBlockDCTCoefficients() {
         return this.getDCTCoefficients(this.selectedComponent, this.selectedBlockX, this.selectedBlockY);
+    }
+    
+    getComponentBlocksWidth(componentIndex) {
+        return this.Module._get_component_width(componentIndex);
+    }
+    getComponentBlocksHeight(componentIndex) {
+        return this.Module._get_component_height(componentIndex);
+    }
+    
+    /**
+    * Restituisce la posizione del blocco corrispondente per la componente selezionata.
+    * Per Y restituisce (x, y) invariato.
+    * Per Cb/Cr effettua il mapping in base alla sotto-campionatura.
+    */
+    mapBlockToComponent(componentIndex, blockX, blockY) {
+        if (componentIndex === 0) return { bx: blockX, by: blockY };
+        const yBlocksW = this.getComponentBlocksWidth(0);
+        const yBlocksH = this.getComponentBlocksHeight(0);
+        const cBlocksW = this.getComponentBlocksWidth(componentIndex);
+        const cBlocksH = this.getComponentBlocksHeight(componentIndex);
+        const bx = Math.floor(blockX * cBlocksW / yBlocksW);
+        const by = Math.floor(blockY * cBlocksH / yBlocksH);
+        return { bx, by };
     }
 }
