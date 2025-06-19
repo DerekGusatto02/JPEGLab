@@ -307,6 +307,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const selectedComponent = parseInt(this.value, 10);
             model.setSelectedComponent(selectedComponent);
             
+            const quantTable = model.getQuantizationTable(selectedComponent === 0 ? 0 : 1);
+            view.displayQuantizationTable(quantTable);
+
             // Ottieni il blocco selezionato in coordinate Y
             let blockX = model.getSelectedBlockX();
             let blockY = model.getSelectedBlockY();
