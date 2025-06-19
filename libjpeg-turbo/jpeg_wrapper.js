@@ -1799,6 +1799,10 @@ var wasmImports = {
   /** @export */
   invoke_iii,
   /** @export */
+  invoke_iiii,
+  /** @export */
+  invoke_iiiii,
+  /** @export */
   invoke_vi,
   /** @export */
   invoke_vii,
@@ -1809,27 +1813,28 @@ var wasmExports;
 createWasm();
 var ___wasm_call_ctors = createExportWrapper('__wasm_call_ctors', 0);
 var _my_error_exit = Module['_my_error_exit'] = createExportWrapper('my_error_exit', 1);
+var _my_output_message = Module['_my_output_message'] = createExportWrapper('my_output_message', 1);
+var _get_last_error_message = Module['_get_last_error_message'] = createExportWrapper('get_last_error_message', 0);
 var _init_decoder = Module['_init_decoder'] = createExportWrapper('init_decoder', 2);
 var _jpeg_std_error = Module['_jpeg_std_error'] = createExportWrapper('jpeg_std_error', 1);
+var _free = Module['_free'] = createExportWrapper('free', 1);
+var _malloc = Module['_malloc'] = createExportWrapper('malloc', 1);
+var _destroy_decoder = Module['_destroy_decoder'] = createExportWrapper('destroy_decoder', 0);
 var _get_width = Module['_get_width'] = createExportWrapper('get_width', 0);
 var _get_height = Module['_get_height'] = createExportWrapper('get_height', 0);
 var _get_color_space = Module['_get_color_space'] = createExportWrapper('get_color_space', 0);
 var _get_quant_table_size = Module['_get_quant_table_size'] = createExportWrapper('get_quant_table_size', 0);
 var _get_quant_table = Module['_get_quant_table'] = createExportWrapper('get_quant_table', 1);
+var _set_quant_table = Module['_set_quant_table'] = createExportWrapper('set_quant_table', 2);
 var _get_dct_coefficients = Module['_get_dct_coefficients'] = createExportWrapper('get_dct_coefficients', 3);
 var _get_blocks_width = Module['_get_blocks_width'] = createExportWrapper('get_blocks_width', 1);
 var _get_blocks_height = Module['_get_blocks_height'] = createExportWrapper('get_blocks_height', 1);
-var _extract_component_pixels = Module['_extract_component_pixels'] = createExportWrapper('extract_component_pixels', 1);
-var _free = Module['_free'] = createExportWrapper('free', 1);
-var _malloc = Module['_malloc'] = createExportWrapper('malloc', 1);
 var _get_component_width = Module['_get_component_width'] = createExportWrapper('get_component_width', 1);
 var _get_component_height = Module['_get_component_height'] = createExportWrapper('get_component_height', 1);
-var _my_output_message = Module['_my_output_message'] = createExportWrapper('my_output_message', 1);
-var _get_last_error_message = Module['_get_last_error_message'] = createExportWrapper('get_last_error_message', 0);
-var _destroy_decoder = Module['_destroy_decoder'] = createExportWrapper('destroy_decoder', 0);
+var _extract_component_pixels = Module['_extract_component_pixels'] = createExportWrapper('extract_component_pixels', 1);
+var _extract_component = Module['_extract_component'] = createExportWrapper('extract_component', 1);
 var _jpeg_mem_dest_wrapper = Module['_jpeg_mem_dest_wrapper'] = createExportWrapper('jpeg_mem_dest_wrapper', 3);
 var _jpeg_mem_dest = Module['_jpeg_mem_dest'] = createExportWrapper('jpeg_mem_dest', 3);
-var _set_quant_table = Module['_set_quant_table'] = createExportWrapper('set_quant_table', 2);
 var _recompress_jpeg_with_new_quant = Module['_recompress_jpeg_with_new_quant'] = createExportWrapper('recompress_jpeg_with_new_quant', 1);
 var _jpeg_destroy_compress = Module['_jpeg_destroy_compress'] = createExportWrapper('jpeg_destroy_compress', 1);
 var _jpeg_CreateCompress = Module['_jpeg_CreateCompress'] = createExportWrapper('jpeg_CreateCompress', 3);
@@ -1849,7 +1854,7 @@ var __emscripten_stack_restore = (a0) => (__emscripten_stack_restore = wasmExpor
 var __emscripten_stack_alloc = (a0) => (__emscripten_stack_alloc = wasmExports['_emscripten_stack_alloc'])(a0);
 var _emscripten_stack_get_current = () => (_emscripten_stack_get_current = wasmExports['emscripten_stack_get_current'])();
 var ___set_stack_limits = Module['___set_stack_limits'] = createExportWrapper('__set_stack_limits', 2);
-var _last_error_message = Module['_last_error_message'] = 144128;
+
 function invoke_ii(index,a1) {
   var sp = stackSave();
   try {
@@ -1887,6 +1892,28 @@ function invoke_iii(index,a1,a2) {
   var sp = stackSave();
   try {
     return getWasmTableEntry(index)(a1,a2);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_iiiii(index,a1,a2,a3,a4) {
+  var sp = stackSave();
+  try {
+    return getWasmTableEntry(index)(a1,a2,a3,a4);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_iiii(index,a1,a2,a3) {
+  var sp = stackSave();
+  try {
+    return getWasmTableEntry(index)(a1,a2,a3);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;

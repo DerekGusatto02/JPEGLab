@@ -10,22 +10,43 @@ const model = new JpegModel(Module); // Istanzia il modello JPEG
 const view = new JpegView(LANG, currentLang); // Istanzia la view
 
 /**
-* Disegna tutte le componenti (Y, Cb, Cr) nei rispettivi canvas.
+* Disegna tutte le componenti (Y, Cb, Cr) con coefficientiDCT nei rispettivi canvas.
+*/
+function drawAllComponentsDCT() {
+    const comps = [
+        { idx: 0, canvasId: 'YCompCanvasDCT' },
+        { idx: 1, canvasId: 'CbCompCanvasDCT' },
+        { idx: 2, canvasId: 'CrCompCanvasDCT' }
+    ];
+    comps.forEach(({ idx, canvasId }) => {
+        const compData = model.getComponentPixels(idx);
+        if (compData) {
+            view.drawComponentDCTOnCanvas(compData, canvasId);
+        }
+    });
+}
+
+/**
+* Disegna tutte le componenti (Y, Cb, Cr) in scala di grigi nei rispettivi canvas.
 */
 function drawAllComponents() {
+    console.log('Drawing all components in grayscale');
     const comps = [
         { idx: 0, canvasId: 'YCompCanvas' },
         { idx: 1, canvasId: 'CbCompCanvas' },
         { idx: 2, canvasId: 'CrCompCanvas' }
     ];
     comps.forEach(({ idx, canvasId }) => {
-        const compData = model.getComponentPixels(idx);
+        console.log(`Drawing component ${idx} on canvas ${canvasId}`);
+        const compData = model.getComponent(idx);
+        console.log(`Component data for ${idx}:`, compData);
+        
         if (compData) {
-            view.drawComponentOnCanvas(compData, canvasId);
+            console.log('Calling drawComponentGrayOnCanvas with:', compData);
+            view.drawComponentGrayOnCanvas(compData, canvasId);
         }
     });
 }
-
 
 
 /**
@@ -210,8 +231,10 @@ async function analyzeImageComponent(event) {
         view.showComponents();
         requestAnimationFrame(() => {
             view.displayImageInCanvas(img);
+            view.displayImageInCanvasDCT(img);
             view.showCanvasTitles();
             drawAllComponents();
+            drawAllComponentsDCT();
         });
         
     } catch (error) {
@@ -222,24 +245,6 @@ async function analyzeImageComponent(event) {
         view.hideLoadingMessage();
     }
 }
-
-/**
-* Aggiorna la visualizzazione dei coefficienti DCT e dello zoom blocco selezionato.
-*/
-function updateDCTCoefficientsInView() {
-    const blockX = model.getSelectedBlockX();
-    const blockY = model.getSelectedBlockY();
-    const componentIndex = model.getSelectedComponent();
-    if (blockX !== -1 && blockY !== -1) {
-        const dctCoefficients = model.getDCTCoefficients(componentIndex, blockX, blockY);
-        if (dctCoefficients) {
-            view.displayDCTCoefficients(dctCoefficients);
-            view.displayBlockZoomOriginal(blockX, blockY, model.image);
-        }
-    }
-}
-
-
 
 // --- Gestione eventi DOMContentLoaded ---
 document.addEventListener('DOMContentLoaded', function() {

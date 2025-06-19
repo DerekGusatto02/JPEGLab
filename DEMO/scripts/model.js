@@ -184,6 +184,40 @@ export class JpegModel {
     }
     
     /**
+    * Estrae i pixel decodificati di una componente (Y, Cb, Cr) in scala di grigi.
+    * Restituisce un oggetto con larghezza, altezza e array di pixel decodificati.
+    */
+    getComponent(componentIndex) {
+        try {
+            const width = this.Module._get_component_width(componentIndex);
+            const height = this.Module._get_component_height(componentIndex);
+            
+            if (width <= 0 || height <= 0) {
+                console.warn(`Invalid component dimensions: ${width}x${height}`);
+                return null;
+            }
+            
+            const ptr = this.Module._extract_component(componentIndex);
+            if (!ptr) {
+                console.warn(`Failed to extract component ${componentIndex}`);
+                return null;
+            }
+            
+            const data = new Uint8Array(this.Module.HEAPU8.buffer, ptr, width * height);
+            this.Module._free(ptr);
+            
+            return {
+                width,
+                height,
+                comp: new Uint8Array(data)
+            };
+        } catch (error) {
+            console.error(`Error extracting component ${componentIndex}:`, error);
+            return null;
+        }
+    }
+    
+    /**
     * Carica un'immagine da file input o da selezione test, restituendo img e arrayBuffer.
     * Gestisce errori, timeout e tentativi multipli.
     */
@@ -330,9 +364,16 @@ export class JpegModel {
         return this.getDCTCoefficients(this.selectedComponent, this.selectedBlockX, this.selectedBlockY);
     }
     
+    /**
+    * Restituisce la larghezza di una componente specifica in blocchi.
+    */
     getComponentBlocksWidth(componentIndex) {
         return this.Module._get_component_width(componentIndex);
     }
+    
+    /**
+    * Restituisce l'altezza di una componente specifica in blocchi.
+    */
     getComponentBlocksHeight(componentIndex) {
         return this.Module._get_component_height(componentIndex);
     }

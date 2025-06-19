@@ -356,8 +356,8 @@ CMakeFiles/turbojpeg16-static.dir/clean:
 # All Build rule for target.
 CMakeFiles/turbojpeg-static.dir/all: CMakeFiles/jpeg12-static.dir/all
 CMakeFiles/turbojpeg-static.dir/all: CMakeFiles/jpeg16-static.dir/all
-CMakeFiles/turbojpeg-static.dir/all: CMakeFiles/turbojpeg12-static.dir/all
 CMakeFiles/turbojpeg-static.dir/all: CMakeFiles/turbojpeg16-static.dir/all
+CMakeFiles/turbojpeg-static.dir/all: CMakeFiles/turbojpeg12-static.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/turbojpeg-static.dir/build.make CMakeFiles/turbojpeg-static.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/turbojpeg-static.dir/build.make CMakeFiles/turbojpeg-static.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/derekgusatto/Documents/Git/JPEGLab/libjpeg-turbo/build/CMakeFiles --progress-num=68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97 "Built target turbojpeg-static"

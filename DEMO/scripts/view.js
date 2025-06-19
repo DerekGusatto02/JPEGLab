@@ -31,6 +31,23 @@ export class JpegView {
     }
     
     /**
+    * Visualizza l'immagine principale nel canvas DCT, adattandola alla larghezza della pagina.
+    */
+    displayImageInCanvasDCT(img) {
+        const canvas = document.getElementById('imageCanvasDCT');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const maxWidth = document.body.clientWidth;
+        canvas.width = maxWidth;
+        // Calcola il fattore di scala per adattare l'immagine
+        const imageScale = maxWidth / img.width;
+        const newHeight = img.height * imageScale;
+        canvas.height = newHeight;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    }
+    
+    /**
     * Visualizza l'immagine con una griglia sovrapposta che rappresenta i blocchi DCT.
     */
     displayImageWithGrid(img, blocksWidth, blocksHeight) {
@@ -393,10 +410,14 @@ export class JpegView {
     */
     hideAllSections(resetCallback) {
         const canvasContainer = document.getElementById('canvasContainer');
+        const canvasDCTContainer = document.getElementById('canvasDCTContainer');
         const analysisResults = document.getElementById('AnalysisResults');
         if (canvasContainer) {
             canvasContainer.style.display = 'none';
             canvasContainer.classList.remove('canvasContainer-2x2');
+        }
+        if (canvasDCTContainer) {
+            canvasDCTContainer.style.setProperty('display', 'none', 'important');
         }
         if (analysisResults) analysisResults.style.display = 'none';
         if (resetCallback) resetCallback();
@@ -409,12 +430,16 @@ export class JpegView {
         const canvasContainer = document.getElementById('canvasContainer');
         const analysisResults = document.getElementById('AnalysisResults');
         const clickCanvasTitle = document.getElementById('clickCanvasTitle');
+        const canvasDCTContainer = document.getElementById('canvasDCTContainer');
         if (canvasContainer) {
             canvasContainer.style.display = 'none';
             canvasContainer.classList.remove('canvasContainer-2x2');
         }
         if (analysisResults) analysisResults.style.display = 'grid';
         if (clickCanvasTitle) clickCanvasTitle.style.display = 'block';
+        if (canvasDCTContainer) {
+            canvasDCTContainer.style.setProperty('display', 'none', 'important');
+        }
         if (resetCallback) resetCallback();
     }
     
@@ -424,11 +449,14 @@ export class JpegView {
     showComponents(resetCallback) {
         const canvasContainer = document.getElementById('canvasContainer');
         const analysisResults = document.getElementById('AnalysisResults');
+        const canvasDCTContainer = document.getElementById('canvasDCTContainer');
+        
         if (canvasContainer) {
             canvasContainer.style.display = 'grid';
             canvasContainer.classList.add('canvasContainer-2x2');
         }
         if (analysisResults) analysisResults.style.display = 'none';
+        if (canvasDCTContainer) canvasDCTContainer.style.display = 'grid';
         if (resetCallback) resetCallback();
     }
     
@@ -439,6 +467,10 @@ export class JpegView {
         const canvasContainer = document.getElementById('canvasContainer');
         const analysisResults = document.getElementById('AnalysisResults');
         const clickCanvasTitle = document.getElementById('clickCanvasTitle');
+        const canvasDCTContainer = document.getElementById('canvasDCTContainer');
+        if (canvasDCTContainer) {
+            canvasDCTContainer.style.setProperty('display', 'none', 'important');
+        }
         if (canvasContainer) {
             canvasContainer.style.display = 'flex';
             canvasContainer.classList.remove('canvasContainer-2x2');
@@ -458,6 +490,17 @@ export class JpegView {
             box.classList.add('title-visible');
         });
     }
+    
+    /**
+    * Mostra il container dei canvas DCT.
+    */
+    showCanvasDCT() {
+        const dctCanvas = document.getElementById('canvasDCTContainer');
+        if (dctCanvas) {
+            dctCanvas.style.display = 'grid';
+        }
+    }
+    
     /**
     * Nasconde i titoli dei canvas.
     */
@@ -490,17 +533,17 @@ export class JpegView {
     }
     
     /**
-    * Disegna i pixel di una componente su un canvas specifico.
+    * Disegna i pixel di una componente con coeffieicnti DCT su un canvas specifico.
     */
-    drawComponentOnCanvas({ width, height, pixels }, canvasId) {
+    drawComponentDCTOnCanvas({ width, height, pixels }, canvasId) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
-    
+        
         // Imposta una dimensione fissa, ad esempio come imageCanvas
         const refCanvas = document.getElementById('imageCanvas');
         const targetWidth = refCanvas ? refCanvas.width : width;
         const targetHeight = refCanvas ? refCanvas.height : height;
-    
+        
         // Crea l'immagine della componente
         const tempCanvas = document.createElement('canvas');
         tempCanvas.width = width;
@@ -515,7 +558,7 @@ export class JpegView {
             imageData.data[i * 4 + 3] = 255;
         }
         tempCtx.putImageData(imageData, 0, 0);
-    
+        
         // Ridimensiona il canvas di destinazione
         canvas.width = targetWidth;
         canvas.height = targetHeight;
@@ -524,6 +567,47 @@ export class JpegView {
         ctx.drawImage(tempCanvas, 0, 0, targetWidth, targetHeight);
     }
     
+    drawComponentGrayOnCanvas({ width, height, comp }, canvasId) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) {
+            console.error(`Canvas with id ${canvasId} not found`);
+            return;
+        }
+        
+        // Imposta una dimensione fissa, ad esempio come imageCanvas
+        const refCanvas = document.getElementById('imageCanvas');
+        const targetWidth = refCanvas ? refCanvas.width : width;
+        const targetHeight = refCanvas ? refCanvas.height : height;
+        
+        // Crea l'immagine della componente
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = width;
+        tempCanvas.height = height;
+        const tempCtx = tempCanvas.getContext('2d');
+        const imageData = tempCtx.createImageData(width, height);
+        
+        // Verifica che comp sia definito e sia un array
+        if (!comp || comp.length === 0) {
+            console.error('Component data is undefined or empty');
+            return;
+        }
+        
+        for (let i = 0; i < width * height; i++) {
+            const value = comp[i]; // Qui comp dovrebbe essere l'array pixels
+            imageData.data[i * 4 + 0] = value; // R
+            imageData.data[i * 4 + 1] = value; // G
+            imageData.data[i * 4 + 2] = value; // B
+            imageData.data[i * 4 + 3] = 255;   // A
+        }
+        tempCtx.putImageData(imageData, 0, 0);
+        
+        // Ridimensiona il canvas di destinazione
+        canvas.width = targetWidth;
+        canvas.height = targetHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, targetWidth, targetHeight);
+        ctx.drawImage(tempCanvas, 0, 0, targetWidth, targetHeight);
+    }
     /**
     * Mostra il titolo del blocco selezionato.
     */
@@ -577,12 +661,20 @@ export class JpegView {
         canvas.style.display = 'block';
     }
     
+    
+    /**
+    * Mostra il messaggio di caricamento e nasconde i container dei canvas.
+    */
     showLoadingMessage() {
         document.getElementById('loadingMessage').style.display = 'block';
         document.getElementById('canvasContainer').style.display = 'none';
         document.getElementById('AnalysisResults').style.display = 'none';
     }
     
+    /**
+    * Nasconde il messaggio di caricamento.
+    * Le sezioni verranno mostrate dalle funzioni view.showAllSections(), showDCTSection(), showComponents()
+    */
     hideLoadingMessage() {
         document.getElementById('loadingMessage').style.display = 'none';
         // Le sezioni verranno mostrate dalle funzioni view.showAllSections(), showDCTSection(), showComponents()
